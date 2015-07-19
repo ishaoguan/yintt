@@ -1,0 +1,63 @@
+@charset "utf-8"
+/* CSS Document */
+#hy_right{ width:784px; height:100%; float:right;}
+#Tab1{ width:784px; margin-top:5px; height:100%;}
+/*.Menubox1{ width:784px; height:36px; background:url(../images/beijin/tiaobj_03.jpg) repeat-x bottom;}
+.Menubox1 li{ float:left; width:89px; height:29px; background:url(../images/beijin/biaotibj_02.jpg) no-repeat; font-size:14px; color:#999999; text-align:center; line-height:29px; cursor: pointer;}
+.Menubox1 li.hover{ background:url(../images/beijin/biaotibj_01.jpg) no-repeat; color:#FFFFFF;}*/
+
+
+.Menubox1{ width:784px; height:48px; background:url(../images/nav_bg1.gif) repeat-x;}
+.Menubox1 li{ float:left; width:88px; height:37px; background:url(../images/nav_li_hover.gif) no-repeat; font-size:14px; color:#999999; text-align:center; line-height:37px; cursor: pointer;}
+.Menubox1 li.hover{ background:url(../images/nav_li_current.gif) no-repeat; color:#FFFFFF;}
+.Menubox1 li A{color:#FFFFFF}
+.Contentbox1{ border-bottom:1px solid #CCCCCC; border-left:1px solid #CCCCCC; border-right:1px solid #CCCCCC; padding:6px;}
+
+input.txt_01 {
+    width: 88px;
+}
+input.txt_02 {
+    width:155px;
+}
+input.txt_03 {
+    width:155px; _margin-top:8px;
+}
+input.txt_04 {
+    width:200px; _margin-top:8px;
+}
+input.txt_05 {
+    width:88px; _margin-top:8px;
+}
+select.sel_fs01 {
+    width: 165px; _margin-top:8px;
+}
+input, select {
+    padding-left: 5px;
+}
+textarea {
+    color: #7A7A7C;
+    height: 70px;
+    width: 480px; margin-top:8px; padding:5px;
+}
+.ml_sj{ height:25px; margin-top:5px;}
+.ml_sj li{ width:50%; float:left;}
+.ml_002{ height:33px; background:#FAF2F3; border-bottom:2px solid #D7303A; line-height:33px;}
+.ml_002 li{ width:14%; float:left; text-align:center; font-weight:bold;}
+.ml_003{ padding:5px 0 15px 0;}
+.ml_003 li{ border-bottom:1px dashed #CCCCCC; height:95px; padding:8px 0; line-height:95px;}
+.ml_003 li p{ float:left; text-align:center; font-size:16px; font-weight:bold;}
+.p001{ width:108px;}
+.p001 img{ width:88px; height:93px; padding:1px; border:1px solid #CCCCCC;}
+.p002{ width:108px;}
+.p003{ width:125px; padding-top:42px;}
+.p004{ width:110px; padding-top:36px;}
+
+.grxxzl{ padding:10px 0;}
+.grxxzl li{ height:33px; border-bottom:1px dotted #CCCCCC; line-height:33px; color:#7A7A7C;}
+.grxxzl li p{ width:150px; background:#F6F6F6; text-align:right; height:33px; float:left;}
+.grxxzl li span{ padding-left:20px;}
+.pt005{color:#7A7A7C;}
+.grxxzl .tet008{ height:100px;}
+.grxxzl .tet008 p{ width:150px; background:#F6F6F6; text-align:right; height:33px; float:left; height:100px;}
+
+

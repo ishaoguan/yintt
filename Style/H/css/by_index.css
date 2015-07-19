@@ -1,0 +1,96 @@
+@charset "utf-8"
+/* CSS Document */
+
+/*�в���ʼ*/
+#content_hy{ width:980px; overflow:hidden;}
+.huiyuandl{ width:282px; height:211px; float:left; padding:12px 0;  background:url(../images/beijin/hybj01.jpg) repeat-y; position:relative;}
+.huiyuandl .hy_t{ display: block; position: absolute; height:12px; width:282px; background:url(../images/beijin/hybj.jpg) no-repeat 0 0px; top:0;}
+.huiyuandl .hy_b{ display: block; position: absolute; height:12px; width:282px; background:url(../images/beijin/hybj.jpg) no-repeat 0 -38px; bottom:0;}
+.hy_wz{ height:35px; font-size:18px; font-weight:bold; text-indent:2em; line-height:35px;}
+.hy_zh{ padding-left:20px; font-size:14px; font-weight:bold;}
+.hy_zh li{ height:30px; line-height:30px;}
+.hy_wjma{ padding-left:20px; height:25px; margin-top:20px;}
+.hy_wjma img{ width:75px; height:25px; margin-left:10px;}
+.hy_wjma span img{ margin-right:2px;}
+.hy_wjma a{ line-height:25px; height:25px; float:left; text-align:center;}
+.hy_wjma a:hover{ color:#ff6600;}
+.cont_guanggao{ float:right; width:713px;}
+
+#tongzhi{ width:980px; margin-top:10px; overflow:hidden;}
+.tongzhi_a{ height:47px; width:926px; border:1px solid #ccc; line-height:47px; font-size:18px; font-weight:bold; background:url(../images/bj_02.jpg) repeat-x; text-align:right; padding:0 25px; }
+.tongzhi_b{ height:42px;}
+.lioucheng{ height:90px;}
+
+#content_daik{ width:1000px; margin-top:5px; overflow:hidden;}
+.leftdaikuan{ width:674px; float:left;}
+.dk_jxz{ width:668px; height:782px; border:3px solid #D4D3D3;}
+.mn_dk_01{ height:36px;  margin:2px 15px;}
+
+.dk_rnong{ padding:20px 10px 0 10px; width:647px;}
+.dk_rnong dl{ width:280px; float:left; margin:10px; height:100px;}
+.dk_rnong dl dt{ float:left; padding:1px; width:86px; height:91px; border:1px solid #D6D5D4; margin-top:5px; margin-right:5px;}
+.dk_rnong dl dt img{ width:86px; height:91px;}	
+.dk_rnong dl dd{ float:right; width:180px; height:20px;}
+.dk_jq{ position:relative;}
+.jiangqi{ position:absolute; right:0; top:0;}
+
+.dk_ganggao{ margin-top:3px; width:673px;}
+.dk_ganggao img{ width:674px;}
+
+
+.diandang_datalist td{ height:25px; border-bottom:1px solid #E5E6E6; line-height:25px; text-align:center; color:#6A6868; padding:0 2px;}
+.diandang_datalist td span{ font-weight:bold;}
+.diandang_datalist td a{ color:#6A6868; float:left;}
+.diandang_datalist td a:hover{ color:#ff6600;}
+.ddh_bjs{ background:#F9FAFA;}
+/*��߽���*/
+.rightmore{ float:right; width:260px;}
+.rh_zxggao{ width:254px;  border:3px solid #398ACE; height:252px;}
+.mn_dk_02{ height:36px; margin:2px 15px;}
+.more{ float:right; margin-right:10px; padding-top:15px}
+.lx_02 { padding: 10px;}
+.lx_02 li{    height: 23px;line-height: 23px; background:url(../images/index_12.gif) no-repeat left; padding-left: 15px;}
+.lx_02 li a:hover{ color:#FF6600;}
+
+.rh_xiangmu{ width:254px;  border:3px solid #398ACE; height:254px;}
+.mn_dk_03{ height:36px; margin:2px 15px;}
+.lx_03{ padding:0 15px;}
+.lx_03 dl{ height:72px; padding:10px 0; border-bottom:1px dashed #CCCCCC; width:276px;}
+.lx_03 dl dt{ height:68px; width:62px; padding:1px; border:1px solid #CCCCCC; float:left;}
+.lx_03 dl dd{ height:24px; line-height:24px; width:200px; float:right;}
+
+.kuaisunve{ background:url(../images/kuaistaohang.jpg) no-repeat; width:262px; height:445px; margin-top:17px;}
+.kuaisunve ul{ padding:85px 0 0 20px; height:324px; width:270px;}
+.kuaisunve ul dl{ height:47px; padding:9px 0;}
+.kuaisunve ul dl dt{ border:1px solid #BFBFBF; height:45px; width:86px; float:left;}
+.kuaisunve ul dl dt img{ width:86px; height:45px;}
+.kuaisunve ul dl dd{ width:180px; float:right; text-align:center; height:47px; line-height:47px;}
+.kuaisunve ul dl dd a{ font-size:16px; font-family:"宋体"; font-weight:bold; color:#7B7A7A;}
+.kuaisunve ul dl dd a:hover{ color:#FF6600;}
+
+#by_gg_dm{ width:1000px; height:90px; margin-top:8px;}
+#by_gg_dm img{ width:1000px; height:90px;}
+
+#yinhang{ width:1000px; margin-top:3px;}
+/*�в�����*/
+
+.ef li{height:25px; line-height:25px}
+.ef .uname{font-size:13px; font-weight:bold; color:#F00}
+.ef .xs a{color:#427E1D}
+
+a.btn-action {
+    background-color: #CC0000;
+    background-image: url("../images/btn-red.jpg");
+    background-position: 0 0;
+    background-repeat: repeat;
+    color: #FFFFFF;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 80px;
+	float:left;
+	margin-left:20px;
+	margin-top:10px;
+}
+

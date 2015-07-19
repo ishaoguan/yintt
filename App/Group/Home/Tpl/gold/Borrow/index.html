@@ -1,0 +1,167 @@
+<include file="Public:_header_common" />
+<title>{$glo.index_title}-我要借款</title>
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/borrow.css?{:C('APP_RES_VER')}" />
+<include file="Public:_header_main" />
+
+  
+   <div id="pos">
+    <ul>
+     <li><a href="__APP__/">{$glo.web_name}</a></li>
+     <li class="posDiv"></li>
+     <li><p>我要借款</p></li>
+    </ul>
+   </div>
+   
+   <div id="content">
+    <div id="left">
+     <!-- Left -->
+      
+      <div class="lb5_h"><h4><span>抵押</span>借款</h4><p>抵押标说明：抵押标是一种以固定资产为押低，通过线下审核才能通过初审的标的类似</p></div>
+      <div class="lb5">
+       <div class="lb5_upper"><p>申请条件：<span>1.注册用户</span><span>2.通过实名认证</span><span>3.资料认证</span></p></div>
+       <div class="lb5_lower">
+        <div class="lb5_ll">
+         <table width="358" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+           <th>可使用额度</th>
+           <th>总额度</th>
+           <th>已使用额度</th>
+           <th>额度状态</th>
+          </tr>
+          <tr>
+           <td>50万</td>
+           <td>50万</td>
+           <td>￥0.00</td>
+           <td>正常</td>
+          </tr>
+         </table>
+        </div>
+        <div class="lb5_lr"><input type="button" class="bor_but" value="立即借入" onclick="window.location.href='__URL__/post/mortgage.html'" /><p>已有<span>{$allStat[5]|default=0}</span>个该类型借款</p></div>
+       </div>
+      </div>
+      
+      <div class="lb1_h"><h4><span>信用</span>借款</h4><p>信用标说明：信用标是一种以信任额度为借款依据的标的类型</p></div>
+      <div class="lb1">
+       <div class="lb1_upper"><p>申请条件：<span>1.注册用户</span><span>2.通过实名认证</span><span>3.资料认证</span></p></div>
+       <div class="lb1_lower">
+        <div class="lb1_ll">
+         <table width="358" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+           <th>可使用额度</th>
+           <th>总额度</th>
+           <th>已使用额度</th>
+           <th>额度状态</th>
+          </tr>
+          <tr>
+           <td>{$minfo.credit_limit|Fmoney=###}</td>
+           <td>{$minfo.credit_cuse|Fmoney=###}</td>
+           <td>{:Fmoney(getFloatvalue($minfo['credit_limit']-$minfo['credit_cuse'],2))}</td>
+           <td>正常</td>
+          </tr>
+         </table>
+        </div>
+        <div class="lb1_lr"><input type="button" class="bor_but" value="立即借入" onclick="javascript:window.location.href='__APP__/borrow/post/normal.html'" /><p>已有<span>{$allStat[1]|default=0}</span>个该类型借款</p></div>
+       </div>
+      </div>
+      
+      <div class="lb2_h"><h4><span>担保</span>借款</h4><p>担保标说明：担保标是一种以担保额度为借款依据的标的类型</p></div>
+      <div class="lb2">
+       <div class="lb2_upper"><p>申请条件：<span>1.注册用户</span><span>2.通过实名认证</span><span>3.资料认证</span></p></div>
+       <div class="lb2_lower">
+        <div class="lb2_ll">
+         <table width="358" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+           <th>可使用额度</th>
+           <th>总额度</th>
+           <th>已使用额度</th>
+           <th>额度状态</th>
+          </tr>
+          <tr>
+           <td>{$minfo.borrow_vouch_cuse|Fmoney=###}</td>
+           <td>{$minfo.borrow_vouch_limit|Fmoney=###}</td>
+           <td>{:Fmoney($minfo['borrow_vouch_limit']-$minfo['borrow_vouch_cuse'])}</td>
+           <td>正常</td>
+          </tr>
+         </table>
+        </div>
+        <div class="lb2_lr"><input type="button" class="bor_but" value="立即借入" onclick="window.location.href='__APP__/borrow/post/vouch.html'" /><p>已有<span>{$allStat[2]|default=0}</span>个该类型借款</p></div>
+       </div>
+      </div>
+      
+      <div class="lb3_h"><h4><span>净值</span>借款</h4><p>净值标说明：净值标是一种以投资人的净投资作为借款依据来确认发标金额的标的类型</p></div>
+      <div class="lb3">
+       <div class="lb3_upper"><p>申请条件：<span>投资多少钱便有多少净值额度！</span>&nbsp;&nbsp;&nbsp;&nbsp;计算公式：<span>投资待收总额-借款净值标待还的总额=可借额度</span></p></div>
+       <div class="lb3_lower">
+        <div class="lb3_ll">
+         <table width="358" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+           <th>帐户净资产</th>
+           <th>可借款金额</th>
+           <th>额度状态</th>
+          </tr>
+          <tr>
+           <td>{:Fmoney($minfo['money_collect'])}</td>
+           <td>{:Fmoney($minfo['money_collect']-$capitalinfo['borrow'][6]['money']-$capitalinfo['borrow'][6]['repayment_money'])}</td>
+           <td>正常</td>
+          </tr>
+         </table>
+        </div>
+        <div class="lb3_lr"><input type="button" class="bor_but" value="立即借入" onclick="window.location.href='__URL__/post/net.html'" /><p>已有<span>{$allStat[4]|default=0}</span>个该类型借款</p></div>
+       </div>
+      </div>
+      
+      <div class="lb4_h"><h4><span>秒还</span>借款</h4><p>秒还标说明：秒还标是一种自动通过复审并且标满即马上自动还款的标的类型</p></div>
+      <div class="lb4">
+       <div class="lb4_upper"><p>申请条件：<span>1.注册用户</span><span>2.通过实名认证</span><span>3.资料认证</span></p></div>
+       <div class="lb4_lower">
+        <div class="lb4_ll">
+         <table width="358" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+           <th>可使用额度</th>
+           <th>总额度</th>
+           <th>已使用额度</th>
+           <th>额度状态</th>
+          </tr>
+          <tr>
+           <td>50万</td>
+           <td>50万</td>
+           <td>￥0.00</td>
+           <td>正常</td>
+          </tr>
+         </table>
+        </div>
+        <div class="lb4_lr"><input type="button" class="bor_but" value="立即借入" onclick="window.location.href='__URL__/post/second.html'" /><p>已有<span>{$allStat[3]|default=0}</span>个该类型借款</p></div>
+       </div>
+      </div>
+      
+      <div class="lb6_h"><h4><span>助学</span>借款</h4><p>助学标说明：助学标是一种以固定资产为押低，通过线下审核才能通过初审的标的类似</p></div>
+      <div class="lb6">
+       <div class="lb6_upper"><p>申请条件：<span>1.注册用户</span><span>2.通过实名认证</span><span>3.资料认证</span></p></div>
+       <div class="lb6_lower">
+        <div class="lb6_ll">
+         <table width="358" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+           <th>可使用额度</th>
+           <th>总额度</th>
+           <th>已使用额度</th>
+           <th>额度状态</th>
+          </tr>
+          <tr>
+           <td>50万</td>
+           <td>50万</td>
+           <td>￥0.00</td>
+           <td>正常</td>
+          </tr>
+         </table>
+        </div>
+        <div class="lb6_lr"><input type="button" class="bor_but" value="立即借入" onclick="window.location.href='__URL__/post/mortgage.html'" /><p>已有<span>{$allStat[6]|default=0}</span>个该类型借款</p></div>
+       </div>
+      </div>
+      
+     <!-- Left // -->
+    </div>
+    <include file="Public:_right" />
+   </div>
+<include file="Public:_footer" />

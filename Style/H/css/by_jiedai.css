@@ -1,0 +1,183 @@
+/* CSS Document */
+.lioucheng{ width:980px;}
+.lc_zt_01{ height:30px;}
+.lc_zt_01 span{ margin-left:5px; margin-right:5px; font-size:14px; font-weight:bold; line-height:30px;}
+.lc_tb_02{ height:70px; width:940px; padding:8px 0 2px 30px; border-bottom:2px dashed #909090; border-top:2px dashed #909090;}
+.lc_tb_02 dl{ float:left; width:125px; margin-left:5px; text-align:center;}
+.lc_tb_02 dl dd{ float:left; background:url(../images/jiekuan/youchengbj_02.jpg) no-repeat; height:65px; width:59px; padding-top:5px;color:#000000;}
+.lc_tb_02 dl dd.hover{ background:url(../images/jiekuan/youchengbj_01.jpg) no-repeat; color:#FFFFFF; }
+.lc_tb_02 dl dd strong{ line-height:1.3; font-size:14px; font-family:"黑体"; }
+.lc_tb_02 dl dt{ margin-left:20px; width:45px; float:left;}
+#Tab2{ width:1000px;}
+.Menubox2{ width:850px; margin:0 auto; height:160px; position:relative;top:37px; z-index:2; }
+.Menubox2 li{ background:url(../images/jiekuan/biankuang.png) no-repeat; width:117px; height:160px; float:left; cursor: pointer; margin-left:30px;}
+.Menubox2 li.hover{ background:url(../images/jiekuan/biankuang01.png) no-repeat; width:117px; height:160px;}
+.Menubox2 li img{ width:97px; height:97px; padding:4px 0 0 7px;}
+.Contentbox2{ width:946px; border:4px solid #BD3C14; padding:33px 23px 20px 23px;}
+.two_1_a li{ font-size:16px; font-weight:bold; }
+.two_1_b{ margin-top:15px; width:100%;}
+.tow1_datalist{ border-collapse: collapse; width:912px; margin:0 auto;}
+.tow1_datalist th{ border:2px solid #4B4443; text-align:center; padding:15px 4px;  font-size:18px; width:150px;}
+.tow1_datalist td{ border:2px solid #4B4443; text-align:center; padding:15px 4px;  font-size:18px; width:150px; font-weight:bold;}
+.two_1_b p{ text-align:center; margin-top:10px;}
+
+
+#jiedai_rm_xz{ width:1000px; overflow:hidden; margin-top:10px;}
+.rmxz_ll{ width:486px; float:left;}
+.rmxz_rr{ width:486px; float:right;}
+.jd_rm{ width:480px; height:410px; border:3px solid #D4D3D3;}
+.jd_xz{ width:480px; height:410px; border:3px solid #D4D3D3;}
+
+
+/*******************************流程样式开始*****************/
+.loan_l_li01
+{ margin-top:30px;
+float:left; margin-left:10px;
+}
+#midd_loan {
+	MARGIN-TOP: 10px; WIDTH: 978px; _padding-bottom: 20px; 
+} 
+.midd_loan_ullist {
+	WIDTH: 980px; BACKGROUND: url(../images/980tiao.jpg) repeat-x 50% top; HEIGHT: 37px;FLOAT: left
+}
+.midd_loan_ullist .midd_loan_lilist {
+	TEXT-ALIGN: left; PADDING-LEFT: 20px; WIDTH: 958px; BACKGROUND: url(../images/home/index_32.gif) repeat-x; FLOAT: left; HEIGHT: 24px; FONT-SIZE: 14px; FONT-WEIGHT: bold; PADDING-TOP: 13px
+}
+.midd_loan_ullist .midd_loan_li_01 {
+	WIDTH: 950px; FLOAT: left; MARGIN-LEFT: 10px !important
+}
+.oldai_height_totl {
+	height:1050px;
+}
+.oldai_height_totl01 {
+	HEIGHT:200px;
+}
+.formatTXT a
+{ color::#3781c4; text-decoration:none;}
+
+.xy_01 {
+	PADDING-LEFT: 20px; FLOAT: left; COLOR: #ea5413; FONT-SIZE: 12px; FONT-WEIGHT: bold; PADDING-TOP: 20px
+}
+.xy_05 {
+	TEXT-ALIGN: left; PADDING-LEFT: 20px; WIDTH: 890px; FLOAT: left; COLOR: #666; FONT-SIZE: 12px; PADDING-TOP: 20px
+}
+.xy_05 SPAN {
+	FONT-WEIGHT: bold
+}
+.sxian {
+	BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid
+}
+#midd_loan .midd_loan_ullist {
+	WIDTH: 978px; FLOAT: left
+}
+#midd_loan .midd_loan_ullist .midd_loan_li_01 {
+	WIDTH: 950px; FLOAT: left; MARGIN-LEFT: 10px !important
+}
+.oldai_color {
+	COLOR: #ea5413
+}
+.loan_p_01 {
+	MARGIN-TOP: 8px; FLOAT: left; HEIGHT: 20px; FONT-SIZE: 12px; FONT-WEIGHT: bold;color:#41619e;
+}
+.loan_p_02 {
+	BORDER-BOTTOM: #ccc 1px dashed; WIDTH: 700px; FLOAT: left; FONT-SIZE: 0px
+}
+.loan_p_03 {
+	TEXT-ALIGN: left; MARGIN-TOP: 8px; WIDTH: 220px; FLOAT: left; HEIGHT: 23px; FONT-SIZE: 12px
+}
+.loan_p_04 {
+	TEXT-ALIGN: left; WIDTH: 220px; FLOAT: left; HEIGHT: 23px; FONT-SIZE: 12px
+}
+.loan_p_05 {
+	TEXT-ALIGN:center; WIDTH: 175px; FLOAT: left; HEIGHT: 23px; FONT-SIZE: 12px;color:#8d8d8d;
+}
+.loan_p_06 {
+	TEXT-ALIGN: center; MARGIN-TOP: 8px; WIDTH: 175px; FLOAT: left; HEIGHT: 23px; FONT-SIZE: 12px;color:#8d8d8d;
+}
+.loan_l {
+	BORDER-BOTTOM: #cccccc 2px solid; BORDER-LEFT: #cccccc 2px solid; MARGIN-TOP: 20px; WIDTH: 935px; FLOAT: left; HEIGHT: 174px; MARGIN-LEFT: 20px; BORDER-TOP: #cccccc 2px solid; BORDER-RIGHT: #cccccc 2px solid; _margin-left: 10px
+}
+.loan_p_01 {
+	MARGIN-TOP: 8px; FLOAT: left; HEIGHT: 20px; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+.loan_p_02 {
+	BORDER-BOTTOM: #ccc 1px dashed; WIDTH: 700px; FLOAT: left; FONT-SIZE: 0px
+}
+.loan_p_03 {
+	TEXT-ALIGN: left; MARGIN-TOP: 8px; WIDTH: 220px; FLOAT: left; HEIGHT: 23px; FONT-SIZE: 12px
+}
+
+.loan_l_li06 {
+	TEXT-ALIGN: left; MARGIN-TOP: 15px; PADDING-LEFT: 140px; WIDTH: 586px; BACKGROUND: url(../images/loan_l_23.jpg) no-repeat left 50%; FLOAT: left; HEIGHT: 15px; MARGIN-LEFT: 15px; FONT-SIZE: 12px; PADDING-TOP: 8px
+}
+.loan_l_li07 {
+	TEXT-ALIGN: left; MARGIN-TOP: 15px; PADDING-LEFT: 140px; WIDTH: 586px; BACKGROUND: url(../images/loan_l_28.jpg) no-repeat left 50%; FLOAT: left; HEIGHT: 15px; MARGIN-LEFT: 15px; FONT-SIZE: 12px; PADDING-TOP: 8px
+}
+
+#guanggao_05{ width:980px; height:140px; margin-top:10px;}
+#midd_loan1 {
+	MARGIN-TOP: 10px; WIDTH: 978px; _padding-bottom: 20px;
+}
+#midd_loan1 .midd_loan_ullist {
+	WIDTH: 980px; BACKGROUND: url(../images/980tiao.jpg) repeat-x 50% top; HEIGHT: 37px;FLOAT: left
+}
+/*******************************流程样式结束*****************/
+
+/**************************流程步骤样式开始**********************/
+
+
+.content {
+	MARGIN: auto; WIDTH: 950px;height:70px;
+}
+
+
+.lc_bz {
+	BORDER-BOTTOM: #b4b4b4 1px dashed; PADDING-BOTTOM: 8px; MARGIN-TOP: 5px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: #b4b4b4 1px dashed; PADDING-TOP: 8px;
+}
+.lc_bz UL {
+	FLOAT: left;
+}
+.lc_bz LI {
+	LIST-STYLE-TYPE: none; MARGIN: 0px; DISPLAY: inline; FLOAT: left; OVERFLOW: hidden; LIST-STYLE-IMAGE: none
+}
+
+.lc_bz LI SPAN {
+	LINE-HEIGHT: 35px; DISPLAY: block; FLOAT: left; HEIGHT: 35px;
+}
+.lc_bz LI A {
+	LINE-HEIGHT: 35px; DISPLAY: block; FLOAT: left; HEIGHT: 35px
+}
+.lc_bz LI A {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; FONT-WEIGHT: bold; PADDING-TOP: 0px
+}
+.lc_bz LI A.hong {
+	BACKGROUND: #5eba4f; COLOR: #fff
+}
+.lc_bz LI SPAN.hong_tou {
+	WIDTH: 19px; BACKGROUND: url(../images/daik_bg_1.gif) no-repeat right bottom
+}
+.lc_bz LI SPAN.hong_wei {
+	WIDTH: 21px; BACKGROUND: url(../images/daik_bg_1.gif) no-repeat -139px bottom
+}
+.lc_bz LI A.hui {
+	BACKGROUND: #f0f0f0; COLOR: #b4b4b4
+}
+.lc_bz LI A.hui:hover {
+	COLOR: #f30
+}
+.lc_bz LI SPAN.hui_wei {
+	WIDTH: 22px; BACKGROUND: url(../images/daik_bg_1.gif) no-repeat left bottom
+}
+.lc_bz LI SPAN.hui_tou {
+	WIDTH: 19px; BACKGROUND: url(../images/daik_bg_1.gif) no-repeat -118px bottom
+}
+.lc_bz LI A:hover {
+	TEXT-DECORATION: none
+}
+
+/**************************流程步骤样式结束**********************/
+
+
+
+
+

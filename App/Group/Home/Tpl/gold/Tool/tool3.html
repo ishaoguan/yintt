@@ -1,0 +1,147 @@
+<include file="Public:_header_common" />
+<title>{$glo.index_title}-按季还款利息计算器</title>
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/H/css/by_bangzhu.css" />
+<include file="Public:_header_main" />
+<script type="text/javascript">
+        $(function() {
+
+            $("#sel_Days").bind("change", function() {
+                var thisDom = $(this);
+                if (thisDom.val() == "-1") {
+                    thisDom.next().show();
+                }
+                else {
+                    thisDom.next().hide();
+                }
+            });
+            $(".dv_r_6,.dv_r_5").mousemove(function() {
+                $(this).addClass("current");
+            }).mouseout(function() {
+                $(this).removeClass("current");
+            });
+        }); 
+    </script>
+<!--中部开始-->
+<div class="dv_i_1">
+  <div id="content1B" style="float: left; position:relative; overflow:hidden; width:216px;">
+    <div class="bzzx_left_a">
+      <div class="glossymenu">
+        <ul>
+          <li class="cjwt_a"><span style="color:#ea5413; padding-left:40px; display:inline;">借贷工具</span></li>
+        </ul>
+        <ul>
+          <li><a href="tool.html">分期还款利息计算器</a></li>
+          <li><a href="tool2.html">一次性还款利息计算器</a></li>
+          <li><a class="hover" href="tool3.html">按季还款利息计算器</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="content2B1" style="width:15px; margin-right:0px"> </div>
+  <div id="content3B">
+    <div class="tool_title">
+      <div class="backgroup">
+        <h4> 按季还款利息计算器</h4>
+      </div>
+      <div class="cont"> 使用按季还款利息计算器，帮您计算一下借款的总成本，包括到期本金及利率等。 </div>
+    </div>
+    <div class="tool_title" style="margin-top: 10px;">
+      <div class="fun_title">
+        <h5> 借款设置</h5>
+      </div>
+      <div class="funframe">
+        <ul>
+         <li>借款金额：<input name="txtAmount" id="txtAmount" class="fuf_te" type="text">元</li>
+         <li>年化利率：<input name="txtIntegernal" id="txtIntegernal" class="fuf_te" type="text">%</li>
+         <li>借款期限：
+          <select name="sel_Days" id="sel_Days" style="width:70px" class="selectStyle">
+            <php>for($j=1;$j<13;$j++){</php>
+            <option value="{$j}">{$j}</option>
+            <php>}</php>
+            <option value="-1">自定义</option>
+          </select>
+          <input name="txtCusDay" id="txtCusDay" class="fuf_te2" style="display:none;" type="text">个月</li>
+          <li>还款方式：<span>按季还款</span></li>
+         </ul> 
+      </div>
+      <div style="text-align: center; padding-bottom: 10px;">
+        <input name="btnCount" value="开始计算" onclick="return Verify();" id="btnCount" class="addbtn" type="button">
+      </div>
+    </div>
+    <div style="margin-top: 10px; display:none" class="tool_title" id="resultList"> </div>
+    <div id="backList" class="tool_title" style="margin-top: 10px;">
+      <div class="fun_title">
+        <h6> 偿还的时间表</h6>
+      </div>
+      <div class="reback">
+        <ul>
+          <li style="width: 99px;">月份</li>
+          <li style="width: 162px;">月偿还</li>
+          <li style="width: 153px;">月本金还款</li>
+          <li style="width: 142px;">利息</li>
+          <li style="width: 135px;">余额</li>
+        </ul>
+      </div>
+      <div class="rslist" id="repaylist"> </div>
+    </div>
+    <script type="text/javascript">
+                var _partten_n = /^\d+$/;               //整数
+                var _partten_f = /^\d+\.\d{1,2}$/;      //浮点
+                var _partten_a = /^\d+(.)?\d{0,2}$/;    //兼容浮点和整数
+                var newTitle = '{$glo.web_name}提醒您：';
+                function RegVerify(_val, _partten) {
+                    var _reg = new RegExp(_partten);
+                    return _reg.test(_val);
+                }
+                function Verify() {
+                    if (!RegVerify($("#txtAmount").val(), _partten_n)) {
+						$("#txtAmount").focus();
+                        $.jBox.alert('您好，请输入借款金额！', newTitle);
+                        return false;
+                    }
+					if($("#sel_Days").val()== -1){
+						if($("#txtCusDay").val()%3 != 0 || $("#txtCusDay").val()==""){
+							 $.jBox.alert('按季还款日期必须为3的整倍数', newTitle);	
+							 return;
+						}
+					}else{
+						if($("#sel_Days").val()%3 != 0 || $("#sel_Days").val()==""){
+							 $.jBox.alert('按季还款日期必须为3的整倍数', newTitle);	
+							 return;
+						}
+					}
+                    if ($("#txtCusDay:visible")[0] && !RegVerify($("#txtCusDay").val(), _partten_n)) {
+						$("#txtCusDay").focus();
+                        $.jBox.alert('您好，请输入正确的天数', newTitle);
+                        return false;
+                    }
+                    if (!RegVerify($("#txtIntegernal").val(), _partten_a)) {
+						$("#txtIntegernal").focus();
+                        $.jBox.alert('您所输入的年利率数值不正确!', newTitle);
+                        return false;
+                    }
+					
+					$.ajax({
+						url: "__URL__/tool3",
+						data: {"money":$("#txtAmount").val(),"month":$("#txtCusDay").val(),"interest_rate":$("#txtIntegernal").val(),"selDays":$("#sel_Days").val()},
+						timeout: 5000,
+						cache: false,
+						type: "post",
+						dataType: "json",
+						success: function (d, s, r) {
+							if(d){
+								$("#resultList").html(d.html_1).show();
+								$("#repaylist").html(d.html_2);
+							}
+						}
+					});					
+                    //
+                }
+                
+           
+            </script>
+  </div>
+</div>
+<include file="Public:_footer" />

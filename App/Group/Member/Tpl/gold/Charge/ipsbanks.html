@@ -1,0 +1,10 @@
+<volist name="list" id="vo">
+	<div class="charge4">
+		<div class="charge5">
+			<input type="radio" checked="checked" class="charge7" data="{$vo.bank_code}" imgcode="{$vo.bank_img}" id="r_{$vo.bank_code}" name="mybank" yhcode="{$vo.bank_code}">
+		</div>
+		<div data="{$vo.bank_code}" imgcode="{$vo.bank_img}" title="{$vo.bank_name}-{$vo.bank_alias}" id="d_{$vo.bank_code}" class="charge6" style="border-color: rgb(204, 204, 204);" yhcode="{$vo.bank_code}">
+			<img alt="{$vo.bank_name}" src="__ROOT__/Style/M/images/bank/{$vo.bank_img}1.jpg" height="32" />
+		</div>
+	</div>
+</volist>

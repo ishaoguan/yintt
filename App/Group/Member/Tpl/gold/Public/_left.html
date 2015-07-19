@@ -1,0 +1,94 @@
+   <div id="us_l">
+    <!-- Left -->
+     <div id="usl_upper">
+      <div id="uslup_upper">
+       <div id="uslup_upper_l"><img src="{$UID|get_avatar=###}" width="80" height="80" alt="" /></div>
+       <div id="uslup_upper_r">
+        <h4>{:session('u_user_name')}</h4>
+        <if condition="$minfo.time_limit gt time()">
+        <div class="vip"></div>
+        </if>
+        <p>等级：</p><span title="经验：{$minfo.credits|default=0}">{$minfo.credits|getLeveIco=###,2}</span>
+       </div>
+      </div>
+      <div id="uslup_lower">
+       <p>信用额度：{$minfo.credit_cuse|Fmoney=###}<input type="button" class="us_appBut" value="申请额度" onclick="window.location.href='__APP__/member/moneylimit#fragment-1'" /></p>
+       <p>担保额度：{$minfo.borrow_vouch_cuse|Fmoney=###}</p>
+      </div>
+     </div>
+     
+     <ul>
+      <li class="cen"><div class="ulDiv1"></div><a href="__APP__/member/index.html"><h5>账户首页</h5></a></li>
+     </ul>
+     <ul>
+      <li><div class="ulDiv2"></div><h6>投资管理</h6></li>
+      <li><div class="liDiv"></div><a href="__APP__/invest/index.html">我要投资</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/tendout#fragment-1">投资总表</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/autoborrow/index.html">自动投标设置</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/tendout#fragment-3">回收中的投资</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/tendout#fragment-2">竞标中的投资</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/vouch#fragment-1">我担保的借款</a></li>
+     </ul>
+     <ul>
+      <li><div class="ulDiv3"></div><h6>借款管理</h6></li>
+      <li><div class="liDiv"></div><a href="__APP__/borrow/index.html">我要借款</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/borrowin#fragment-1">借入总表</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/borrowin#fragment-3">偿还中借款</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/borrowin#fragment-4">逾期借款</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/borrowin#fragment-5">流标借款</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/borrowin#fragment-6">复审未通过借款</a></li>
+     </ul>
+     <ul>
+      <li><div class="ulDiv4"></div><h6>资金管理</h6></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/capital#fragment-1">资金统计</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/withdraw#fragment-1">帐户提现</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/charge#fragment-1">帐户充值</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/charge#fragment-2">充值记录</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/bank#fragment-1">银行帐户</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/capital#fragment-2">帐户资金记录</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/scores#fragment-1">积分经验记录</a></li>
+     </ul>
+     <ul>
+      <li><div class="ulDiv5"></div><h6>认证中心</h6></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/verify?id=1#fragment-1">邮箱认证</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/verify#fragment-2">手机认证</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/verify#fragment-3">实名认证</a></li>
+      <!-- <li><div class="liDiv"></div><a href="__APP__/member/verify#fragment-4">现场认证</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/verify#fragment-5">视频认证</a></li> -->
+      <li><div class="liDiv"></div><a href="__APP__/member/verify#fragment-6">资料认证</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/verify#fragment-7">安全问题设置</a></li>
+     </ul>
+     <ul>
+      <li><div class="ulDiv6"></div><h6>好友管理</h6></li>
+      <!--<li><div class="liDiv"></div><a href="__APP__/member/friend#fragment-1">好友列表</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/friend#fragment-2">好友申请</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/friend#fragment-3">会员留言</a></li>-->
+      <li><div class="liDiv"></div><a href="__APP__/member/promotion#fragment-1">邀请好友</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/promotion#fragment-2">奖金记录</a></li>
+     </ul>
+     <ul>
+      <li><div class="ulDiv7"></div><h6>用户资料</h6></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/memberinfo">基本资料</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/user#fragment-1">头像与密码</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/msg#fragment-1">我的消息<span>{:getMsgCount($UID)}</span></a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/pushmessset#fragment-1">消息设置</a></li>
+      <li><div class="liDiv"></div><a href="__APP__/member/safe#fragment-1">安全中心</a></li>
+     </ul>
+    <!-- Left // -->
+   </div>
+<script type="text/javascript">
+<!--
+thisURL = document.URL;/*获取当前地址栏URL,根据此来判断当前页，从页实现页面导航不同样式*/
+$("#us_l ul li a").each(function(){
+	if(this.href == thisURL){
+		$(this).addClass("cururl");
+		return false;
+	}
+});
+$("#us_l ul li a").click(function(){
+	$("#us_l ul li a").removeClass("cururl");
+	$(this).addClass("cururl");
+	setTimeout("toTop()", 50);
+});
+//-->
+</script>

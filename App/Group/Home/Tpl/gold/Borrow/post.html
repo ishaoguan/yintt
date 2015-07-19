@@ -1,0 +1,284 @@
+<include file="Public:_header_common" />
+<title>发表借款-{$glo.index_title}</title>
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/borrow.css" />
+<SCRIPT language="javascript" src="__ROOT__/Style/H/js/borrow.js" type="text/javascript"></SCRIPT>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/JQtip/tip-yellowsimple/tip-yellowsimple.css" />
+<SCRIPT language="javascript" src="__ROOT__/Style/JQtip/jquery.poshytip.js" type="text/javascript"></SCRIPT>
+
+<link href="__ROOT__/Style/Swfupload/swfupload.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__ROOT__/Style/Swfupload/handlers.js?{:C('APP_RES_VER')}"></script>
+<script type="text/javascript" src="__ROOT__/Style/Swfupload/swfupload.js"></script>
+<style>
+.sel1{
+	float:left;
+	height:100%;
+	width:128px;
+	height:23px;
+	border: 1px solid #ddcd98;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	line-height: 32px;
+	color: #666;
+	padding:2px;
+}
+</style>
+<script type="text/javascript">
+
+$(function(){
+	$('.ab_text, .ab_text1').poshytip({
+		className: 'tip-yellowsimple',
+		showOn: 'hover',
+		alignTo: 'target',
+		alignX: 'center',
+		alignY: 'top',
+		offsetX: 0,
+		offsetY: 5
+	});
+	$('.ore').poshytip({
+		className: 'tip-yellowsimple',
+		showOn: 'hover',
+		alignTo: 'target',
+		alignX: 'right',
+		alignY: 'center',
+		offsetX: 10,
+		offsetY: -25
+	});
+	$('.sel').poshytip({
+		className: 'tip-yellowsimple',
+		showOn: 'hover',
+		alignTo: 'target',
+		alignX: 'right',
+		alignY: 'center',
+		offsetX: 10,
+		offsetY: -25
+	});
+});
+
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#password").val($("#password").attr("defval"));
+		$("#password").focus(function(){
+			if($(this).val()==$(this).attr("defval"))$(this).val("");
+		});
+		$("#password").blur(function(){
+			if($(this).val()=="")$(this).val($(this).attr("defval"));
+		});
+		
+		//swf上传图片
+/* 		swfu = new SWFUpload(
+		{
+			// Backend Settings
+			upload_url: "__URL__/swfupload",
+			post_params: {"PHPSESSID": "<php> echo session_id(); </php>", "dopost" : ""},
+
+			// File Upload Settings
+			file_size_limit : "2 MB",	// 2MB
+			file_types : "*.jpg; *.gif; *.png",
+			file_types_description : "选择 JPEG/GIF/PNG 格式图片",
+			file_upload_limit : "0",
+
+			file_queue_error_handler : fileQueueError,
+			file_dialog_complete_handler : fileDialogComplete,
+			upload_progress_handler : uploadProgress,
+			upload_error_handler : uploadError,
+			upload_success_handler : uploadSuccess,
+			upload_complete_handler : uploadComplete,
+
+			button_image_url : "../images/SmallSpyGlassWithTransperancy_17x18.png",
+			button_placeholder_id : "spanButtonPlaceholder",
+			button_width: 250,
+			button_height: 18,
+			button_text : '<span class="button">选择本地图片 <span class="buttonSmall">(单图最大为 2 MB，支持多选)</span></span>',
+			button_text_style : '.button { font-family: "宋体", sans-serif; font-size: 12px; } .buttonSmall { font-size: 10pt; }',
+			button_text_top_padding: 0,
+			button_text_left_padding: 18,
+			button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+			button_cursor: SWFUpload.CURSOR.HAND,
+			
+			// Flash Settings
+			flash_url : "__ROOT__/Style/Swfupload/swfupload.swf",
+
+			custom_settings : {
+				upload_target : "divFileProgressContainer"
+			},
+			
+			// Debug Settings
+			debug: false
+		}); */
+		//swf上传图片
+	});
+
+</script>
+<script type="text/javascript">
+//swf上传后排序
+function rightPic(o){
+	 var o = $("#albCtok"+o);
+	 if( o.next().length > 0) {
+		  var tmp = o.clone();
+		  var oo = o.next();
+		  o.remove();
+		  oo.after(tmp);
+	 }else{
+		alert("已经是最后一个了"); 
+	 }
+}
+//swf上传后排序
+function leftPic(o){
+	 var o = $("#albCtok"+o);
+	 if( o.prev().length > 0) {
+		  var tmp = o.clone();
+		  var oo = o.prev();
+		  o.remove();
+		  oo.before(tmp);
+	 }else{
+		alert("已经是第一个了"); 
+	 }
+}
+//swf上传后删除图片start
+function delPic(id){
+	var imgpath = $("#albCtok"+id).find("input[type='hidden']").eq(0).val();
+	var datas = {'picpath':imgpath,'oid':id};
+	$.post("__URL__/swfupload?delpic", datas, picdelResponse,'json');
+}
+
+function picdelResponse(res){
+	var imgdiv = $("#albCtok"+res.data);
+		imgdiv.remove();
+		ui.success(res.info);
+		ui.box.close();
+}
+//swf上传后删除图片end
+</script>
+<include file="Public:_header_main" />
+<tagLib name="htmlA" />
+
+  
+   <div id="pos">
+    <ul>
+     <li><a href="#nogo">银通泰</a></li>
+     <li class="posDiv"></li>
+     <li><p>我要借款</p></li>
+    </ul>
+   </div>
+   
+   <div id="content">
+    <div id="left">
+     <!-- Left -->
+  <form method="post" action="__URL__/save" onsubmit="return cksubmit();" name="postBorrow" id="postBorrow">
+      <input type="hidden" name="vkey" value="{$vkey}" />
+      <htmlA:select id="_day_option" datakey="borrow_day_time" style="display:none"/>
+      <htmlA:select id="_month_option" datakey="borrow_month_time" style="display:none"/>
+      
+      <div class="app_hd1">你正在发布的是<span>{$BORROW_TYPE[$borrow_type]}</span></div>
+      <div class="app_box1">
+       <h4>借款信息：</h4>
+       <ul>
+        <li><p>借贷总金额：</p><input onkeyup="NumberCheck(this)" type="text" class="ab_text" name="borrow_money" title="交易币种均为人民币。借款成功后,请按时还款 手续费请查看收费规则" /><h6>元</h6></li>
+        <li><p id="_day_rate">年利率：</p><input onkeyup="NumberCheck(this)" type="text" class="ab_text" name="borrow_interest_rate" title="填写您提供给投资者的年利率,所填写的利率是您还款的年利率。且只保留小数后最后两位。" /><h6>%</h6></li>
+        
+        <li><p>借款用途：</p>
+        	<div class="sel_border">
+                <div class="selNr">
+                	<htmlA:select id="borrow_use" datakey="borrow_use" class="sel1" addstr='title="说明借款成功后的具体用途"'/>
+                </div>
+            </div>
+        </li>
+        
+        
+        <li><p>借款期限：</p><div class="sel_border"><div class="selNr"><if condition="$miao eq 'yes'"><h6>标满自动还款</h6>
+                  <else/>
+                  <htmlA:select id="borrow_duration" datakey="borrow_month_time" class="sel1" addstr='title="借款成功后,打算以几(天)个月的时间来还清贷款。"  onchange="test_duration()"'/>
+                  <input type="checkbox" class="ore" name="is_day" id="is_day" value="yes" onclick="checkday()" title="按天还款注意利率为 '日利率',如 '日利率为1%' 则100元借1天利息1元，借两天利息2元" /><h6>按天</h6>
+                </if></div></div></li>
+        <li><p>最低投标金额：</p><div class="sel_border"><div class="selNr"><htmlA:select id="borrow_min" datakey="borrow_min" class="sel1" addstr='title="允许投资者对一个借款标的投标总额的限制"'/></div></div></li>
+        <li><p>最多投标总额：</p><div class="sel_border"><div class="selNr"><htmlA:select id="borrow_max" datakey="borrow_max" class="sel1" nodefalut="true" addstr='title="允许投资者对一个借款标的投标总额的限制"'/></div></div></li>
+        <li><p>有效时间：</p><div class="sel_border"><div class="selNr"><htmlA:select id="borrow_time" datakey="borrow_time" class="sel1" addstr='title="设置此次借款融资的天数。融资进度达到100%后直接进行网站的复审"'/></div></div></li>
+        <li><p>还款方式：</p><div class="sel_border"><div class="selNr"><if condition="$miao eq 'yes'"><h6>标满自动还款</h6>
+                  <else/>
+                  <htmlA:select id="repayment_type" datakey="repayment_type" class="sel1" addstr='title="1.按天到期还款 是按天算利息，到期的那一天同时还本息。2.按月分期还款是指贷款者借款成功后，每月还本息。3.按季分期还款是指贷款者借款成功后,每月还息，季度还本。4.到期还本按月付息是指贷款者借款成功后,每月还息,最后一月还同时还本金。" onchange="test_duration()"'/>
+                </if></div></div></li>
+        <li>
+         <p>是否有投标奖励：</p>
+         <input type="checkbox" class="ore" name="is_reward" id="is_reward" onclick="is_reward_do();" title="如果您设置了奖励金额，将会冻结您帐户中相应的账户余额。如果要设置奖励，请确保您的帐户有足够 的账户余额。"/>
+         <div class="award" style="display:none" id="_is_reward">
+          <ol>
+           <li><input type="radio" id="reward_type_1" class="ore2" name="reward_type" value="1" /><h6>按投标金额比例奖励：</h6><input type="text" class="ab_text" name="reward_type_1_value" onclick="reward_type_do(1)" onkeyup="NumberCheck(this)" title="范围：0.1%~6% ，这里设置本次标的要奖励给所有投标用户的奖励比例。" /><h6>%</h6></li>
+           <li><input type="radio" class="ore2" id="reward_type_2" name="reward_type" value="2" /><h6>按固定金额分摊奖励：</h6><input type="text" class="ab_text" name="reward_type_2_value" onclick="reward_type_do(2)" onkeyup="NumberCheck(this)" title="不能低于5元,不能高于总标的金额的2%，且请保留到“元”为单位。这里设置本次标的要奖励给所有投标用户的总金额。" /><h6>元</h6></li>
+          </ol>
+         </div>
+        </li>
+        <if condition="$borrow_type eq 2">
+        <li>
+         <p>是否有担保奖励：</p>
+         <input type="checkbox" class="ore" name="is_reward_vouch" id="is_reward_vouch" onclick="is_reward_vouch_do()" title="复审通过后会直接从借款中扣除相应的奖励金额给担保人" />
+         <div class="award" style="display:none" id="_is_reward_vouch">
+          <ol>
+           <li><h6>　担保奖例：</h6><input onkeyup="NumberCheck(this)" type="text" class="ab_text" name="vouch_rate" title="担保奖励按照所要借款的百分比给担保人，比如借100，奖励是3%，担保人借出50，则奖励50*3%=1.5" /><h6>%</h6></li>
+           <li><h6>指定担保人：</h6><input type="text" class="ab_text" name="vouch_member" title="指定多个担保人请用|隔开，为空表示所有人都可以担保" /></li>
+          </ol>
+         </div>
+        </li>
+        </if>
+       </ul>
+      </div>
+      
+      <div class="app_box2">
+       <h4>帐户信息公开设置：</h4>
+       <ul>
+        <li><input type="checkbox" class="ore" name="show_zhzj" title="如果您勾上此选项，将会实时公开您帐户的：账户总额、可用余额、冻结总额。" checked="checked" disabled="disabled" />公开我的帐户资金情况</li>
+        <li><input type="checkbox" class="ore" name="show_jkzj" title="如果您勾上此选项，将会实时公开您帐户的：借款总额、已还款总额、未还款总额、迟还总额、逾期总额。" checked="checked" disabled="disabled" />公开我的借款资金情况</li>
+        <li><input type="checkbox" class="ore" name="show_tbzj" title="如果您勾上此选项，将会实时公开您帐户的：投标总额、已收回总额、待收回总额。" value="1" />公开我的投标资金情况</li>
+        <li><input type="checkbox" class="ore" name="show_xyed" title="如果您勾上此选项，将会实时公开您帐户的：最低信用额度、最高信用额度。 " checked="checked" disabled="disabled" />公开我的信用额度情况</li>
+       </ul>
+      </div>
+      
+      <div class="app_box3">
+       <h4>借款的详细说明：</h4>
+       <ul>
+        <li><p>标题：</p><input type="text" class="ab_text1" style="width:300px" name="borrow_name" title="填写借款的标题，写好一点能借的几率也大一点" /></li>
+        <li><p>&nbsp;</p><input type="checkbox" class="ore" name="is_pass" value="1" id="is_pass" title="定向标需要借款者设置密码，投标者知道密码才能投标"/><h6>是否定向</h6><input type="text" style="display:none" class="ab_text2" name="password" id="password" defval="设置定向密码" /></li>
+        <li><p>借款说明：</p><textarea class="ab_tea" name="borrow_info" id="borrow_info"></textarea></li>
+       </ul>
+      </div>
+      
+      <input type="submit" name="sub" value="提交借款" class="app_but" />
+   </form>
+     <!-- Left // -->
+    </div>
+    <include file="Public:_right" />
+   </div>
+<script type="text/javascript">
+<if condition="$miao eq 'yes'">
+var miao = 'yes';
+</if>
+$("#is_pass").click(function(e) {
+    if($(this).prop('checked')){
+		$("#password").show();
+	}else{
+		$("#password").hide();
+	}
+});
+function setError(tip){
+	$.jBox.tip(tip);
+	return false;
+}
+function cksubmit(){
+	var p=makevar(['borrow_money','borrow_interest_rate','borrow_use','borrow_duration','borrow_min','borrow_max','borrow_time','repayment_type','reward_type_1','reward_type_1_value','reward_type_2','reward_type_2_value','vouch_rate','vouch_member','vouch_member','borrow_name','borrow_info']);
+
+	if(p.borrow_money == "") 			return setError("借款金额不能为空！");
+	if(p.borrow_interest_rate == "") 	return setError("借款利率不能为空！");
+	if(p.borrow_use == "") 				return setError("借款用途不能为空！");
+	if(p.borrow_duration == "" && typeof miao=="undefined") 		return setError("借款期限不能为空！");
+	if(p.borrow_min == "") 				return setError("最小投资金额不能为空！");
+	if(p.borrow_time == "") 			return setError("借款有效时间不能为空！");
+	if(p.repayment_type == "" && typeof miao=="undefined") 			return setError("还款方式不能为空！");
+	if(p.borrow_name == "") 			return setError("借款标题不能为空！");
+	if(p.borrow_info == "") 			return setError("借款内容不能为空！");
+
+	return true;
+}
+</script>
+<include file="Public:_footer" />

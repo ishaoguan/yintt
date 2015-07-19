@@ -1,0 +1,518 @@
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	通过绑定邮箱，能够为您的账号提供更安全的保障</p>
+</div>
+<div class="u12_clew">
+	<p>尊敬的{$glo.web_name}会员，在绑定邮箱并通过验证之后，您可以通过邮箱重置密码，获取{$glo.web_name}最新动态等相关服务。</p>
+</div>
+<div style="padding: 20px 25px; text-align: left;" id="safa_succ">
+	<table style="line-height: 25px; width: 100%" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td style="width: 160px; text-align: right;">
+				<img alt="" src="__ROOT__/Style/H/images/email.jpg">
+			</td>
+			<td style="width: 490px; padding-left: 10px; border-bottom: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5;
+				border-right: 1px solid #e5e5e5;">
+				您好，您已绑定的邮箱为<strong style="color: #bf0506;" id="useremail">{$email.user_email}</strong>
+				<div>
+					<label>
+						<input value="" name="radgroup" onclick="javascript:openLayer()" type="radio">
+						通过原邮箱验证及安全问题重设邮箱</label></div>
+				<div>
+					<label>
+						<input value="" name="radgroup" onclick="javascript:openLayer1()" type="radio">
+						通手机验证码重新设置邮箱</label></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="border-bottom: 1px solid #e5e5e5; height: 20px;">&nbsp;
+				
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<!-- 选项卡选项js -->
+<script type="text/javascript">
+			var newTitle = '{$glo.web_name}提醒您：';
+
+			function openLayer() {
+				$("#eont_email").show(300);
+				$("#eont_safe").hide(300);
+				//$("#eont_setemail").hide(300);
+			}
+
+			function openLayer1() {
+				$("#eont_safe").show(300);
+				$("#eont_email").hide(300);
+				//$("#eont_setemail").show(300);
+			}
+			
+			function ClearInfes() {
+			$("#einfe").html("");
+			}
+
+			function SendVerefy() {
+				$.post("__URL__/sendemailforverify",
+				{
+					'1': "1"
+				},
+				function(data) {
+					if (data.status==1) {
+						$("#einfe").css("color", "#FF0000");
+						$("#einfe").html("安全码已发送至你邮箱");
+						$("#sendScad").html("重新发送");
+						setTimeout("ClearInfes()", 3000);
+					}
+				},'json');
+			}
+			
+</script>
+
+<!--重置邮件-->
+<div style="margin-top: 10px; text-align: left; padding-left: 20px; display: none;" id="eont_email">
+	<div style="margin: 20px 10px 20px 12px; overflow: hidden;">
+		<img src="__ROOT__/Style/H/images/minilogo.gif" alt="">
+		<strong>是否发送邮件重置邮箱</strong>
+		<a href="javascript:SendVerefy()" id="sendScad"><input id="btnsend" style="background-image: url(__ROOT__/Style/M/images/btnbg02.gif);
+			width: 94px; height: 27px;  border: none;font-weight: bold; color: #fff; cursor: pointer;" value="发送邮件" type="button"></a> <span id="einfe"></span>
+	</div>
+	<div style="margin: 10px 10px 10px 82px; overflow: hidden;">
+		<table style="width: 280px; line-height: 33px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr>
+				<td style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>验证码：
+				</td>
+				<td style="padding-left: 10px;">
+					<input id="txt_emsCode" name="txt_emsCode" class="text2" style="margin-left: 0px;" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 110px; text-align: right;">
+					问题1：
+				</td>
+				<td style="padding-left: 10px;">
+					{$sq.question1}
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>答案1：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="tatsafeone" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					问题2：
+				</td>
+				<td style="padding-left: 10px;">
+					{$sq.question2}
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>答案2：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="tatsafetwo" type="text">
+				</td>
+			</tr>
+
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>新邮箱：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="newEmailf" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>确认邮箱：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="fnewEmailf" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="querone">&nbsp;
+					
+				</td>
+				<td>
+					<input name="btnUpdete" id="btnUpdataf" value=" " style="background-image: url(__ROOT__/Style/M/images/btnsubmit.gif);cursor: pointer; border: none; width: 64px; height: 32px;" type="button">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<script type="text/javascript">
+
+
+	// 			$("#btnsend").click(function() {
+	// 				//alert("{$email}");
+
+	// 				$("#sendEmailTip").html('邮件发送中...');
+	// 				$.post("/ajax/ajax_user.ashx", { Cmd: "setemail", UEmail: "{$email}" }, function(data) {
+	// 					if (data == 1) {
+	// 						$("#sendEmailTip").html('邮件发送成功!');
+	// 					}
+	// 				});
+	// 			});
+
+	</script>
+</div>
+
+
+
+<!--手机验证码和回答问题-->
+<script type="text/javascript">
+	// function subform(){
+	// 	var frm = document.forms['form'];
+	// 		frm.submit();
+	// }
+	// document.onkeydown = keydown;
+	// function  keydown(s)
+	// {
+	// 	var e =13;
+	// 	var s=s||event;
+	// 	currKey=s.keyCode||s.which||s.charCode;
+	// 	if(currKey==13) subform();
+	// }
+	
+	if(timer)clearInterval(timer);
+	var timer = null;
+	var leftsecond = 60; //倒计时
+	var msg = "";
+	function sendMobileValidSMSCode() {
+		//$("#etnSendMsg").html("");
+		var admin_name = "{$email.user_name}";
+		//alert(admin_name);
+		// if (admin_name == "") {
+		// 	$("#etnSendMsg").html("获取短信验证码");
+		// 	$('#sendSMSTip').html("请输入用户名");
+		// 	return;
+		// }
+		$('#sendSMSTip').html("短信发送中...");
+		$.ajax({
+			url: "__URL__/getSmsCode/",
+			type: "post",
+			dataType: "json",
+			data: {"admin_name":admin_name},
+			success: function(d) {
+				leftsecond = 60;
+				if (d.status == 1) {
+					msg = "发送成功，如未收到";
+					clearInterval(timer);
+					timer = setInterval(satLeftTime, 1000, "1");
+					$("#etnSendMsg").html("");
+					$("#admin_name").attr("readonly", true);
+				}
+				else if (d.status == -1) {
+					msg = "您的验证码为：" + d.message;
+					clearInterval(timer);
+					timer = setInterval(satLeftTime, 1000, "1");
+					$("#etnSendMsg").html("");
+					$("#admin_name").attr("readonly", false);
+				}
+				else {
+					msg = d.message;
+					$("#sendSMSTip").html(msg);
+					$("#etnSendMsg").html("获取短信验证码");
+					$("#admin_name").attr("readonly", false);
+				}
+			}
+		});
+	}
+	function satLeftTime() {
+		var second = Math.floor(leftsecond);
+		if($("#spanSee").length == 0)
+			$(".epTip").eq(0).html(msg + ",<span id='spanSee'>" + second + "</span>秒后可重发");
+		else
+			$("#spanSee").html(second);
+		leftsecond--;
+		if (leftsecond < 1) {
+			$(".epTip").eq(0).html("现在可重新发送！");
+			clearInterval(timer);
+			try {
+				$("#etnSendMsg").html("获取短信验证码");
+				$("#admin_name").removeAttr("readonly");
+			} catch (E) { }
+			return;
+		}
+	}
+</script>
+
+<div style="margin-top: 10px; text-align: left; padding-left: 20px; display: none;" id="eont_safe">
+	<div style="margin: 20px 10px 10px 12px; overflow: hidden;">
+		<img src="__ROOT__/Style/H/images/minilogo.gif" alt="">
+		<strong>是否发送手机验证码和回答安全问题重置邮箱</strong>
+		<a href="javascript:;" onclick="sendMobileValidSMSCode()" id="etnSendMsg">
+		<input id="vetnSendMsg" style="background-image: url(__ROOT__/Style/M/images/btnbg02.gif);
+		width: 94px; height: 27px; border: none; font-weight: bold; color: #fff; cursor: pointer;" value="发送验证码" type="button"></a><div class="" id="sendSMSTip"></div><!-- 获取短信验证码 -->
+			<!-- etnSendMsg -->
+		<span class="epTip" id="mobileqatip"></span>
+	</div>
+	<div style="margin: 10px 10px 10px 82px; overflow: hidden;">
+		<table style="width: 280px; line-height: 33px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr>
+				<td style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>验证码：
+				</td>
+				<td style="padding-left: 10px;">
+					<input type="text" class="text2" id="code" name="code" maxlength="6" />
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>新邮箱：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="newEmail" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>确认邮箱：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="fnewEmail" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="querone">&nbsp;
+					
+				</td>
+				<td>
+					<input name="btnUpdete" id="btnUpdata" value=" " style="background-image: url(__ROOT__/Style/M/images/btnsubmit.gif);cursor: pointer; border: none; width: 64px; height: 32px;" type="button">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>
+<!-- 通过手机验证码修改邮箱js -->
+<script type="text/javascript">
+	$("#btnUpdata").click(function(){
+			var emailreg = new RegExp("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$", "i");
+			var vfemail = $("#newEmail").val();
+			var fvfemail = $("#fnewEmail").val();
+			
+			if ($("#code").val()=="") {
+				$.jBox.tip('您还没有输入手机验证码','tip');
+				return;
+			}
+			if ($("#code").val().length!=6){
+				$.jBox.tip('您输入的验证码位数不对','tip');
+				return;
+			}
+			if (vfemail.length == 0){
+				$.jBox.tip("新邮箱地址还没有填写","tip");
+				return;
+			}
+			if(!emailreg.test(vfemail)){
+				$.jBox.tip('您输入的邮箱格式不正确','tip');
+				return;
+			}
+			if(vfemail!=fvfemail){
+				$.jBox.tip('您两次输入的新邮箱不一致');
+				return;
+			}
+			if(vfemail =='{$email.user_email}'){
+				$.jBox.tip('您输入的邮箱和之前邮箱相同');
+				return;
+			}
+
+			$.ajax({
+					url: "__URL__/checkanswer",
+					type: "post",
+					dataType: "json",
+					data: {
+							"email":vfemail,
+							"mobilecode":$("#code").val()
+						},
+					success: function(d) {
+						if (d.status == 1) {
+							//$.jBox.tip("恭喜您邮箱更新成功", 'success');
+							$.jBox.alert("更新成功！即将跳转为您进行邮箱验证","温馨提示");
+							$("#eont_email").hide(300);
+							$("#eont_safe").hide(300);
+							//向新的用户邮箱发送确认邮件
+							$.ajax({
+								url:"__URL__/sendEmaila",
+								type:"post",
+								dataType:"json"
+							});
+							//$("#eont_setemail").show(300);
+							setTimeout(function(){
+							
+							window.location.href="./verify#fragment-1";
+							
+							}, 4500);
+							
+							}
+						else if (d.status == 0) {
+							$.jBox.tip(d.message, 'fail');
+							}
+						else if (d.status == 3) {
+							$.jBox.tip(d.message, 'fail');
+						}
+					}
+				});
+		});
+	// 以下为通过邮箱及安全问题修改邮箱
+	$("#btnUpdataf").click(function(){
+			var emailreg = new RegExp("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$", "i");
+			var vfemail = $("#newEmailf").val();
+			var fvfemail = $("#fnewEmailf").val();
+			
+			if ($("#txt_emsCode").val()=="") {
+				$.jBox.tip('您还没有输入邮箱验证码','tip');
+				return;
+			}
+			if ($("#txt_emsCode").val().length!=10){
+				$.jBox.tip('您输入的验证码位数不对','tip');
+				return;
+			}
+			if ($("#tatsafeone").val().length == 0) {
+				$.jBox.tip('安全问题1答案不能为空','tip');
+				return;
+			}
+			if ($("#tatsafetwo").val().length ==0) {
+				$.jBox.tip('安全问题2答案不能为空','tip');
+				return;
+			}
+			if (vfemail.length == 0){
+				$.jBox.tip("新邮箱地址还没有填写","tip");
+				return;
+			}
+			if(!emailreg.test(vfemail)){
+				$.jBox.tip('您输入的邮箱格式不正确','tip');
+				return;
+			}
+			if(vfemail!=fvfemail){
+				$.jBox.tip('您两次输入的新邮箱不一致');
+				return;
+			}
+			if(vfemail =='{$email.user_email}'){
+				$.jBox.tip('您输入的邮箱和之前邮箱相同');
+				return;
+			}
+
+			$.ajax({
+					url: "__URL__/checkemailreg",
+					type: "post",
+					dataType: "json",
+					data: {
+							"email":vfemail,
+							"emailcode":$("#txt_emsCode").val(),
+							"firstanswer":$("#tatsafeone").val(),
+							"secondanswer":$("#tatsafetwo").val()
+						},
+					success: function(d) {
+						if (d.status == 1) {
+							//$.jBox.tip("恭喜您邮箱更新成功", 'success');
+							$.jBox.alert("更新成功！即将跳转为您进行邮箱验证","温馨提示");
+							$("#eont_email").hide(300);
+							$("#eont_safe").hide(300);
+							//$("#eont_setemail").show(300);
+							//向新的用户邮箱发送确认邮件
+							$.ajax({
+								url:"__URL__/sendEmaila",
+								type:"post",
+								dataType:"json"
+							});
+							setTimeout(function(){
+							
+							window.location.href="./verify#fragment-1";
+							}, 4500);
+							}
+						else if (d.status == 2) {
+							$.jBox.tip(d.message, 'fail');
+							}
+						else if (d.status == 3) {
+							$.jBox.tip(d.message, 'fail');
+							}
+					}
+				});
+		});
+</script>
+<!-- 以下是分步处理邮箱修改页面及js -->
+<!-- <div style="margin-top: 10px; text-align: left; display: none; padding-left: 20px;" id="eont_setemail1">
+	<div style="margin: 20px 10px 20px 12px; overflow: hidden;">
+		<table style="width: 370px; margin: 0; text-align: left; line-height: 35px;">
+			<tbody>
+			<tr>
+				<td style="width: 110px; text-align: right;">
+					<img src="__ROOT__/Style/H/images/minilogo.gif" alt="">
+					请输入邮件地址
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="newEmail" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<img src="__ROOT__/Style/H/images/minilogo.gif" alt="">
+					请确认邮箱地址<span id="updatetip"></span>
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="fnewEmail" type="text">
+				</td>
+			</tr>
+		</tbody></table>
+		<input id="btnCheckUpdateEmail" value="" style="background-image: url(__ROOT__/Style/M/images/btnsubmit.gif);cursor: pointer; border: none; width: 64px; height: 32px;" >
+	</div>
+</div> -->
+
+
+
+
+<!--设置新邮箱已完成-->
+<script type="text/javascript">
+
+		// $("#btnCheckUpdateEmail").click(function() {
+		// 	// var email ="{$email}";
+		// 	var emailreg = new RegExp("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$", "i");
+		// 	var vfemail = $("#newEmail").val();
+		// 	var fvfemail = $("#fnewEmail").val();
+			
+		// 	if (vfemail.length == 0){
+		// 		$.jBox.tip("新邮箱地址还没有填写","tip");
+		// 		return;
+		// 	}
+
+		// 	if(!emailreg.test(vfemail)){
+		// 		$.jBox.tip('您输入的邮箱格式不正确','tip');
+		// 		return;
+		// 	}
+
+		// 	if(vfemail!=fvfemail){
+		// 		$.jBox.tip('您两次输入的邮箱不一致');
+		// 		return;
+		// 	}
+
+		// 	$.ajax({
+		// 		url: "__URL__/changeemailact",
+		// 		type: "post",
+		// 		dataType: "json",
+		// 		data: {"email":vfemail},
+		// 		success: function(d) {
+		// 			if (d.status==1) {
+		// 				//alert("新邮箱更新成功");
+		// 				$.jBox.tip("恭喜您邮箱更新成功");
+		// 				window.location.reload();
+		// 			}
+		// 			else if(d.status==2){
+		// 				$.jBox.tip("您还没有进行信息校对");
+		// 			}
+		// 			else {
+		// 				$.jBox.tip("验证失败或者校验码失效");
+		// 			}
+		// 		}
+		// 	});
+		// });
+</script>
+

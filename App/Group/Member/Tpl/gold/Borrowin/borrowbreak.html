@@ -1,0 +1,95 @@
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	已逾期还未还的借款</p>
+</div>
+<div class="us_rb4_search">
+ <h6>起止日期：</h6>
+ <input type="text" class="date_text" id="start_time1" value="<php>if($search['start_time1']){echo date('Y-m-d',$search['start_time1']);}</php>" readonly="readonly" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\\\'end_time1\\\')||\\\'2020-10-01\\\'}'})"/><p>至</p>
+ <input type="text" class="date_text" id="end_time1" value="<php>if($search['end_time1']){echo date('Y-m-d',$search['end_time1']);}</php>" readonly="readonly" onFocus="WdatePicker({minDate:'#F{$dp.$D(\\\'start_time1\\\')||\\\'2020-10-01\\\'}'})" />
+ <input type="button" class="us_seaBut" value="查&nbsp;看" onclick="sdetail1()" />
+</div>
+<table width="758" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+  <th nowrap="nowrap">借款标题</th>
+  <th nowrap="nowrap">待还本金</th>
+  <th nowrap="nowrap">待还利息</th>
+  <th nowrap="nowrap">待付罚息</th>
+  <th nowrap="nowrap">待付催收费</th>
+  <th nowrap="nowrap">待付总金额</th>
+  <th nowrap="nowrap">应还日期</th>
+  <th nowrap="nowrap">逾期天数</th>
+  <th nowrap="nowrap">还款</th>
+ </tr>
+ <volist name="list" id="vo">
+  <tr>
+	<td><a href="/invest/{$vo.id}.html" title="{$vo.borrow_name}" target="_blank">{$vo.borrow_name|cnsubstr=###,8}</a></td>
+	<td>{$vo.capital}</td>
+	<td>{$vo.interest}</td>
+	<td>{$vo.expired_money|default=0.00}</td>
+	<td>{$vo.call_fee|default=0.00}</td>
+	<td>{$vo.allneed}</td>
+	<td>{$vo.deadline|date="Y-m-d",###}</td>
+	<td>{$vo.sort_order}/{$vo.total}</td>
+	<td>{$vo.breakday}</td>
+	<td><a href="javascript:;" onclick="repayment({$vo.borrow_id},{$vo.sort_order})">还款</a></td>
+  </tr>
+ </volist>
+</table>
+<div data="fragment-4" id="pager" style="float: right; text-align: right; width: 500px; padding-right: 8px;margin-right: 24px;" class="yahoo2 ajaxpagebar">{$pagebar}</div>
+
+<script type="text/javascript">
+function repayment(bid,sort_order){
+	x = {"bid":bid,"sort_order":sort_order};
+	$.jBox.tip("还款中......",'loading');
+	$.ajax({
+		url: "__URL__/doexpired",
+		data: x,
+		timeout: 15000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1) $.jBox.tip("还款成功",'success');
+				else $.jBox.tip(d.message,'fail');
+			}
+		}
+	});
+}
+
+
+function sdetail1(){
+	x = makevar(['start_time1','end_time1']);
+	$.ajax({
+		url: "__URL__/borrowbreak",
+		data: x,
+		timeout: 5000,
+		cache: false,
+		type: "get",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d) $("#fragment-4").html(d.html);//更新客户端竞拍信息 作个判断，避免报错
+		}
+	});
+}
+
+$('.ajaxpagebar a').click(function(){
+	try{	
+		var geturl = $(this).attr('href');
+		var id = $(this).parent().attr('data');
+		var x={};
+        $.ajax({
+            url: geturl,
+            data: x,
+            timeout: 5000,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            success: function (d, s, r) {
+              	if(d) $("#"+id).html(d.html);//更新客户端竞拍信息 作个判断，避免报错
+            }
+        });
+	}catch(e){};
+	return false;
+})
+</script>

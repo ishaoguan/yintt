@@ -1,0 +1,47 @@
+<include file="Public:_header_common"/>
+<title>我的账户-- {$glo.web_name}</title>
+<script type="text/javascript">
+	function displayDiv(num) {
+		var obj = document.getElementById("udiv" + num);
+		var obja = document.getElementById("ulink" + num);
+		var objtop = document.getElementById("utop" + num);
+		var objbottom = document.getElementById("ubottom" + num);
+
+		if (obj.style.display == 'none') {
+			objbottom.style.display = '';
+			obj.style.display = '';
+			objtop.style.backgroundImage = "url(__ROOT__/Style/M/images/account/uctop.jpg)";
+			obja.innerHTML = "-";
+		}
+		else {
+			obj.style.display = 'none';
+			objbottom.style.display = 'none';
+			objtop.style.backgroundImage = "url(__ROOT__/Style/M/images/account/ucall.jpg)";
+			obja.innerHTML = "+";
+		}
+	}
+</script>
+<include file="Public:_header_main" />
+  <div id="content_us">
+   <include file="Public:_left" />
+   <div id="us_r">
+    <!-- Right -->
+     
+   	 <include file="Public:_right_top" />
+     
+     <div class="us_rh" id="rotate">
+      <ul>
+       <li><a onclick="window.location.href='__APP__/member/borrowin#fragment-1';return false;">借入总表</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-1" ajax_href="__URL__/borrowdetail/?id={$bid}">发标中的投资</a></li>
+       <li class="usrhDiv"></li>
+      </ul>
+     </div>
+     <div class="us_rb4">
+     	<div id="fragment-1" style="display:none"></div>
+     </div>
+     
+    <!-- Right // -->
+   </div>
+  </div>
+<include file="./App/Group/Home/Tpl/gold/Public/_footer.html" group="Home" />

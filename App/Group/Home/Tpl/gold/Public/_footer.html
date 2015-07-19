@@ -1,0 +1,284 @@
+﻿<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<!-- <link rel="stylesheet" href="__ROOT__/Style/gold/css/css" type="text/css" media="all"> -->
+	<link rel="stylesheet" href="__ROOT__/Style/gold/css/_footer.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/append.css?{:C('APP_RES_VER')}" />
+    <link href="__ROOT__/Style/gold/css/online.css" rel="stylesheet" type="text/css" />
+	<!-- Layout wrapper -->
+
+    <script src="__ROOT__/Style/gold/js/toastr.js"></script>
+<div class="foot">
+    <div class="footer">        
+        <div class="foot_Box">
+            <div class="Telus lf">
+                <ul>
+                    <li><strong>联络我们</strong>（09:00 - 18:00）</li>
+                    <li class="tel">0755-29056888</li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="FollowUs FootLinks rt">
+       			<ul>
+         		 	<li class="Followpic">
+         		 		<span class="lf" style="font-size: 20px">关注我们</span><em class="lf"></em>
+         		 		<a style="margin-left: 10px" href="http://weibo.com/szyintongtai/home?topnav=1&wvr=6" target="_blank" class="sina" title="关注新浪微博"></a>
+               			<a href="http://t.qq.com/yintongtaizichan" target="_blank" class="tengxun" title="关注腾讯微博"></a>
+               			<a href="#" class="popbox-link weixin" onmousemove="showImg(this)" onmouseout="closeImg(this)" title="扫一扫关注银通泰官方微信"></a>
+               			<div id="erweima" class="" style="display: none;position:relative; bottom: 300px;right: -80px;" >
+		   						<div class="">
+		   							<img src="__ROOT__/Style/gold/images/append/erweima2.png" alt="二维码">
+		   						</div>
+	   					</div>
+	   					<script type="text/javascript">
+	   					var obj = $("#erweima"); 
+	   					var bottom = obj.prev().position().bottom;
+	   					var right = obj.prev().position().right;
+	   					obj.css("bottom",bottom);
+	   					obj.css("right",right);
+	   					function showImg(obj){
+	   						$("#erweima").css("display","block");
+	   						//var x = event.clientX;
+	   						//var y = event.clientY;
+	   					}
+	   					function closeImg(obj){
+	   						$("#erweima").css("display","none");
+	   					}
+	   					</script>
+	   					</script>
+         		 	</li>
+              	</ul>
+           	</div>
+            <div class="clear"></div>
+            <div class="FriendLinks">
+                <div class="FriendLinks_cont">
+   					<strong class="" style=" margin-right:15px; color:#777;font-size: 18px;"> 友情链接</strong>
+   					<volist name="yqList" id="yq">
+   						
+   						<a href="{$yq.link_href}" target="_blank">{$yq.link_txt}</a>
+   					</volist>
+    			</div>
+            </div>
+        </div>            
+    </div>
+</div>
+		<div id="copyright-wrapper">
+			<div id="copyright-container" class="size-wrap">
+				<div id="copyright">
+					{$glo.bottom_copyright}
+				</div>
+				<div id="footer-menu" class="menu-footer-menu-container">
+					<ul class="menu">
+						<li>
+							<a href="__APP__/" >
+								首页
+							</a>
+						</li>
+                        
+						<li>
+							<a href="/invest/index/borrow_status/9">
+								我要投标
+							</a>
+						</li>
+						<li>
+							<a href="/borrow/index.html">
+								我要借款
+							</a>
+						</li>
+						<li>
+							<a href="/aqbz/index.html">
+								安全保障
+							</a>
+						</li>
+						<li>
+							<a href="/dfafa/index.html">
+								关于我们
+							</a>
+						</li>
+						<li style="float: none; padding-left: 75px;">  
+							 <a href="http://www.szcredit.com.cn/web/Index.aspx"  title="" target="_blank" style="float:left;">
+								<img src="__ROOT__/Style/gold/images/icon/3/theBusinessLicense.PNG" height="40">
+							</a>
+                               
+							<a href="https://cert.ebs.gov.cn/aeee9070-ad7d-4abd-89cd-3bb757858726" title="网络工商" target="_blank" style="float:left;">
+								<img src="__ROOT__/Style/gold/images/icon/3/govIcon.gif" height="40" />
+							</a>
+							
+							<a href="http://www.sznet110.gov.cn/netalarm/index.jsp?fromsznet110=true" title="平平安安" target="_blank" style="float:left;">
+								<img src="__ROOT__/Style/gold/images/icon/3/wangjing.PNG" height="40" />
+							</a>
+                               
+							<a href="http://www.sznet110.gov.cn/netalarm/index.jsp?fromsznet110=true" title="深圳动态岗亭" target="_blank" style="float:left;">
+								<img src="__ROOT__/Style/gold/images/icon/3/01.png" height="40" />
+							</a>
+						</li>
+                       
+                       
+                       
+					</ul>
+				</div>
+				<div class="clear">
+				</div>
+			</div>
+		</div>
+	</div
+><script language="javaScript" type="text/javascript" src="__ROOT__/Style/H/js/backtotop.js"></script>
+
+<!-- Advice BEGIN -->
+<div id="rjsAdvice" title="单击可以填写您的宝贵建议"></div>
+<div class="messhade" style="display:none;">
+	<div id="mes">
+	  <div id="mes_ts"><img src="__ROOT__/Style/H/images/close_red.png" width="24" height="24" alt="{$glo.ttxf_keyworddensity}" /></div>
+	  <div id="mes_co">
+	   <ul>
+	    <li><p>昵称：</p><input type="text" class="tet" id="txtMesNickName"/></li>
+	    <li><p>手机：</p><input type="text" class="tet" id="txtMesPhone"/></li>
+	    <li><p>QQ：</p><input type="text" class="tet" id="txtMesQQ"/></li>
+	    <li><p>邮箱：</p><input type="text" class="tet" id="txtMesEmail"/></li>
+	    <li><p><span>*</span>内容：</p><textarea class="tea" id="txtMesContent"></textarea></li>
+	    <li><p>&nbsp;</p><input id="btnMesSubmit" type="button" class="mes_but" /><input id="btnAdviceCancel" type="button" class="mes_but2" value="取消" /></li>
+	   </ul>
+	   <div class="mes_r">
+	    <p>掌握中国最新理财、借贷产品</p>
+	    <img src="__ROOT__/Style/H/images/mes_07.gif" width="113" height="112" alt="{$glo.ttxf_keyworddensity}" />
+	   </div>
+	  </div>
+	  <div id="mes_fs"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+var BODY_MARGIN;
+$('#rjsAdvice').click(function(){
+	BODY_MARGIN = $(document).height() > $(window).height() || $('body').css('overflow-y') === 'scroll' ? $('body').css('margin-right') : false;
+	var container = document.all && !document.querySelector ? $('html') : $('body');
+	if (BODY_MARGIN !== false) {
+		$('body').css('margin-right', BODY_MARGIN);
+	}
+	if(container)container.addClass('fancybox-lock');
+	$('div.messhade').css('display', 'block');
+});
+$('#btnAdviceCancel,#mes_ts img').click(function(){
+	var container = document.all && !document.querySelector ? $('html') : $('body');
+	if (BODY_MARGIN !== false) {
+		$('body').css('margin-right', BODY_MARGIN);
+		BODY_MARGIN = false;
+	}
+	if(container)container.removeClass('fancybox-lock');
+	$('div.messhade').css('display', 'none');
+});
+$('#btnMesSubmit').click(function(){
+	if($('#txtMesContent').val() == ''){
+		alert('请至少输入点内容吧:)');
+		$('#txtMesContent').focus();
+		return false;
+	}
+	$.ajax({
+		url: '__ROOT__/home/help/advice',
+		data: {mesNickName:$('#txtMesNickName').val(),mesPhone:$('#txtMesPhone').val(),mesQQ:$('#txtMesQQ').val(),mesEmail:$('#txtMesEmail').val(),mesContent:$('#txtMesContent').val()},
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			alert(d.info);
+			if(d.status == 1){
+				$('#btnAdviceCancel').click();
+			}
+		}
+	});
+});
+//-->
+</script>
+<!-- Advice END -->
+
+<!--QQ客服  -->
+<script>
+function changeOnline(num) {
+	if (isNaN(num) && num == "")
+		return;
+	for (var i = 1; i <=6 ; i++)
+	{
+		if (i == num)
+		{
+			document.getElementById("onlineSort" + i).className = "online_bar expand";
+			document.getElementById("onlineType" + i).style.display = "block";
+		}
+		else
+		{
+			document.getElementById("onlineSort" + i).className = "online_bar expand";
+			document.getElementById("onlineType" + i).style.display = "block";
+		}
+	}
+}
+
+$(document).ready(function(){
+  $("#floatShow").bind("click",function(){
+    $('#onlineService').animate({width: 'show', opacity: 'show'}, 'normal',function(){ $('#onlineService').show(); });$('#floatShow').attr('style','display:none');$('#floatHide').attr('style','display:block');
+	return false;
+  });
+  $("#floatHide").bind("click",function(){
+	$('#onlineService').animate({width: 'hide', opacity: 'hide'}, 'normal',function(){ $('#onlineService').hide(); });$('#floatShow').attr('style','display:block');$('#floatHide').attr('style','display:none');
+  });
+  $(document).bind("click",function(event){
+	if ($(event.target).isChildOf("#online_qq_layer") == false)
+	{
+	 $('#onlineService').animate({width: 'hide', opacity: 'hide'}, 'normal',function(){ $('#onlineService').hide(); });$('#floatShow').attr('style','display:block');$('#floatHide').attr('style','display:none');
+	}
+  });
+jQuery.fn.isChildAndSelfOf = function(b){
+    return (this.closest(b).length > 0);
+};
+jQuery.fn.isChildOf = function(b){
+    return (this.parents(b).length > 0);
+};
+  //$(window).scroll(function(){ 
+	//$('#online_qq_layer').stop().animate({top:$(document).scrollTop() + $("#online_qq_layer").height()}, 100) 
+  //}); 
+});
+</script>
+
+
+<LINK rel=stylesheet type=text/css href="__ROOT__/Style/qq/css/common.css">
+<SCRIPT type=text/javascript src="__ROOT__/Style/qq/js/kefu.js"></SCRIPT>
+<DIV id=floatTools class=float0831>
+    <DIV class=floatL><A  id=aFloatTools_Show class=btnOpen
+                         title=查看在线客服
+                         onclick="javascript:$('#divFloatToolsView').animate({width: 'show', opacity: 'show'}, 'normal',function(){ $('#divFloatToolsView').show();kf_setCookie('RightFloatShown', 0, '', '/', 'www.5icool.org'); });$('#aFloatTools_Show').attr('style','display:none');$('#aFloatTools_Hide').attr('style','display:block');"
+                         href="javascript:void(0);">展开</A> <A  style="DISPLAY: none"id=aFloatTools_Hide class=btnCtn
+                                                              title=关闭在线客服
+                                                              onclick="javascript:$('#divFloatToolsView').animate({width: 'hide', opacity: 'hide'}, 'normal',function(){ $('#divFloatToolsView').hide();kf_setCookie('RightFloatShown', 1, '', '/', 'www.5icool.org'); });$('#aFloatTools_Show').attr('style','display:block');$('#aFloatTools_Hide').attr('style','display:none');"
+                                                              href="javascript:void(0);">收缩</A> </DIV>
+    <DIV id=divFloatToolsView class=floatR style="DISPLAY: none">
+        <DIV class=tp></DIV>
+        <DIV class=cn>
+            <UL>
+                <LI class=top>
+                    <H3 class=titZx>QQ咨询</H3>
+                </LI>
+                <LI><SPAN class=icoZx>在线咨询</SPAN> </LI>
+                <LI style="vertical-align:middle;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2589780055&site=qq&menu=yes"><img border="0" align="absmiddle" src="http://wpa.qq.com/pa?p=2:2589780055:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>客服01</a></LI>
+                <LI style="vertical-align:middle;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2589780066&site=qq&menu=yes"><img border="0" align="absmiddle"  src="http://wpa.qq.com/pa?p=2:2589780066:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>客服02</a></LI>
+                <LI style="vertical-align:middle;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2589780077&site=qq&menu=yes"><img border="0" align="absmiddle" src="http://wpa.qq.com/pa?p=2:2589780077:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>客服03</a></LI>
+                <!-- <LI style="vertical-align:middle;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2589780011&site=qq&menu=yes"><img border="0" align="absmiddle" src="http://wpa.qq.com/pa?p=2:2589780011:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>客服04</a></LI> -->
+                <!-- <LI style="vertical-align:middle;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2589780022&site=qq&menu=yes"><img border="0" align="absmiddle" src="http://wpa.qq.com/pa?p=2:2589780022:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>客服05</a></LI>
+                <LI style="vertical-align:middle;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2589780033&site=qq&menu=yes"><img border="0" align="absmiddle" src="http://wpa.qq.com/pa?p=2:2589780033:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>客服06</a></LI> -->
+
+            </UL>
+            <!-- <UL class=webZx>
+              <LI class=webZx-in><A href="http://www.5icool.org/" target="_blank" style="FLOAT: left"><IMG src="images/right_float_web.png" border="0px"></A> </LI>
+            </UL> -->
+            <UL>
+                <LI>
+                    <H3 class=titDh>电话咨询</H3>
+                </LI>
+                 <LI style="LINE-HEIGHT: 16px;">
+                   <p >周一至周五<br>
+                   09:00-18:00</p>
+                </LI>
+                <LI><SPAN >0755-29056888</SPAN> </LI>
+
+            </UL>
+
+        </DIV>
+    </DIV>
+</DIV>

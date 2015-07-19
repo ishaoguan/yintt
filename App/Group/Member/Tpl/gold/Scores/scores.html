@@ -1,0 +1,88 @@
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	尊敬的{$glo.web_name}会员，您当前积分为<strong style="font-size:14px;">&nbsp;{$mem.scores}&nbsp;</strong>，以下是您在{$glo.web_name}的积分记录！ </p>
+</div>
+<div class="u12_clew">
+	<p><php>if(!isset($_GET['start_time'])){</php>截止<span class="fontred"><php>echo date("Y-m-d H:i:s",time());</php></span><php>}else{</php>从<span class="fontred"><php>echo date("Y-m-d",$_GET['start_time']);</php></span>到<span class="fontred"><php>echo date("Y-m-d",$_GET['end_time']);</php></span>期间<php>}</php>
+	您的积分变化值为：<span class="fontred"> {$scores_change|default="0"}</span>。</p>
+</div>
+<div class="us_rb4_search">
+ <h6>时间从：</h6>
+ <input type="text" id="start_time" value="<php>if($search['start_time']){echo date('Y-m-d',$search['start_time']);}</php>" readonly="readonly" class="date_text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\\\'end_time\\\')||\\\'2020-10-01\\\'}'})"/>
+ <p>至</p><input type="text" value="<php>if($search['end_time']){echo date('Y-m-d',$search['end_time']);}</php>" id="end_time" readonly="readonly" class="date_text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\\\'start_time\\\')||\\\'2020-10-01\\\'}'})"/>
+ <input type="button" class="us_seaBut" value="查&nbsp;看" onclick="getBind()" />
+</div>
+<table width="758" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+  <th nowrap="nowrap">变化积分</th>
+  <th nowrap="nowrap">变化后积分</th>
+  <th nowrap="nowrap">变化时间</th>
+  <th nowrap="nowrap">积分类型</th>
+  <th nowrap="nowrap">说明</th>
+ </tr>
+ <volist name="list" id="vo">
+  <tr>
+	<td>{$vo.affect_scores}</td>
+	<td>{$vo.account_scores}</td>
+	<td>{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+	<td>{$vo.type_name}</td>
+	<td>{$vo.info}</td>
+  </tr>
+ </volist>
+</table>
+<div data="fragment-1" id="pager" style="float: right; text-align: right; width: 500px; padding-right: 8px;margin-right: 24px;" class="yahoo2 ajaxpagebar">{$pagebar}</div>
+<script type="text/javascript">
+//返回数字
+function NumberCheck(t){
+	var num = t.value;
+	var re=/^\d+\.?\d*$/;
+	if(!re.test(num)){
+		isNaN(parseFloat(num))?t.value=0:t.value=parseFloat(num);
+	}
+}
+
+function getBind(){
+	if($("#start_time").val()!="" && $("#end_time").val() == ""){
+		$.jBox.tip('请选择结束时间！');
+		return;
+	}
+	if($("#start_time").val()=="" && $("#end_time").val() != ""){
+		$.jBox.tip('请选择开始时间！');
+		return;
+	}
+	x = makevar(['start_time','end_time']);
+	$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+	$.ajax({
+		url: "__URL__/scores",
+		data: x,
+		timeout: 5000,
+		cache: false,
+		type: "get",
+		dataType: "json",
+		success: function (d, s, r) {
+			$.jBox.tip("", 'loading', {timeout:1});
+			if(d) $("#fragment-1").html(d.html);//更新客户端竞拍信息 作个判断，避免报错
+		}
+	});
+}
+
+$('.ajaxpagebar a').click(function(){
+	try{	
+		var geturl = $(this).attr('href');
+		var id = $(this).parent().attr('data');
+		var x={};
+        $.ajax({
+            url: geturl,
+            data: x,
+            timeout: 5000,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            success: function (d, s, r) {
+              	if(d) $("#"+id).html(d.html);//更新客户端竞拍信息 作个判断，避免报错
+            }
+        });
+	}catch(e){};
+	return false;
+})
+</script>

@@ -1,0 +1,28 @@
+<if condition="$email_status eq '1'">
+<div class="us_rb4">
+	<div class="u12_clew">
+		<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+		您已通过邮箱认证,认证的邮箱为：{$email} </p>
+	</div>
+</div>
+<else/>
+<div class="us_rb6">
+	   <div class="us_rb6_l"></div>
+      <div class="us_rb6_r">
+       <p>在您注册的时候，我们已经向您的Email</p>
+       <p><span>[{$email}]</span>发送了一封激活电子邮件。</p>
+       <p>请立刻登录您的电子邮箱，完成验证。在验证成功后，点击以下按钮：</p>
+       <input type="button" class="em_inviBut" value="完成邮箱认证" onclick="checkEmailValided()" />
+       <span style="font-size:12px;color:red; display:none" id="emailtip">验证失败。请确认您已按邮件提示进行邮箱验证。</span>
+       <ol>
+        <li><div class="atten_ico"></div><h6>请注意以下事项：</h6></li>
+        <li><p>1、如果收件箱里没有收到该邮件，请查看垃圾箱，以免被误判为垃圾邮件。</p></li>
+        <li><p>2、如果您的邮箱长时间没有收到我们的激活邮件，请点击重新发送激活邮件：</p></li>
+        <li><a onclick="sendValidEmail1()" href="javascript:;">重新发送激活邮件</a></li>
+        <li><p>3、如果您的邮箱地址输入错误需要更改邮箱来激活邮件，请填写新邮箱：</p></li>
+        <li><input type="text" class="em_newText" id="email" /><a onclick="sendValidEmail()" href="javascript:;">新邮箱发送激活邮件</a></li>
+        <li><p>4、如果您在验证过程中，出现任何问题，请联系客服。</p></li>
+       </ol>
+      </div>
+</div>
+</if>

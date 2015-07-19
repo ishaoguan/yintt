@@ -1,0 +1,179 @@
+<div id="utop1" class="datum" style="background-image: url(__ROOT__/Style/M/images/account/uctop.jpg);
+	width: 726px; height: 35px;">
+	<strong style="float: left;">个人资料：</strong> <a id="ulink1" onclick="displayDiv('1')" style="text-decoration: none;" onmousemove="javascript:this.style.cursor='pointer'"
+		class='userLink'>- </a>
+</div>
+<div id="udiv1" style="border-left: #cccccc 1px solid; border-right: #cccccc 1px solid;
+	height: 160px; width: 724px;">
+	<div style="float: left; padding-top: 10px;">
+		<ul class="otherline ulunderline2">
+			<li class="li1">用户名：</li>
+			<li class="li2">
+				{$memberinfo.user_name}
+			</li>
+			<li class="li3">授信额度：</li>
+			<li class="li4">
+				￥{$memberinfo.credit_limit}</li>
+		</ul>
+		<ul class="otherline ulunderline2">
+			<li class="li1">注册时间：</li>
+			<li class="li2">
+				{$memberinfo.reg_time|date="Y-m-d H:i:s",###}</li>
+			<li class="li3">上次登录：</li>
+			<li class="li4">
+				{$last.add_time|date="Y-m-d H:i:s",###}</li>
+		</ul>
+		<ul class="otherline ulunderline2">
+			<li class="li1">会员等级：</li>
+			<li class="li2">
+				<php>echo $mleve[$memberinfo['user_leve']];</php> <span class="gray">[</span><a href="__APP__/member/server#fragment-1">马上升级</a><span class="gray">]</span></li>
+			<li class="li3">会员期限：</li>
+			<li class="li4">
+				<if condition="strlen($memberinfo['time_limit']) lt 5">无限期<else/>{$memberinfo.time_limit|date="Y-m-d",###}</if></li>
+		</ul>
+	</div>
+	<div class="d1" style="width: 130px; /*border: 1px solid #CCCCCC;*/ padding: 3px; float: left;
+		margin-left: 5px; margin-top: 15px;">
+		<a href="__APP__/member/user#fragment-1" title="点击进行头像更换">
+			<img style="/*width: 130px; height: 120px;*/max-width:130px;max-height:120px;border: 1px solid #CCCCCC;" id="photo" alt="点击进行头像更换" src="{$UID|get_avatar=###}" title="点击进行头像更换" /></a>
+	</div>
+</div>
+<div id="ubottom1">
+</div>
+
+<div id="utop2" class="datum" style="margin-top: 15px; background-image: url(__ROOT__/Style/M/images/account/uctop.jpg);
+	width: 726px; height: 35px;">
+	<strong style="float: left;">安全中心：</strong> <a id="ulink2" onclick="displayDiv('2')" 	style="text-decoration: none;" onmousemove="javascript:this.style.cursor='pointer'"		class='userLink'>-</a>
+</div>
+<div id="udiv2" style="border-left: #cccccc 1px solid; border-right: #cccccc 1px solid;
+	height: 150px; width: 724px;">
+	<div style="float: left; padding-top: 10px;">
+		<ul class="otherline ulunderline">
+			<li class="li1">真实姓名：</li>
+			<li class="li2">
+				{$memberdetail.real_name|default="还未验证"}&nbsp;</li>
+			<li class="li3">身份证号：</li>
+			<li class="li7">
+				{$memberdetail.idcard|hidecard=###,1,"还未验证"}</li>
+		</ul>
+		<ul class="otherline ulunderline">
+			<li class="li1">登录密码：</li>
+			<li class="li2">安全度中
+				<span class="gray">[</span><a href="__APP__/member/user#fragment-2">马上修改</a><span class="gray">]</span>
+			</li>
+			<li class="li3">安全问题：</li>
+			<li class="li7">
+				<if condition="$memberinfo.safequestion_status eq '1'">已设置<else/>还未设置</if>
+				<span class="gray">[</span><if condition="$memberinfo.safequestion_status eq '1'"><a href="__APP__/member/safe#fragment-2">马上修改</a><else/><a href="__APP__/member/verify">马上设置</a></if><span class="gray">]</span>
+			</li>
+		</ul>
+		<ul class="otherline ulunderline">
+			<li class="li1">手机号码：</li>
+			<li class="li2">
+				{$memberinfo.user_phone|hidecard=###,2,"还未验证"}&nbsp;<span class="gray">[</span><if condition="$memberinfo.phone_status eq '1'"><a href="__APP__/member/safe#fragment-2">马上修改</a><else/><a href="__APP__/member/verify">马上验证</a></if><span class="gray">]</span></li>
+			<li class="li3">电子邮箱：</li>
+			<li class="li7">
+				{$memberinfo.user_email|default="还未验证"} <if condition="$memberinfo.email_status eq '1'"><else/><span class="gray">[</span><a href="__APP__/member/verify">马上验证</a><span class="gray">]</span></if></li>
+		</ul>
+	</div>
+</div>
+<div id="ubottom2">
+</div>
+
+<div id="utop3" class="datum" style="margin-top: 15px; background-image: url(__ROOT__/Style/M/images/account/uctop.jpg);
+	width: 726px; height: 35px;">
+	<strong style="float: left;">资金信息：</strong> <span style="float: left;" class="gray">
+		[</span><a style="float: left;" href="__APP__/member/capital#fragment-1">明细</a><span style="float: left;"class="gray">]</span> <a id="ulink3" onclick="displayDiv('3')" style="text-decoration: none;"	onmousemove="javascript:this.style.cursor='pointer'" class='userLink'>-</a>
+</div>
+<div id="udiv3" style="border-left: #cccccc 1px solid; border-right: #cccccc 1px solid;
+	height: 110px; width: 724px;">
+	<div style="float: left; padding-top: 10px;">
+		<ul class="otherline ulunderline">
+			<li class="li1">账户可用资金总额：</li>
+			<li class="li2">￥{$mmx.zye|default="0.00"}</li>
+			<li class="li3">奖金余额：</li>
+			<li class="li4">￥{$mmx.jjje|default="0.00"}</li>
+			<li class="li5">可用现金金额：</li>
+			<li class="li6">￥{$mmx.kyxjje|default="0.00"}</li>
+		</ul>
+		<ul class="otherline ulunderline">
+			<li class="li1">待审核提现：</li>
+			<li class="li2">￥{$mmx.dshtx|default="0.00"}</li>
+			<li class="li5">提现处理中：</li>
+			<li class="li6">￥{$mmx.clztx|default="0.00"}</li>
+
+		</ul>
+	</div>
+</div>
+<div id="ubottom3">
+</div>
+
+<div id="utop4" class="datum" style="margin-top: 15px; background-image: url(__ROOT__/Style/M/images/account/uctop.jpg);
+	width: 726px; height: 35px;">
+	<strong style="float: left;">借出记录：</strong> <span style="float: left;" class="gray">
+		[</span><a style="float: left;" href="__APP__/member/tendout#fragment-1">明细</a><span class="gray"
+			style="float: left;">]</span> <a id="ulink4" onclick="displayDiv('4')" style="text-decoration: none;"
+				onmousemove="javascript:this.style.cursor='pointer'" class='userLink'>-</a>
+</div>
+<div id="udiv4" style="border-left: #cccccc 1px solid; border-right: #cccccc 1px solid;
+	height: 60px; width: 724px;">
+	<div style="float: left; padding-top: 10px;">
+		<ul class="otherline ulunderline">
+			<li class="li1">竞标中借出：</li>
+			<li class="li2">￥{$mmx.dxrtb|default="0.00"}</li>
+			<li class="li3">回收中借出：</li>
+			<li class="li4">￥{$mmx.dsbx|default="0.00"}</li>
+			<li class="li5">收完的借出：</li>
+			<li class="li6">￥{$mmx.ljjrje|default="0.00"}</li>
+		</ul>
+		<ul class="otherline ulunderline" style="display:none">
+			<li class="li1">累计收益率：</li>
+			<li class="li2">
+				0.00%</li>
+			<li class="li3">累计坏账率：</li>
+			<li class="li4">
+				0.00%</li>
+			<li class="li5">
+				&nbsp;
+			</li>
+			<li class="li6">
+				&nbsp;
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="ubottom4">
+</div>
+
+<div id="utop5" class="datum" style="margin-top: 15px; background-image: url(__ROOT__/Style/M/images/account/uctop.jpg);
+	width: 726px; height: 35px;">
+	<strong style="float: left;">借入记录：</strong> <span style="float: left;" class="gray">
+		[</span><a style="float: left;" href="__APP__/member/borrowin#fragment-1">明细</a><span style="float: left;"
+			class="gray">]</span> <a id="ulink5" onclick="displayDiv('5')" style="text-decoration: none;"
+				onmousemove="javascript:this.style.cursor='pointer'" class='userLink'>-</a>
+</div>
+<div id="udiv5" style="border-left: #cccccc 1px solid; border-right: #cccccc 1px solid;
+	height: 60px; width: 724px;">
+	<div style="float: left; padding-top: 10px;">
+		<ul class="otherline ulunderline">
+			<li class="li1">发标中借款：</li>
+			<li class="li2">￥{$jk.fb|default="0.00"}</li>
+			<li class="li3">偿还中借款：</li>
+			<li class="li4">￥{$jk.ch|default="0.00"}</li>
+			<li class="li5">还清的借款：</li>
+			<li class="li6">￥{$jk.wc|default="0.00"}</li>
+		</ul>
+		<ul class="otherline ulunderline" style="display:none">
+			<li class="li1">累计利息成本：</li>
+			<li class="li2">￥0.00</li>
+			<li class="li3">授信额度：</li>
+			<li class="li4">
+				￥0.00</li>
+			<li class="li5">已用额度：</li>
+			<li class="li6">
+				￥0.00</li>
+		</ul>
+	</div>
+</div>
+<div id="ubottom5">
+</div>

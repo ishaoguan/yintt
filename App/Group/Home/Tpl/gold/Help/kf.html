@@ -1,0 +1,49 @@
+<include file="Public:_header_common" />
+<title>{$glo.index_title}-{$vo.type_name}-{$glo.web_name}客服中心</title>
+<meta name="keywords" content="{$vo.type_keyword|getDefaultSeoInfo=###,1}" />
+<meta name="description" content="{$vo.type_info|getDefaultSeoInfo=###,2}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/art.css?{:C('APP_RES_VER')}" />
+<include file="Public:_header_main" />
+   <div id="pos">
+    <ul>
+     <li><a href="__APP__/">{$glo.web_name}</a></li>
+     <li class="posDiv"></li>
+     <li><p>客服中心</p></li>
+    </ul>
+   </div>
+   
+   <div id="content">
+    
+    <div id="art_h">
+     <h4>{$vo.type_name}</h4>
+    </div>
+    
+    <div id="art_content">
+     
+	<include file="left" />
+     
+     <div id="art_r">
+     <!-- Right -->
+       <div id="proShow">
+     <volist name="kflist" id="vl">
+	     <if condition="$i%3 eq 1"><ul></if>
+	      <li>
+	       <a href="javascript:void(0)"><img class="head" src="{$vl.id|get_avatar=###+10000000}"></a>
+	       <p>姓名：{$vl.real_name}</p>
+	       <p>电话:{$vl.land_line}</p>
+	       <a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$vl.qq}&amp;site=qq&amp;menu=yes" target="_blank">
+	       	<img border="0" src="__ROOT__/Style/H/images/qqchat.png" title="点击这里给我发消息" alt="点击这里给我发消息">
+	       </a>
+	      </li>
+	      <if condition="$i%3 neq 0"><li class="int">&nbsp;</li></if>
+	     <if condition="$i%3 eq 0"></ul></if>
+     </volist>
+    </div>
+       
+     <!-- Right // -->
+     </div>
+     
+    </div>
+    
+   </div>
+<include file="Public:_footer" />

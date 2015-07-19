@@ -1,0 +1,10 @@
+<?PHP exit;?>	UCenterAdministrator	60.2.159.149	1349458125	login	succeed
+<?PHP exit;?>	UCenterAdministrator	60.2.159.149	1349458139	app_edit	appid=1
+<?PHP exit;?>	UCenterAdministrator	60.2.159.149	1349458150	app_edit	appid=2
+<?PHP exit;?>	UCenterAdministrator	60.2.159.149	1349458307	login	succeed
+<?PHP exit;?>	UCenterAdministrator	60.2.159.149	1349458657	login	succeed
+<?PHP exit;?>	UCenterAdministrator	183.133.34.142	1350548612	login	succeed
+<?PHP exit;?>	UCenterAdministrator	183.133.34.142	1350550850	login	succeed
+<?PHP exit;?>	UCenterAdministrator	183.133.34.142	1350551288	app_edit	appid=1
+<?PHP exit;?>	UCenterAdministrator	183.133.34.142	1350551397	app_edit	appid=1
+<?PHP exit;?>	UCenterAdministrator	122.247.187.244	1350568760	login	succeed

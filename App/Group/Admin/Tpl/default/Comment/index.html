@@ -1,0 +1,98 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<script type="text/javascript">
+	var delUrl = '__URL__/doDel';
+	var addUrl = '__URL__/add';
+function doAudit(aid, type) {
+	var msg = "您确定要审核通过吗？";
+	if(type == 2)msg = "您确定要审核不通过吗？";
+	if(!confirm(msg)) return;
+	if(aid == '') return false;
+
+	//提交修改
+	var datas = {'id':aid, 'type':type};
+	$.post('__URL__/doAudit', datas, auditResponse,'json');
+}
+
+function auditResponse(res){
+	if(res.status == '0') {
+		ui.error(res.info);
+	}else {
+		datas = res.data.split('|');
+		id = datas[0];
+		type=datas[1];
+		if(type == 1){
+			$('#audit_'+id)[0].innerHTML = "<span style=\"color:#009900\">审核通过</span>";
+		}else if(type == 2){
+			$('#audit_'+id)[0].innerHTML = "<span style=\"color:#FF0000\">审核未通过</span>";
+		}
+		ui.success(res.info);
+	}
+}
+$(document).ready(function(){
+	$("#is_audit").change(function(){
+		var is_audit = $(this).val();
+		if(is_audit == "")is_audit=-1;
+		window.location.href = '__URL__/index?is_audit=' + is_audit;
+	});
+});
+</script>
+<div class="so_main">
+  <div class="page_tit">评论管理</div>
+
+  <div class="Toolbar_inbox">
+  	<div class="page right">{$pagebar}</div>
+    <htmlA:commonBtn type="jsfun" action="del();" value="删除评论" />
+    <htmlA:select id="is_audit" value="key|is_audit" datakey='audit_list' tip="选择审核状态"/>
+  </div>
+  
+  <div class="list">
+  <table id="area_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th style="width:30px;">
+        <input type="checkbox" id="checkbox_handle" onclick="checkAll(this)" value="0">
+        <label for="checkbox"></label>
+    </th>
+    <th class="line_l">ID</th>
+    <th class="line_l">用户名</th>
+    <th class="line_l">所评论借款</th>
+    <th class="line_l">评论时间</th>
+    <th class="line_l">评论内容</th>
+    <th class="line_l">是否已回复</th>
+    <th class="line_l">审核状态</th>
+    <th class="line_l">操作</th>
+  </tr>
+  <volist id="vo" name="list">
+      <tr overstyle='on' id="list_{$vo.id}">
+        <td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value="{$vo.id}"></td>
+        <td>{$vo.id}</td>
+        <td>{$vo.uname}</td>
+        <td>{$vo.name|cnsubstr=###,12}</td>
+        <td>{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+        <td>{$vo.comment|cnsubstr=###,12}</td>
+        <td><if condition="$vo.deal_time gt '0'"><span style="color:#009900">是</span><else/><span style="color:#FF0000">否</span></if></td>
+        <td><div id="audit_{$vo.id}"><if condition="$vo.is_audit eq '0'"><span style="color:#000000">未审核</span><elseif condition="$vo.is_audit eq '1'"/><span style="color:#009900">审核通过</span><else/><span style="color:#FF0000">审核未通过</span></if></div></td>
+        <td>
+            	<a href="javascript:void(0);" onclick="doAudit({$vo['id']}, 1);">审核通过</a>&nbsp;
+            	<a href="javascript:void(0);" onclick="doAudit({$vo['id']}, 2);">审核不通过</a>&nbsp;
+            <a href="__URL__/edit?id={$vo.id}">修改/回复</a>&nbsp;
+            <a href="javascript:void(0);" onclick="del({$vo['id']});">删除</a>  
+        </td>
+      </tr>
+  </volist>
+  </table>
+
+  </div>
+  
+  <div class="Toolbar_inbox">
+  	<div class="page right">{$pagebar}</div>
+    <htmlA:commonBtn type="jsfun" action="del();" value="删除评论" />
+  </div>
+</div>
+<script type="text/javascript">
+function showurl(url,Title){
+	ui.box.load(url, {title:Title});
+}
+</script>
+
+<include file="Public:_footer" />

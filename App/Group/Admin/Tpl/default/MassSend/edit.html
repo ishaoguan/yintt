@@ -1,0 +1,39 @@
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">短信内容</div>
+<div class="form2">
+	<form method="post" action="__GROUP__/mass_send/doEdit" onsubmit="return subcheck();">
+	<input type="hidden" name="id" value="{$vo.id}" />
+	<div id="tab_1">
+        <dl class="lineD"><dt>短信内容：</dt><dd><htmlA:text id="smsContent" value="{$vo.sms_content}" style="width:400px;height:120px;" /></dd></dl>
+        <if condition="empty($vo['id'])"><dl class="lineD"><dt>接收者：</dt><dd><input type="checkbox" id="smsReceiver" name="smsReceiver" value="1" checked="checked" />所有手机认证用户</dd></dl></if>
+	</div><!--tab1-->
+	
+	<div class="page_btm">
+	  <input type="submit" class="btn_b" value="确定" />&nbsp;确定后会将数据保存起来，不会发送短信，发送短信请按确定后到列表页面点击全部发送
+	</div>
+	</form>
+</div>
+
+</div>
+<script type="text/javascript">
+var cansub = true;
+function subcheck(){
+	if(!cansub){
+		alert("请不要重复提交，如网速慢，请等待！");
+		return false;	
+	}
+
+	if($("#smsContent").val()==''){
+		alert("短信内容不能为空");
+		return false;
+	}
+	if($("#smsReceiver").attr("checked") == false){
+		alert("接收者不能为空");
+		return false;
+	}
+	cansub = false;
+	return true;
+}
+</script>

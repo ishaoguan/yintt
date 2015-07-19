@@ -1,0 +1,93 @@
+<include file="Public:_header_common" />
+<title>自动投标-- {$glo.web_name}</title>
+<include file="Public:_header_main" />
+<tagLib name="htmlA" />
+<script type="text/javascript">
+function checkt(id){
+	$("input[name='tender_type'][value='"+id+"']").attr("checked",true);
+}
+</script>
+  <div id="content_us">
+   <include file="Public:_left" />
+   <div id="us_r">
+    <!-- Right -->
+     
+   	 <include file="Public:_right_top" />
+     
+     <div class="us_rh">
+      <ul>
+       <li><a href="__URL__/index">自动投标</a></li>
+       <li class="usrhDiv"></li>
+       <li class="ui-tabs-selected"><a>添加自动投标</a></li>
+       <li class="usrhDiv"></li>
+      </ul>
+     </div>
+<form name="x" method="post" action="__URL__/doadd">
+     <div class="us_rb10">
+      
+      <h4><span>生</span>效状态：</h4>
+      <ul>
+       <li><p>是否启用：</p><htmlA:radio id="status" class="ord" default="0|否,1|是" value="key|vo['status']"/><h6>(如果不选中则当前规则不会生效)</h6></li>
+       <li>
+        <p>每次投标金额：</p>
+        <ol>
+         <li><input  type="radio" name="tender_type" value="1" <if condition="$vo.tender_type eq 1"> checked="checked"</if> />按金额投标<input name="tender_account" type="text" onclick="checkt('1')" maxlength="5" id="tender_account" class="u10_tex1" onkeyup="value=value.replace(/[^0-9]/g,'')" value="{$vo.tender_account|default=0}" />元(最少50元)</li>
+         <li><input  type="radio" name="tender_type" value="2"  
+                <if condition="$vo.tender_type eq 2"> checked="checked"</if>
+                />按比例投标<input name="tender_rate" type="text" onclick="checkt('2')" value="{$vo.tender_rate}" maxlength="2"  class="u10_tex1" />%(只能在1%~20%)</li>
+         <li><input  type="radio" name="tender_type" value="3"  
+                <if condition="$vo.tender_type eq 3"> checked="checked"</if>
+                />余额全投&nbsp;(小于等于标金额的20%，舍去小数)</li>
+        </ol>
+       </li>
+       <li><p>&nbsp;</p>(当前规则满足时系统将为您自动投标的额度，投标金额和比例都只能为大于0的为整数。)</li>
+       <li><p>&nbsp;</p>1、如果超过标的的最大投标额度则以标的的最大额度为准，如果小于标的的最小投标额度则不投。 <br />
+           <p>&nbsp;</p>2、按比例投标，是指按标金额比例，比如设置比例为10%，标金额为10万，则投标金额为10万*10%=1万<br />
+           <p>&nbsp;</p>3、当按比例投标时，根据所设定的比例算得金额少于50元时，以50元进行投标。<br />
+           <p>&nbsp;</p>4、当按比例投标时，根据所设定的比例算得金额大于标的最大投标金额时，以最大投标金额进行投标。<br />
+           <p>&nbsp;</p>5、当投标金额大于标的金额的20%时，则按此比例进行投标。<br />
+           <p>&nbsp;</p>6、当设置为按金额投标时，所设定的值只能为正整数。<br />
+           <p>&nbsp;</p>7、当按余额全投时，如果余额大于标金额的20%时，则以此比例进行投标；如果余额低于50元，则不投。<br />
+           <p>&nbsp;</p>8、当前自动投标总限额为{$glo.pauto_total}%，单笔自动投标限额为{$glo.pauto_individual}%，<font style="color:red">该比例可能在审核时做修改，敬请留意</font></li>
+      </ul>
+      <h4><span>借</span>款人信息限制：</h4>
+      <ul>
+       <li><p>关系选项：</p><input id="my_friend" type="checkbox" name="my_friend" value="1" class="ord"
+                <if condition="$vo.my_friend eq 1"> checked="checked"</if>
+                /><h6>必须是我的好友</h6><input id="not_black" type="checkbox" name="not_black" value="1" class="ord"
+                <if condition="$vo.not_black eq 1"> checked="checked"</if>
+                /><h6>必须不在我的黑名单中</h6><h6>(不选中则没有此项限制)</h6></li>
+       <li><p>会员头衔：</p>必须为网站的<htmlA:select id="target_user" default="--不选则不限制--" datakey="xmembertype" value="key|vo.target_user"/>会员</li>
+       <li><p>信用积分：</p><input id="borrow_credit_status" type="checkbox" name="borrow_credit_status" value="1" 
+				 <if condition="$vo.borrow_credit_status eq 1"> checked="checked"</if>
+                />积分必须在<input name="borrow_credit_first" type="text" value="{$vo.borrow_credit_first}" maxlength="6" id="borrow_credit_first" class="u10_tex1" />~<input name="borrow_credit_last" type="text" value="{$vo.borrow_credit_last}" maxlength="6" id="borrow_credit_last" class="u10_tex1" />之间</li>
+      </ul>
+      <h4><span>标</span>的信息限制：</h4>
+      <ul>
+       <li><p>还款方式：</p><htmlA:select id="repayment_type" datakey="repayment_type" default="--不选则不限制--" value="key|vo.repayment_type"/></li>
+       <li>
+        <p>借款期限：</p>
+        <ol>
+         <li><input id="timelimit_status"  name="timelimit_status" type="radio" value="0" checked="checked" 
+                <if condition="$vo.timelimit_status eq 0"> checked="checked"</if>
+                />不限定借款期限范围</li>
+         <li><input id="timelimit_status" type="radio" name="timelimit_status" value="1"   name="timelimit_status" 
+                <if condition="$vo.timelimit_status eq 1"> checked="checked"</if>
+                />借款期限按月范围必须在<htmlA:select id="timelimit_month_first" datakey="borrow_month_time" nodefalut="true" value="key|vo.timelimit_month_first"/>~<htmlA:select id="timelimit_month_last" datakey="borrow_month_time" nodefalut="true" value="key|vo.timelimit_month_last"/>之间。(此选项只对按月还款、按季还款有效)</li>
+        </ol>
+       </li>
+       <li><p>利率选项：</p><input id="apr_status" type="checkbox" name="apr_status" value="1"  
+                <if condition="$vo.apr_status eq 1"> checked="checked"</if>
+                />利率范围必须在<input name="apr_first" type="text" value="{$vo.apr_first}" maxlength="6" id="apr_first" class="u10_tex1" />%~<input name="apr_last" type="text" value="{$vo.apr_last}" maxlength="6" id="apr_last" class="u10_tex1" />%之间。(不选中则没有此项限制)</li>
+       <li><p>其他要求：</p>必须为<htmlA:select id="borrow_type" datakey="borrow_type" default="--不选则不限制--" value="key|vo.borrow_type"/></li>
+      </ul>
+      
+      <input type="submit" class="u10_but" value="保&nbsp;&nbsp;存" />
+      <input type="reset" name="" value="取&nbsp;&nbsp;消" id="" class="u10_but1" />
+     </div>
+</form>
+     
+    <!-- Right // -->
+   </div>
+  </div>
+<include file="./App/Group/Home/Tpl/gold/Public/_footer.html" group="Home" />

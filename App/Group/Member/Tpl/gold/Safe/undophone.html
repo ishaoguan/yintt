@@ -1,0 +1,344 @@
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	如果您需要解除账号的手机绑定，可以通过该模块取消绑定</p>
+</div>
+<div class="u12_clew">
+	<p>尊敬的{$glo.web_name}会员，在取消手机绑定之后，您可以用该手机号绑定其他XXX账号</p>
+</div>
+<!-- 选择修改取消绑定方式开始 -->
+<script type="text/javascript">
+	var quesstat = {$eqs['safequestion_status']};
+	var mailstat = {$eqs['email_status']};
+
+	function showWayToUndo1() {
+		if(quesstat=='1'){
+			$("#methodone").show(300);
+			$("#methodtwo").hide(300);
+			$("#stronger1").show(300);
+			$("#stronger2").hide(300);
+			$("#topcodearea").show(300);
+		}else{
+			$.jBox.alert("您还没有设置安全问题，请先设置安全问题","温馨提示", {closed: function () {window.location.href="./verify#fragment-6";return true;} });
+		}
+	}
+	function showWayToUndo2() {
+		if(mailstat=='1'){
+			$("#methodone").hide(300);
+			$("#methodtwo").show(300);
+			$("#stronger2").show(300);
+			$("#stronger1").hide(300);
+			$("#topcodearea").show(300);
+		}else{
+			$.jBox.alert("您还没有绑定邮箱，请先绑定邮箱","温馨提示", {closed: function () {window.location.href="./verify#fragment-1";return true;} });
+		}
+	}
+
+</script>
+<div style="padding: 10px 25px; text-align: left;">
+	<table cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td style="width: 160px; text-align: right;">
+					<img alt="" src="__ROOT__/Style/M/images/cancel.jpg">
+				</td>
+			<td style="width: 490px; padding-left: 10px; border-bottom: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5;
+				border-right: 1px solid #e5e5e5;">
+				
+				<span style="color: #005B9F">温馨提示：您好，你已经验证了号码为{$phone|hidecard=###,2,"还未验证"}的号码。</span>
+				<div style="color: #2f2f2f; margin-top: 10px;">
+					<label>
+						<input id="runmeth" name="radName" onclick="showWayToUndo1()" type="radio">
+						通过手机验证码以及安全问题取消绑定</label>
+				</div>
+				<div style="color: #2f2f2f; margin-top: 10px;">
+					<label>
+						<input id="runmeth1" name="radName" onclick="showWayToUndo2()" type="radio">
+						通过手机验证码以及邮箱验证码取消绑定</label>
+				</div>
+				
+			</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="border-bottom: 1px solid #e5e5e5; height: 20px;">&nbsp;
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!-- 选择修改取消绑定方式结束 -->
+<!-- 修改方式1开始 -->
+<script type="text/javascript">
+	if(timer)clearInterval(timer);
+	var timer = null;
+	var leftsecond = 60; 
+	var msg = "";
+
+	function sendMobileCancelCode() {
+		
+		var admin_name = "{$email.user_name}";
+
+		$('#showCancelCode').html("短信发送中...");
+		$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+		$.ajax({
+			url: "__URL__/getSmsCode/",
+			type: "post",
+			dataType: "json",
+			data: {"admin_name":admin_name},
+			success: function(d) {
+				$.jBox.tip("", 'loading', {timeout:1});
+				leftsecond = 60;
+				if (d.status == 1) {
+					msg = "发送成功，如未收到";
+					clearInterval(timer);
+					timer = setInterval(satLeftTima, 1000, "1");
+					$("#getCancelCode").html("");
+					setTimeout("$('#showCancelCode').html('')",500);				
+				}
+				else if (d.status == -1) {
+					msg = "您的验证码为：" + d.message;
+					clearInterval(timer);
+					timer = setInterval(satLeftTima, 1000, "1");
+					$("#getCancelCode").html("");
+					setTimeout("$('#showCancelCode').html('')",500);		
+
+				}
+				else {
+					msg = d.message;
+					$("#showCancelCode").html(msg);
+					$("#getCancelCode").html("获取短信验证码");
+				}
+			}
+		});
+	}
+	function satLeftTima() {
+		var second = Math.floor(leftsecond);
+		if($("#spanSea").length == 0)
+			$(".showCodeArea").eq(0).html(msg + ",<span id='spanSea'>" + second + "</span>秒后可重发");
+		else
+			$("#spanSea").html(second);
+		leftsecond--;
+		if (leftsecond < 1) {
+			$(".showCodeArea").eq(0).html("现在可重新发送！");
+			clearInterval(timer);
+			try {
+				$("#getCancelCode").html("获取短信验证码");
+			} catch (E) { }
+			return;
+		}
+	}
+</script>
+
+
+<div style="margin: 20px 10px 10px 12px; overflow: hidden; display:none" id="topcodearea">
+	<img src="__ROOT__/Style/H/images/minilogo.gif" alt="">
+	<strong id ="stronger1" style="display:none">是否发送手机验证码和回答安全问题取消手机绑定</strong>
+	<strong id ="stronger2" style="display:none">是否发送手机验证码及邮箱验证码取消绑定</strong>
+	<a href="javascript:;" onclick="sendMobileCancelCode()" id="getCancelCode">
+	<input id="sendMsgbutton" style="background-image: url(__ROOT__/Style/M/images/btnbg02.gif);
+	width: 94px; height: 27px; border: none; font-weight: bold; color: #fff; cursor: pointer;" value="发送验证码" type="button"></a><div class="" id="showCancelCode"></div>
+	<span class="showCodeArea" id="showCodeArea"></span>
+</div>
+<div id="methodone" style="margin-top: 10px; text-align: left; padding-left: 20px; display:none ">
+	<div style="margin: 10px 10px 10px 82px; overflow: hidden;">
+		<table style="width: 280px; line-height: 33px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr>
+				<td style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>验证码：
+				</td>
+				<td style="padding-left: 10px;">
+					<input id="phone_no" name="phone_no" class="text2" style="margin-left: 0px;" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 110px; text-align: right;">
+					问题1：
+				</td>
+				<td style="padding-left: 10px;">
+					{$sq.question1}
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>答案1：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="safequesone" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					问题2：
+				</td>
+				<td style="padding-left: 10px;">
+					{$sq.question2}
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="width: 110px; text-align: right;">
+					<span style="color: #bb0706">*</span>答案2：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="safequestwo" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="querone">&nbsp;
+					
+				</td>
+				<td>
+					<input name="checkNoAns" id="checkNoAns" value=" " style="background-image: url(__ROOT__/Style/M/images/cancel.jpg);cursor: pointer; border: none; width: 85px; height: 28px;" type="button">
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+
+$("#checkNoAns").click(function(){
+			var vcancelcode = $("#phone_no").val();
+			var vsafequesone = $("#safequesone").val();
+			var vsafequestwo = $("#safequestwo").val();
+			
+			if ($("#phone_no").val()=="") {
+				$.jBox.tip('您还没有输入手机验证码','tip');
+				return;
+			}
+			if ($("#phone_no").val().length!=6){
+				$.jBox.tip('您输入的验证码位数不对','tip');
+				return;
+			}
+			if ($("#safequesone").val()=="") {
+				$.jBox.tip('您还没有输入安全问题1','tip');
+				return;
+			}
+			if ($("#safequestwo").val()==""){
+				$.jBox.tip('您还没有输入安全问题2','tip');
+				return;
+			}
+			$.jBox.tip('请稍后.....', 'loading');
+			$.ajax({
+					url: "__URL__/checkCancelMethod",
+					type: "post",
+					dataType: "json",
+					data: {
+							"phonecode":vcancelcode,
+							"answerone":vsafequesone,
+							"answertwo":vsafequestwo
+						},
+					success: function(d) {
+						$.jBox.tip("",'loading',{timeout:1});
+						if (d.status == 1) {
+							$.jBox.alert("恭喜您取消绑定成功","温馨提示", {closed: function () {window.location.href="./verify#fragment-2";return true;} });
+						}else if (d.status ==2) {
+							$.jBox.tip(d.message, 'fail');
+						}else if(d.status ==3){
+							$.jBox.tip(d.message, 'fail');
+						}
+					}
+				});
+		});
+</script>
+<!-- 修改方式1结束 -->
+<!-- 修改方式2开始 -->
+<script type="text/javascript">
+			function SendVerrfy() {
+				//$.jBox.tip('请稍后.....', 'loading');
+		        $.ajax({
+		            url: "__URL__/sendemailforverify/",
+		            timeout: 8000,
+		            cache: false,
+		            type: "post",
+		            dataType: "json",
+					data: {},
+		            success: function (d) {
+		            	//$.jBox.tip("",'loading',{timeout:1});
+		            	//alert('zhelidaole');
+						if(d.status==1){
+							$.jBox.tip('新邮件已经发送成功，请注意查收！');	
+						}else{
+							$.jBox.tip('发送失败,请重试！');	
+						}
+		            }
+		        });
+			}
+</script>
+<div id="methodtwo" style="margin-top: 10px; text-align: left; padding-left: 20px; display: none;">
+	<div style="margin: 10px 10px 10px 82px; overflow: hidden;">
+		<table style="width: 500px; line-height: 33px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr>
+				<td style="width: 130px; text-align: right;">
+					<span style="color: #bb0706">*</span>手机验证码：
+				</td>
+				<td style="padding-left: 10px;">
+					<input id="phone_no1" name="phone_no1" class="text2" style="margin-left: 0px;" type="text">
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 130px; text-align: right;">
+					<span style="color: #bb0706">*</span>邮箱验证码：
+				</td>
+				<td style="padding-left: 10px;">
+					<input id="cancelemail" name="cancelemail" class="text2" style="margin-left: 0px;" type="text">
+					<a href="javascript:SendVerrfy()" id="cancelemaillink"><input id="cancelemailbut" style="background-image: url(__ROOT__/Style/M/images/btnbg02.gif);width: 94px; height: 27px;  border: none;font-weight: bold; color: #fff; cursor: pointer;" value="发送邮件" type="button"></a> <span id="emailcancelarea"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="querone">&nbsp;
+					
+				</td>
+				<td>
+					<input name="checkCancel" id="checkCancel" value=" " style="background-image: url(__ROOT__/Style/M/images/cancel.jpg);cursor: pointer; border: none; width: 85px; height: 28px;" type="button">
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+
+$("#checkCancel").click(function(){
+			var pcancelcode = $("#phone_no1").val();
+			var ecancelcode = $("#cancelemail").val();
+			
+			if ($("#phone_no1").val()=="") {
+				$.jBox.tip('您还没有输入手机验证码','tip');
+				return;
+			}
+			if ($("#phone_no1").val().length!=6){
+				$.jBox.tip('您输入的验证码位数不对','tip');
+				return;
+			}
+			if ($("#cancelemail").val()=="") {
+				$.jBox.tip('您还没有输入邮箱验证码','tip');
+				return;
+			}
+			if ($("#cancelemail").val().length!=10){
+				$.jBox.tip('您输入的邮箱验证码位数不对','tip');
+				return;
+			}
+
+			$.ajax({
+					url: "__URL__/checkUndoMethod",
+					type: "post",
+					dataType: "json",
+					data: {
+							"phcode":pcancelcode,
+							"emcode":ecancelcode
+						},
+					success: function(d) {
+						if (d.status == 1) {
+							$.jBox.alert("恭喜您取消绑定成功","温馨提示", {closed: function () {window.location.href="./verify#fragment-2";return true;} });
+						}else if (d.status ==2) {
+							$.jBox.tip(d.message, 'fail');
+						}else if(d.status ==3){
+							$.jBox.tip(d.message, 'fail');
+						}
+					}
+			});
+	});
+</script>
+<!-- 修改方式2结束 -->

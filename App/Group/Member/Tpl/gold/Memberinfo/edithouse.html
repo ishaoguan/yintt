@@ -1,0 +1,51 @@
+<tagLib name="htmlA" />
+      <ul>
+       <li><p>房产地址：</p><htmlA:input id="house_dizhi" value="{$vo.house_dizhi}" class="u10_inputlong"/></li>
+       <li><p>建筑面积：</p><htmlA:input id="house_mianji" value="{$vo.house_mianji}" class="u10_tex2"/>平米</li>
+       <li><p>建筑年份：</p><htmlA:input id="house_nian" value="{$vo.house_nian}" class="u10_tex2"/></li>
+       <li><p>供款状况：</p><htmlA:radio id="house_gong" default="按揭中|按揭中,已供完房款|已供完房款" value="key|vo.house_gong" /></li>
+       <li><p>所有权人1：</p><htmlA:input id="house_suo1" value="{$vo.house_suo1}" class="u10_tex2"/>  产权份额<htmlA:input id="house_feng1" value="{$vo.house_feng1}" class="u10_tex2"/>%</li>
+       <li><p>所有权人2：</p><htmlA:input id="house_suo2" value="{$vo.house_suo2}" class="u10_tex2"/>  产权份额<htmlA:input id="house_feng2" value="{$vo.house_feng2}" class="u10_tex2"/>%</li>
+       <li><p></p>若房产尚在按揭中, 请填写：</li>
+       <li><p>贷款年限：</p><htmlA:input id="house_dai" value="{$vo.house_dai}" class="u10_tex2"/>年</li>
+       <li><p>每月供款：</p><htmlA:input id="house_yuegong" value="{$vo.house_yuegong}" class="u10_tex2"/>元</li>
+       <li><p>尚欠贷款余额：</p><htmlA:input id="house_shangxian" value="{$vo.house_shangxian}" class="u10_tex2"/>元</li>
+       <li><p>按揭银行：</p><htmlA:input id="house_anjiebank" value="{$vo.house_anjiebank}" class="u10_tex2"/></li>
+      </ul>
+      <input type="button" class="u10_but" value="保存/下一步" onclick="edithouse()"/>
+      <input type="button" class="u10_but1" value="跳过并继续" onclick="$('#xtab').find('a[data=info6]').click();"/>
+<script type="text/javascript">
+function edithouse(){
+	p = makevar(['house_dizhi','house_mianji','house_nian','house_gong','house_suo1','house_suo2','house_feng1','house_feng2','house_dai','house_yuegong','house_shangxian','house_anjiebank']);
+	p['_tps'] = "post";
+	/*var mxs = true;
+	$.each(p,function(i){
+		if(typeof p[i] == "undefined" && i=='house_dizhi' && i=='house_mianji' && i=='house_nian' && i=='house_gong'){
+			mxs=false;
+			jBox.tip("所有项目都不能为空");	
+		}
+	});
+	if(mxs===false){
+	  jBox.tip("所有项目都不能为空");	
+	  return;
+	}*/
+	$.jBox.tip('提交中......','tip');
+	$.ajax({
+		url: "__URL__/edithouse/",
+		data: p,
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip(d.message,'success');
+					$('#xtab').find('a[data=info6]').click();
+				}
+				else  $.jBox.tip(d.message,'fail');
+			}
+		}
+	});
+}
+</script>

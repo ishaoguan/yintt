@@ -1,0 +1,629 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="/Style/H/css/gongyong.css" />
+
+<link rel="stylesheet" type="text/css" href="/Style/H/css/header.css?{:C('APP_RES_VER')}" />
+
+<link type="text/css" rel="stylesheet" href="/Style/JBox/Skins/Red/jbox.css"/>
+
+<script type="text/javascript" src="/Style/Js/jquery.js"></script>
+
+<SCRIPT language=javascript src="/Style/JBox/jquery.jBox.min.js?ver=1" type=text/javascript></SCRIPT>
+
+<SCRIPT language=javascript src="/Style/JBox/jquery.jBoxConfig.js" type=text/javascript></SCRIPT>
+
+<script type="text/javascript">
+
+	function makevar(v){
+
+		var d={};
+
+		for(i in v){
+
+			var id = v[i];
+
+			d[id] = $("#"+id).val();
+
+			if(!d[id]) d[id] = $("input[name='"+id+"']:checked").val();
+
+			if(!d[id]) d[id] = $("input[name='"+id+"']").val();
+
+			if(typeof d[id] == "undefined") d[id] = "";
+
+		}
+
+		return d;
+
+	}
+
+    function addBookmark(title, url) {
+
+        if (window.sidebar) {
+
+            window.sidebar.addPanel(title, url, "");
+
+        }
+
+        else if (document.all) {
+
+            window.external.AddFavorite(url, title);
+
+        }
+
+        else if (window.opera && window.print) {
+
+            return true;
+
+        }
+
+    }
+
+    function SetHome(obj, vrl) {
+
+        try {
+
+            obj.style.behavior = 'url(#default#homepage)'; obj.setHomePage(vrl);
+
+            NavClickStat(1);
+
+        }
+
+        catch (e) {
+
+            if (window.netscape) {
+
+                try {
+
+                    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+
+                }
+
+                catch (e) {
+
+                    alert("抱歉！您的浏览器不支持直接设为首页。请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为“true”，点击“加入收藏”后忽略安全提示，即可设置成功。");
+
+                }
+
+                var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+
+                prefs.setCharPref('browser.startup.homepage', vrl);
+
+            }
+
+        }
+
+    }
+
+        $(function() {
+
+            $(".dv_r_6 li,.dv_r_5 li").mousemove(function() {
+
+                $(this).addClass("current");
+
+            }).mouseout(function() {
+
+                $(this).removeClass("current");
+
+            });
+
+        });
+
+</script>
+
+
+
+<title>{$glo.index_title}-在线客服</title>
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+
+<link rel="stylesheet" type="text/css" href="/Style/H/css/by_bangzhu.css" />
+
+<style type="text/css">
+
+.artcontent{padding:20px}
+
+.cjwt_a_01{text-indent:20px}
+
+</style>
+
+<script type="text/javascript">
+
+function videoverify(){
+
+	$.jBox.confirm("申请视频认证后会直接从帐户扣除认证费用10元，然后客服会联系您进行认证。<br/><font style='color:red'>确定要申请认证吗?</font>", "视频认证", dovideo, { buttons: { '确认申请': true, '暂不申请': false} });
+
+}
+
+function dovideo(v, h, f) {
+
+	if (v == true){
+
+        $.ajax({
+
+            url: "/common/video",
+
+            data: {},
+
+            timeout: 5000,
+
+            cache: false,
+
+            type: "get",
+
+            dataType: "json",
+
+            success: function (d, s, r) {
+
+              	if(d){
+
+					if(d.status==1) $.jBox.tip(d.message, 'success');
+
+					else $.jBox.tip(d.message, 'fail');
+
+				}
+
+            }
+
+        });
+
+	}
+
+	return true;
+
+};
+
+// 自定义按钮
+
+function faceverify(){
+
+	$.jBox.confirm("申请现场认证后会直接从帐户扣除认证费用10元，然后客服会联系您进行认证。<br/><font style='color:red'>确定要申请认证吗?</font>", "现场认证", doface, { buttons: { '确认申请': true, '暂不申请': false} });
+
+}
+
+function doface(v, h, f) {
+
+	if (v == true){
+
+        $.ajax({
+
+            url: "/common/face",
+
+            data: {},
+
+            timeout: 5000,
+
+            cache: false,
+
+            type: "get",
+
+            dataType: "json",
+
+            success: function (d, s, r) {
+
+              	if(d){
+
+					if(d.status==1) $.jBox.tip(d.message, 'success');
+
+					else $.jBox.tip(d.message, 'fail');
+
+				}
+
+            }
+
+        });
+
+	}
+
+	return true;
+
+};
+
+// 自定义按钮
+
+
+
+</script>
+
+</head>
+
+
+
+<body>
+
+<div id="container">
+
+	<!--头部开始-->
+
+	<div id="header">
+
+		<div id="headertop">
+
+			<div class="logo"><a href="#"><img src="/Style/H/images/logo.jpg" /></a></div>
+
+			<div class="diqu" style="visibility:hidden; width:50px">
+
+				<div class="csite"><span>主站</span></div>
+
+				<div class="sitelist">
+
+					<ul class="closeSubsite"></ul>
+
+					<ul>
+
+						<li><a href="http://bj.239.124">北京</a></li><li><a href="http://cs.239.124">长沙</a></li><li><a href="http://dc.239.124">东城区</a></li><li><a href="http://fx.239.124">费县</a></li><li><a href="http://yj.239.124">迎江区</a></li>					</ul>
+
+				</div>
+
+			</div>
+			<div class="ggao">
+				<li class="ggao01"><img style="margin: 0px; float: none" alt="" src="/UF/Uploads/Article/20120907112832.gif" /></li>
+				<li class="ggao02"><marquee behavior="scroll" direction="left" scrollamount="3"><span>欢迎大家来到九洲贷投资借款</span></marquee></li>
+			</div>
+			<div class="gjhezuo"><a href="#"><img src="/Style/H/images/jmhz.jpg" width="70" height="70" /></a><a href="/invests/tool.html"><img src="/Style/H/images/shygj.jpg" width="70" height="70" /></a></div>
+		</div>
+		<div id="nav">
+			<div class="ul_ll"></div>
+			<div class="ul_rr"></div>
+
+			<ul class="menubox">
+									<li><a href="/index.html" data="1">网站首页</a></li>
+									<li><a href="/invest/index.html" data="2">我要投资</a></li>
+									<li><a href="/borrow/index.html" data="3">我要借款</a></li>
+									<li><a href="/bbs" data="7">会员社区</a></li>
+									<li><a href="/xmtz/index.html" data="5">项目投资</a></li>
+									<li><a href="/mtqc/index.html" data="8">媒体宣传</a></li>
+									<li><a href="/help/index.html" data="322">帮助中心</a></li>
+									<li><a href="/member/index.html" data="4">我的账户</a></li>
+									<li><a href="http://www.jiuzhoudai.com/App/Tpl/Home/default/zxkf/zxkf.html" data="6">在线客服</a></li>
+				
+			</ul>
+			
+							<ul class="miannav" id="son_menu_1" style="display:none">
+											<a href="/index.html">首页</a>|
+											<a href="/indexs/zc.html">法律政策</a>|
+											<a href="/indexs/gw.html">法律顾问</a>|
+											<a href="/indexs/contact.html">与我们联系</a>|
+											<a href="/indexs/notice.html">网站公告</a>|
+											<a href="/indexs/about.html">关于我们</a>|
+											<a href="/indexs/zhengjian.html">公司证件</a>|
+									</ul>
+							<ul class="miannav" id="son_menu_2" style="display:none">
+											<a href="/invests/tool.html">借贷工具</a>|
+											<a href="/invest/index?borrow_status=2">正在进行的借款</a>|
+											<a href="/invest/index?borrow_status=4">正在进行的借款</a>|
+											<a href="/invest/index?borrow_status=6">还款中的借款</a>|
+											<a href="/invest/index?borrow_status=7">已完成的借款</a>|
+									</ul>
+							<ul class="miannav" id="son_menu_3" style="display:none">
+									</ul>
+							<ul class="miannav" id="son_menu_7" style="display:none">
+									</ul>
+							<ul class="miannav" id="son_menu_5" style="display:none">
+									</ul>
+							<ul class="miannav" id="son_menu_8" style="display:none">
+									</ul>
+							<ul class="miannav" id="son_menu_322" style="display:none">
+									</ul>
+							<ul class="miannav" id="son_menu_4" style="display:none">
+											<a href="/member/common/actlogout/">退出登陆</a>|
+											<a href="/member/common/login/">登陆帐户</a>|
+									</ul>
+							<ul class="miannav" id="son_menu_6" style="display:none">
+									</ul>
+					</div>
+	</div>
+	<!--头部结束-->
+
+<script>
+
+$(".diqu").mouseenter(function(){ $(this).addClass("hover");}).mouseleave(function(){ $(this).removeClass("hover");});
+
+$(".closeSubsite").click(function(){ $(".diqu").removeClass("hover");});
+
+
+
+thisURL = document.URL;/*获取当前地址栏URL,根据此来判断当前页，从页实现页面导航不同样式*/
+
+strwrite = thisURL;
+
+urlreg = eval("/.*"+document.domain+"/ig"); // 创建正则表达式模式。 
+
+lasturl = strwrite.replace(urlreg, ""); // 用 "A" 替换 "The"。 
+
+
+
+urlarr = lasturl.split("/");
+
+var menuEng=$(".menubox li a");
+
+var ck = false;
+
+
+
+for(var i=0;i<menuEng.length;i++){
+
+	var regu   =menuEng[i].href;
+
+   	var re   =   new   RegExp(regu);     
+
+	clasturl = regu.replace(urlreg, ""); // 用 "A" 替换 "The"。 
+
+	curlarr = clasturl.split("/");
+
+    if(curlarr[1]== urlarr[1] || curlarr[1]+"s" == urlarr[1])
+
+	{
+
+		menuEng[i].className="hover";
+
+		//$(menuEng[i]).parent().attr("class",'dv_header_2 x');
+
+		try{
+
+			var xid = $(menuEng[i]).attr("data");
+
+			$("#son_menu_"+xid).show();
+
+		}catch(e){}
+
+		ck=true;
+
+	}     
+
+    else{
+
+		menuEng[i].className="";
+
+		//$(menuEng[i]).parent().attr("class",'dv_header_4 x');
+
+		try{
+
+			var xid = $(menuEng[i]).attr("data");
+
+			$("#son_menu_"+xid).hide();
+
+		}catch(e){}
+
+	} 
+
+}
+
+if(ck===false){
+
+	menuEng[0].className="hover";
+
+	//$(menuEng[0]).parent().attr("class",'dv_header_2 x');
+
+	try{
+
+		var xid = $(menuEng[0]).attr("data");
+
+		$("#son_menu_"+xid).show();
+
+	}catch(e){}
+
+}
+
+</script>
+
+
+
+	<!--中部开始-->
+
+	<div id="maincontent">
+
+		<div id="guanggao_bz"><img src="/Style/H/images/guanggao/guanggao_bz.jpg" width="980" height="233" /></div>
+
+		<div id="bangzhuzx">
+
+			<div class="bzzx_left">
+
+				<div class="bzzx_left_a">
+
+	<div class="bzml_tl"></div>
+
+	<div class="bzml_tr"></div>
+
+	<div class="bzml_bl"></div>
+
+	<div class="bzml_br"></div>
+
+	<ul class="cjwt_a">网站首页</ul>
+
+	<ul class="cjwt_b">
+
+	<li><a  href="/index.html">首页</a></li><li><a  href="/indexs/zifeishuoming.html">资费说明</a></li><li><a  href="/indexs/hangye.html">行业新闻</a></li><li><a class="hover" href="/indexs/zxkf.html">在线客服</a></li><li><a  href="/indexs/about.html">关于我们</a></li><li><a  href="/indexs/bd.html">媒体报道</a></li><li><a  href="/indexs/gw.html">法律顾问</a></li><li><a  href="/indexs/yl.html">网站原理</a></li><li><a  href="/indexs/zc.html">法律政策</a></li><li><a  href="/indexs/contact.html">与我们联系</a></li>	</ul>
+
+</div>
+
+
+
+			</div>
+
+			<div class="bzzx_right">
+
+				<div class="bzzx_right_a">
+
+					<div class="bznr_tl"></div>
+
+					<div class="bznr_tr"></div>
+
+					<div class="bznr_bl"></div>
+
+					<div class="bznr_br"></div>
+
+					<ul class="cjwt_a_01"><span>在线客服</span></ul>
+
+					<ul class="cjwt_b_02">
+<!-- 客服位置   -->
+						<div class="artcontent">
+						
+<DIV class=info>
+ 
+		
+				<div style="padding-left:10px; overflow:hidden; height:auto; width:98%">
+					
+					<div style="width:260px; float:left; margin:10px 10px 10px 10px ">
+						<div class="floatl" style="width:120px">
+							<img src="/Style/H/images/kf/189_avatar_middle.jpg" width="100" />
+							
+						</div>
+						<div>
+							<ul class="kefu_li">
+								<li>九洲奇奇</li>
+								<li>姓名：罗帆</li>
+								<li>电话:11111111111</li>
+								<li>
+ 
+                                                                    
+                                                   <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2682281857&site=qq&menu=yes">
+                                                    <img border="0" src="/Style/H/images/kf/pa.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                   </li>
+								<!--<li></li>-->
+							</ul>
+						</div>
+					</div>
+
+					<div style="width:260px; float:left; margin:10px 10px 10px 10px ">
+						<div class="floatl" style="width:120px">
+							<img src="/Style/H/images/kf/241_avatar_middle.jpg" width="100" />
+							
+						</div>
+						<div>
+							<ul class="kefu_li" >
+								<li >九洲清韵</li>
+								<li>姓名：王力</li>
+								<li>电话:1111111111</li>
+								<li>
+                             
+                                                   <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1321746734&site=qq&menu=yes">
+                                                    <img border="0" src="/Style/H/images/kf/pa.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                   </li>
+							</ul>
+						</div>
+					</div>
+					<div style="width:260px; float:left; margin:10px 10px 10px 10px ">
+						<div class="floatl" style="width:120px">
+							<img src="/Style/H/images/kf/188_avatar_middle.jpg" width="100" />
+							
+						</div>
+						<div>
+							<ul class="kefu_li">
+								<li>九洲小倩</li>
+								<li>姓名：周倩</li>
+								<li>电话:1111111111</li>
+								<li>
+ 
+                                                                    
+                                                   <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2274899699&site=qq&menu=yes">
+                                                    <img border="0" src="/Style/H/images/kf/pa.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                   </li>
+							</ul>
+						</div>
+					</div>
+					<div style="width:260px; float:left; margin:10px 10px 10px 10px ">
+						<div class="floatl" style="width:120px">
+							<img src="/Style/H/images/kf/11_avatar_middle.jpg" width="100" />
+							
+						</div>
+						<div>
+							<ul class="kefu_li">
+								<li>九洲叶子</li>
+								<li>姓名：叶蓉</li>
+								<li>电话:111111111</li>
+								<li>
+ 
+                                                                    
+                                                   <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2269785904&site=qq&menu=yes">
+                                                    <img border="0" src="/Style/H/images/kf/pa.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                   </li>
+							</ul>
+						</div>
+					</div>   
+					<div style="width:260px; float:left; margin:10px 10px 10px 10px ">
+						<div class="floatl" style="width:120px">
+							<img src="/Style/H/images/kf/18_avatar_middle.jpg" width="100" />
+							
+						</div>
+						<div>
+							<ul class="kefu_li">
+								<li>九洲小安</li>
+								<li>姓名：沈斐</li>
+								<li>电话:1111111</li>
+								<li>
+ 
+                                                                    
+                                                   <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1336302966&site=qq&menu=yes">
+                                                    <img border="0" src="/Style/H/images/kf/pa.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                   </li>
+							</ul>
+						</div>
+					</div>
+					<div style="width:260px; float:left; margin:10px 10px 10px 10px ">
+						<div class="floatl" style="width:120px">
+							<img src="/Style/H/images/kf/17_avatar_middle.jpg" width="100" />
+							
+						</div>
+						<div>
+							<ul class="kefu_li">
+								<li>九洲小夏</li>
+								<li>姓名：乐虹宇</li>
+								<li>电话:111111111</li>
+								<li>
+ 
+                                                                    
+                                                   <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1336302966&site=qq&menu=yes">
+                                                    <img border="0" src="/Style/H/images/kf/pa.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                   </li>
+							</ul>
+						</div>
+					</div>
+								</div>
+		
+</DIV>
+					</ul>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!--中部结束-->
+
+	<div id="footer">
+
+		<div class="footer_a">
+
+			<div class="foot_ll"></div>
+
+			<div class="foot_rr"></div>
+
+		<a href="/indexs/bd.html">新闻动态</a>|<a href="#">平台原理</a>|<a href="/indexs/zc.html">政策法规</a>|<a href="/indexs/zifeishuoming.html">资费说明</a>|<a href="/indexs/about.html">关于我们</a>|<a href="/indexs/contact.html">咨询中心</a>		</div>
+
+		<div class="footer_b">COPYRIGHT © rysudai.COM All Rights Reserved. c常州诺瑞电子科技有限公司 版权所有 苏ICP备12034616号 <br>
+
+	总部地址：江苏省常州市新北区通江中路398号富都公寓1117室 电话：0519-83999558 88057895 88057896 88057897全国免费电话：400 996 9558<br>
+
+	 网址：www.rysudai.com E-mail：rysudai@126.com <script src="http://s25.cnzz.com/stat.php?id=11594657&web_id=11594657&show=pic" language="JavaScript"></script></span>
+
+
+
+</div>
+
+	</div>
+
+</div>
+
+</body>
+
+</html>

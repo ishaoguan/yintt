@@ -1,0 +1,439 @@
+<include file="Public:_header" />
+<link href="__ROOT__/Style/Swfupload/swfupload.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="__ROOT__/Style/JBox/Skins/Blue/jbox.css"/>
+<script type="text/javascript" src="__ROOT__/Style/Swfupload/handlers.js?{:C('APP_RES_VER')}"></script>
+<script type="text/javascript" src="__ROOT__/Style/Swfupload/swfupload.js"></script>
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<SCRIPT language=javascript src="__ROOT__/Style/JBox/jquery.jBox.min.js" type=text/javascript></SCRIPT>
+<SCRIPT language=javascript src="__ROOT__/Style/JBox/jquery.jBoxConfig.js" type=text/javascript></SCRIPT>
+<script type="text/javascript">var AJAX_TIMEOUT = 10000;var AJAX_TIPS = "正在提交数据...";var ALERT_TIT = "温馨提示";</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//swf上传图片
+		swfu = new SWFUpload(
+		{
+			// Backend Settings
+			upload_url: "swfupload",
+			post_params: {"PHPSESSID": "<php> echo session_id(); </php>", "dopost" : ""},
+
+			// File Upload Settings
+			file_size_limit : "2 MB",
+			file_types : "*.jpg; *.gif; *.png",
+			file_types_description : "选择 JPEG/GIF/PNG 格式图片",
+			file_upload_limit : "0",
+
+			file_queue_error_handler : fileQueueError,
+			file_dialog_complete_handler : fileDialogComplete,
+			upload_progress_handler : uploadProgress,
+			upload_error_handler : uploadError,
+			upload_success_handler : uploadSuccess,
+			upload_complete_handler : uploadComplete,
+
+			button_image_url : "../images/SmallSpyGlassWithTransperancy_17x18.png",
+			button_placeholder_id : "spanButtonPlaceholder",
+			button_width: 250,
+			button_height: 18,
+			button_text : '<span class="button">选择本地图片 <span class="buttonSmall">(单图最大为 2 MB，支持多选)</span></span>',
+			button_text_style : '.button { font-family: "宋体", sans-serif; font-size: 12px; } .buttonSmall { font-size: 10pt; }',
+			button_text_top_padding: 0,
+			button_text_left_padding: 18,
+			button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+			button_cursor: SWFUpload.CURSOR.HAND,
+			
+			// Flash Settings
+			flash_url : "__ROOT__/Style/Swfupload/swfupload.swf",
+
+			custom_settings : {
+				upload_target : "divFileProgressContainer"
+			},
+			
+			// Debug Settings
+			debug: false
+		});
+		//swf上传图片
+	});
+
+</script>
+<script type="text/javascript">
+//swf上传后排序
+function rightPic(o){
+	 var o = $("#albCtok"+o);
+	 if( o.next().length > 0) {
+		  var tmp = o.clone();
+		  var oo = o.next();
+		  o.remove();
+		  oo.after(tmp);
+	 }else{
+		alert("已经是最后一个了"); 
+	 }
+}
+//swf上传后排序
+function leftPic(o){
+	 var o = $("#albCtok"+o);
+	 if( o.prev().length > 0) {
+		  var tmp = o.clone();
+		  var oo = o.prev();
+		  o.remove();
+		  oo.before(tmp);
+	 }else{
+		alert("已经是第一个了"); 
+	 }
+}
+//swf上传后删除图片start
+function delPic(id){
+	var imgpath = $("#albCtok"+id).find("input[type='hidden']").eq(0).val();
+	var datas = {'picpath':imgpath,'oid':id};
+	$.post("__URL__/swfupload?delpic", datas, picdelResponse,'json');
+}
+
+function picdelResponse(res){
+	var imgdiv = $("#albCtok"+res.data);
+		imgdiv.remove();
+		ui.success(res.info);
+		ui.box.close();
+}
+//swf上传后删除图片end
+</script>
+<style type="text/css">
+.albCt{height:200px}
+</style>
+<tagLib name="htmlA" />
+<div class="so_main">
+  <div class="page_tit">审核借款</div>
+  <div class="page_tab"><span data="tab_1" class="active">基本信息</span><span data="tab_2">审核信息</span><span data="tab_3">借款方图片资料</span></div>
+  <div class="form2">
+    <form id="myForm" method="post" action="__URL__/doEdit{$xact}" onsubmit="return subcheck();" enctype="multipart/form-data">
+      <input type="hidden" name="id" id="borrow_id" value="{$vo.id}" />
+      <div id="tab_1">
+        <dl class="lineD">
+          <dt>借款标题：</dt>
+          <dd>
+            <htmlA:input id="borrow_name" value="{$vo.borrow_name}" tip="*"/>
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>真实姓名：</dt>
+          <dd>
+            {$member_info.real_name}
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>还款方式：</dt>
+          <dd>
+            <htmlA:select id="repayment_type" value="key|vo.repayment_type" datakey='type_list' tip="*"/>
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>借款金额：</dt>
+          <dd>
+            <htmlA:input id="borrow_money" value="{$vo.borrow_money}" tip="*"/>
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt><if condition="$vo.repayment_type eq 1">日<else />年化</if>利率：</dt>
+          <dd>
+            <htmlA:input id="borrow_interest_rate" value="{$vo.borrow_interest_rate}" tip="*"/>%
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>借款期限：</dt>
+          <dd>
+            <htmlA:input id="borrow_duration" value="{$vo.borrow_duration}" tip="*"/><if condition="$vo.repayment_type eq 1">天<else />月</if>
+          </dd>
+        </dl>
+        <dl>
+          <dt>投标奖励：</dt>
+          <dd>
+            	<input type="radio" id="reward_type_1" class="x_radio" name="reward_type" value="1" <if condition="$vo['reward_type'] eq 1">checked="checked"</if> />按投标金额比例奖励<input type="text" class="x_input" name="reward_type_1_value" onclick="reward_type_do(1)" onkeyup="NumberCheck(this)" title="范围：0.1%~6% ，这里设置本次标的要奖励给所有投标用户的奖励比例。" <if condition="$vo['reward_type'] eq 1">value="{$vo.reward_num}"</if> />%<br><br>
+
+            	<input type="radio" class="x_radio" id="reward_type_2" name="reward_type" value="2" <if condition="$vo['reward_type'] eq 2">checked="checked"</if> />按固定金额分摊奖励<input type="text" class="x_input" name="reward_type_2_value" onclick="reward_type_do(2)" onkeyup="NumberCheck(this)" title="不能低于5元,不能高于总标的金额的2%，且请保留到“元”为单位。这里设置本次标的要奖励给所有投标用户的总金额。" <if condition="$vo['reward_type'] eq 2">value="{$vo.reward_num}"</if> />元
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>借款说明：</dt>
+          <dd>
+            <htmlA:text style="height:140px" id="borrow_info" value="{$vo.borrow_info}" tip="*"/>
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>产品提供：</dt>
+          <dd>
+            <htmlA:input id="pro_provide" value="{$vo.pro_provide}" tip="*"/>
+          </dd>
+        </dl>
+      </div>
+      <!--tab1-->
+      <div id="tab_2" style="display:none">
+        <dl class="lineD">
+          <dt>是否允许自动投标：</dt>
+          <dd>
+            <htmlA:radio id="can_auto" value="key|vo.can_auto" default="0|否,1|是" />
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>是否设为推荐：</dt>
+          <dd>
+            <htmlA:radio id="is_tuijian" value="key|vo.is_tuijian" default="0|否,1|是" />
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>借款标分类：</dt>
+          <dd>
+            <htmlA:radio id="borrow_type" value="key|vo.borrow_type" datakey="borrow_type" />
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>借款管理费：</dt>
+          <dd>
+            <htmlA:input id="borrow_fee" value="{$vo.borrow_fee}" tip="默认为按后台设置计算出来的，如果私下有协议可以改" />
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>募集时间(天)：</dt>
+          <dd>
+            <htmlA:input id="collect_day" value="{$vo.collect_day}" tip="在前台展示天数，如在担心在设定时间内不能募集完成，可修改延长" />
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>最多投标总额：</dt>
+          <dd>
+            <htmlA:input id="borrow_max" value="{$vo.borrow_max}" tip="0表示无限制" />
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>是否通过：</dt>
+          <dd>
+            <htmlA:radio id="borrow_status" datakey="borrow_status" value="key|vo.borrow_status" />
+          </dd>
+        </dl>
+        <if condition="$vo.borrow_status lt '3' || $vo.borrow_status eq '3'">
+          <dl class="lineD">
+            <dt>初审处理意见：</dt>
+            <dd>
+              <htmlA:text id="deal_info" value="{$vv.deal_info}" tip="*" />
+            </dd>
+          </dl>
+        </if>
+        <if condition="$vo.borrow_status gt '3'">
+          <dl class="lineD">
+            <dt>复审处理意见：</dt>
+            <dd>
+              <htmlA:text id="deal_info_2" value="{$vv.deal_info_2}" tip="*" />
+            </dd>
+          </dl>
+        </if>
+        <if condition="$xact eq 'waitverify'">
+        <dl class="lineD">
+          <dt>预定发标时间：</dt>
+          <dd>
+            <htmlA:timer id="schedular_time" arg="{dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true,lang:'zh-cn'}"  class="Wdate" value="{$vo.schedular_time}" style="width:150px;" tip="如您进行了改动，请先暂存后再单击生成预告短信与邮件"/>
+          </dd>
+        </dl>
+        </if>
+      </div>
+      <!--tab3-->
+      <div id="tab_3" style="display:none">
+        <dl class="lineD">
+          <dt>商品图片：</dt>
+          <dd>
+            <div style="display: inline; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;"><span id="spanButtonPlaceholder"></span></div>
+          </dd>
+        </dl>
+        <dl class="lineD">
+          <dt>图片预览：</dt>
+          <dd>
+            <table cellpadding="0" cellspacing="0" width="100%">
+              <tr id="handfield">
+                <td colspan="4" class="bline" style="background:url(images/albviewbg.gif) #fff 0 20px no-repeat;"><table width='100%' height='160' style="margin:0 0 20px 0">
+                    <tr>
+                      <td>
+						
+						<div id="divFileProgressContainer" style="height:75px;"></div>
+			 		<div id="thumbnails">
+				<php>$x=1000;foreach(unserialize($vo['updata']) as $v){ $x--;</php>
+						<div class="albCt" id="albCtok<php>echo $x;</php>">
+							<a href="__ROOT__/<php>echo $v['img'];</php>" target="_blank"><img width="120" height="120" src="__ROOT__/<php>echo get_thumb_pic($v['img']);</php>"></a><a onclick="javascript:delPic(<php>echo $x;</php>)" href="javascript:;">[删除]</a><a onclick="javascript:leftPic(<php>echo $x;</php>)" href="javascript:;">[前移]</a><a onclick="javascript:rightPic(<php>echo $x;</php>)" href="javascript:;">[后移]</a><div style="margin-top:10px">注释：<input type="text" style="width:190px;" value="<php>echo $v['info'];</php>" name="picinfo[]"><input type="hidden" value="__ROOT__/<php>echo $v['img'];</php>" name="swfimglist[]"></div>
+						</div>					
+				<php> } </php>
+					</div>
+						
+						
+						</td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+          </dd>
+        </dl>
+      </div>
+      <div class="page_btm Toolbar_inbox" style="background: none;padding: 18px 0 18px 180px;">
+        <input id="btnSubmit" type="submit" class="btn_b" value="确定" />
+        <if condition="$xact eq 'waitverify'">
+        	&nbsp;&nbsp;<input id="btnSave" type="submit" class="btn_b" value="暂存" />
+      		<input type="hidden" name="isSave" id="isSave" value="1" />
+        	&nbsp;&nbsp;<a onclick="generateTip()" class="btn_a" href="javascript:void(0);">
+							<span class="addAttr_action" title="如您进行了改动，请先暂存">生成预告短信与邮件</span>
+						</a>
+        </if>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+function addone(){
+	var htmladd = '<dl class="lineD"><dt>资料名称：</dt>';
+		htmladd+= '<dd><input type="text" name="updata_name[]" value="" />&nbsp;&nbsp;更新时间:<input type="text" name="updata_time[]" onclick="WdatePicker();" class="Wdate" /></dd>';
+		htmladd+= '</dl>';
+	$(htmladd).appendTo("#tab_3");
+}
+
+function subcheck(){
+	if($("#isSave").val() == 1)return true;
+	var deal_info = $("#deal_info").val();
+	var deal_info_2 = $("#deal_info_2").val();
+	var pro_provide = $("#pro_provide").val();
+	var schedular_time = $("#schedular_time").val();
+	var borrow_status = {$vo.borrow_status};
+
+	if(pro_provide == ""){
+		ui.error("产品提供不能为空！");
+		$(".page_tab span[data=tab_1]").click();
+		$("#pro_provide").focus();
+		return false;
+	}
+	
+	if($("input[name=borrow_status]:checked").size() == 0){
+		ui.error("请选择是否通过！");
+		$(".page_tab span[data=tab_2]").click();
+		return false;
+	}
+	
+	if(borrow_status<=3){
+		if(deal_info ==""){
+			ui.error("初审处理意见不能为空！");
+			return false;
+		}
+	}else{
+		if( deal_info_2 ==""){
+			ui.error("复审处理意见不能为空！");
+			return false;
+		}
+	}
+
+	if(schedular_time == ""){
+		$.jBox.tip("预定发标时间不能为空！", "fail");
+		$(".page_tab span[data=tab_2]").click();
+		$("#schedular_time").focus();
+		return false;
+	}
+	if($("#isSave").val() == 1)return true;
+	<php>if($xact == "waitverify"){</php>
+		$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+		$.ajax({
+			url: "__URL__/doGenerateTip/",
+			type: "post",
+			dataType: "json",
+			data: {borrow_id:$("#borrow_id").val(), confirm:2},
+			success: function(d) {
+				$.jBox.tip("", 'loading', {timeout:1});
+				if (d.status == 1) {
+					if(d.smscount == 0){
+						if(confirm('您还未生成预告短信与邮件，确定要提交审核结果吗？') ){
+							subcheck = null;
+							$("#myForm").submit();
+							$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+						}
+					}else{
+						subcheck = null;
+						$("#myForm").submit();
+						$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+					}
+				}else{
+					$.jBox.tip(d.message, 'fail');
+				}
+			}
+		});
+		
+		return false;
+	<php>}else{</php>
+	if(!confirm('您确定要提交审核结果吗？') ){
+		return false;
+	}
+	<php>}</php>
+	$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+	return true;
+}
+function reward_type_do(id){
+	$("#reward_type_"+id).attr("checked",true);
+}
+<php>if($xact == "waitverify2" || $xact == "waitmoney"){</php>
+(function(){
+	$("#repayment_type").attr("disabled",true);
+	$("#borrow_money").attr("disabled",true);
+	$("#borrow_interest_rate").attr("disabled",true);
+	$("#borrow_duration").attr("disabled",true);
+	$("input[name=reward_type]").attr("disabled",true);
+	$("input[name=reward_type_1_value]").attr("disabled",true);
+	$("input[name=reward_type_2_value]").attr("disabled",true);
+	$("input[name=can_auto]").attr("disabled",true);
+	$("input[name=is_tuijian]").attr("disabled",true);
+	$("input[name=borrow_type]").attr("disabled",true);
+	$("#borrow_fee").attr("disabled",true);
+	$("#collect_day").attr("disabled",true);
+	$("#borrow_max").attr("disabled",true);
+})();
+<php>}</php>
+<php>if($xact == "waitverify"){</php>
+generateTip = function(){
+	if($("#schedular_time").val() == ''){
+		$.jBox.tip("请输入预定发标时间！", 'fail');
+		$(".page_tab span[data=tab_2]").click();
+		$("#schedular_time").focus();
+		return false;
+	}
+	$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+	$.ajax({
+		url: "__URL__/doGenerateTip/",
+		type: "post",
+		dataType: "json",
+		data: {"schedular_time":$("#schedular_time").val(), borrow_id:$("#borrow_id").val()},
+		success: function(d) {
+			$.jBox.tip("", 'loading', {timeout:1});
+			if (d.status == 1) {
+				$.jBox.confirm('短信内容为：<br/><span style="color:red;">'+d.message+"</span><br/>您确定要生成预告短信与邮件吗？", ALERT_TIT,function (v, h, f) {
+				    if (v == 'ok'){
+				    	$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+				    	$.ajax({
+				    		url: "__URL__/doGenerateTip/",
+				    		type: "post",
+				    		dataType: "json",
+				    		data: {"schedular_time":$("#schedular_time").val(), borrow_id:$("#borrow_id").val(), confirm:1},
+				    		success: function(d) {
+				    			$.jBox.tip("", 'loading', {timeout:1});
+				    			if (d.status == 1) {
+				    				$.jBox.alert(d.message, ALERT_TIT);
+				    			}else{
+				    				$.jBox.tip(d.message, 'fail');
+				    			}
+				    		}
+				    	});
+				    }
+				    return true; //close
+				});
+			}else{
+				$.jBox.tip(d.message, 'fail');
+			}
+		}
+	});
+};
+<php>}</php>
+$("#btnSubmit").click(function(){
+	$("#isSave").val(0);
+	return true;
+});
+$("#btnSave").click(function(){
+	$("#isSave").val(1);
+	return true;
+});
+</script>
+<include file="Public:_footer" />

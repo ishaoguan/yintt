@@ -1,0 +1,90 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<script type="text/javascript">
+	var addTitle = '添加站内信';
+	var addUrl = '__URL__/edit';
+	var editUrl = '__URL__/edit';
+	var editTitle = '修改站内信内容';
+	// var masssendUrl = '__URL__/masssend';
+	// var masssendTitle = '全部发送';
+</script>
+<div class="so_main">
+  <div class="page_tit">站内信群发</div>
+
+  <div class="Toolbar_inbox" style="min-height:27px;">
+  	<div class="page right">{$pagebar}</div>
+    <div><a class="btn_a" href="javascript:void(0);" onclick="add()"><span>添加站内信</span></a>&nbsp;可以给站内的所有用户发送站内信</div>
+  </div>
+  
+  <div class="list">
+  <table id="area_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th style="width:30px;">
+        <input type="checkbox" id="checkbox_handle" onclick="checkAll(this)" value="0">
+        <label for="checkbox"></label>
+    </th>
+    <th class="line_l">ID</th>
+    <th class="line_l">站内信标题</th>
+    <th class="line_1">站内信内容
+    <th class="line_l">处理状态</th>
+    <th class="line_l">操作</th>
+    <th class="line_1">操作日志</th>
+  </tr>
+  <volist id="vo" name="list">
+      <tr overstyle='on' id="list_{$vo.id}">
+        <td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value="{$vo.id}"></td>
+        <td>{$vo.mass_id}</td>
+        <td>{$vo.title|substr=###,0,30}</td>
+        <td>{$vo.msg|substr=###,0,30}</td><!-- substr=###,0,30 -->
+        <td><if condition="$vo.status eq '1'"><span style="color:#009900">已处理</span><else/><span style="color:#FF0000">待处理</span></if></td>
+        <td nowrap="nowrap">
+            <if condition="$vo.status eq '0'">
+	            <a href="javascript:void(0);" onclick="edit('?massid={$vo.mass_id}')">修改站内信内容</a>&nbsp;
+              	<a href="javascript:void(0);" onclick="sendinnermsg('{$vo.mass_id}','{$vo.id}')">全部发送</a>
+            </if>
+        </td>
+        <td class="line_1"><a href="javascript:void(0);" onclick="showurl('__ROOT____GROUP__/log/logList?id={$vo['id']}&opType={$logOpType['MSG_OPT'][0]}','站内信操作日志');">日志</a></td>
+      </tr>
+  </volist>
+  </table>
+
+  </div>
+  
+  <div class="Toolbar_inbox" style="min-height:27px;">
+  	<div class="page right">{$pagebar}</div>
+    <htmlA:commonBtn type="jsfun" action="del();" />
+  </div>
+</div>
+<script type="text/javascript">
+function showurl(url,Title){
+	ui.box.load(url, {title:Title});
+}
+
+function sendinnermsg(id,postid){
+  var massid =id;
+  var postid =postid;
+  $.ajax({
+      url: "__URL__/sendinnermsg/",
+      type: "post",
+      dataType: "json",
+      data: {"massid":massid,"postid":postid},
+      success: function(d) {
+        leftsecond = 60;
+        if (d.status == 1) {
+          alert("群发站内信成功","温馨提示");
+          setTimeout(function(){window.location.reload();},1000);
+        }
+        else if (d.status == 0) {
+          //alert("发送失败","温馨提示");
+          alert("发送失败","温馨提示");
+          setTimeout(function(){window.location.reload();},1000);
+        }
+        else {
+
+        }
+      }
+    });
+}
+</script>
+
+<include file="Public:_footer" />

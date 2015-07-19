@@ -1,0 +1,156 @@
+.col47{color:#474747;}	
+.colblue{color:#3c8adf;}		
+.colorg{
+color:#e74c08;}	
+.colgreen{
+	color:#49901d;}
+.wrapper_bg{
+	background:url(../images/bg_main.jpg) repeat-y right;
+	width:965px;
+	margin-top:20px;
+	overflow:hidden;
+	}
+.content2{
+	width:594px;
+	margin-top:20px;
+}
+/*form*/
+
+.ba_item{width:876px; overflow:hidden;}
+.ba_area{width:100%;float:left;#float:none;_float:none;[float:none;]float:none; margin-top:10px;}
+.ba_area .nametext{width:200px;text-align:right;float:left;padding-right:10px;}
+.ba_area .nametextimg{width:160px;text-align:right;float:left;padding-right:0px;}
+.ba_area .con{width:215px;display:block;float:left;}
+.ba_area .newcon{width:210px; margin:0 10px;height:20px;line-height:20px;float:left;width:220px\9;}
+.ba_area .newcon input{float:left;border:0\9;}
+.ba_area .newcon span{ display:block;line-height:20px;float:left; padding-left:5px;}
+.ba_area .con .searchoflogin{width:213px;display:block;height:24px;border:none;border: 1px solid #7F9DB9;}
+.ba_area .tip{width:430px;float:left;position:relative;}
+
+.ba_area .tip div{line-height:16px;text-align:left;}
+
+.ba_area .tip div.normal{position:absolute;left:9px;top:0px; border:1px solid #a3cef0;width:418px; overflow:hidden; background-color:#e6f3fc; line-height:21px;}
+.ba_area .tip div.normal .pic{float:left;width:20px;padding:2px 5px 0 5px; margin:0;}
+.ba_area .tip div.normal .text{float:left;width:384px;padding:4px 4px 4px 0;}
+
+
+.ba_area .tip div.correct{position:absolute;left:9px;top:0px; width:430px; line-height:21px;}
+
+
+.ba_area .tip div.error{position:absolute;left:9px;top:0px; border:1px solid #f3a696;width:418px; overflow:hidden; background-color:#ffeae7; line-height:21px;}
+.ba_area .tip div.error .pic{float:left;width:20px;padding:2px 5px 0 5px; margin:0;}
+.ba_area .tip div.error .text{float:left;width:384px;padding:4px 4px 4px 0;}
+
+
+
+
+
+.ba_area input{border:1px solid #7f9db9;badcground:#fff;height:20px;}
+.ba_area input.iTextNormal{border:1px solid #7f9db9;background:#e6f3fc;}
+
+.ba_area input.iTextError{border:1px solid #f3a696;background:#ffeae7;}
+
+
+
+.ba_area .tip02{width:285px;float:left;position:relative;}
+
+.ba_area .tip02 div{line-height:16px;text-align:left;}
+
+.ba_area .tip02 div.normal{position:absolute;left:9px;top:0px; border:1px solid #a3cef0;width:274px; overflow:hidden; background-color:#e6f3fc; line-height:21px;}
+.ba_area .tip02 div.normal .pic{float:left;width:20px;padding:2px 5px 0 5px; margin:0;}
+.ba_area .tip02 div.normal .text{float:left;width:240px;padding:4px 4px 4px 0; }
+
+
+.ba_area .tip02 div.correct{position:absolute;left:9px;top:0px; width:295px; line-height:21px;}
+
+
+.ba_area .tip02 div.error{position:absolute;left:9px;top:0px; border:1px solid #f3a696;width:274px; overflow:hidden; background-color:#ffeae7; line-height:21px;}
+.ba_area .tip02 div.error .pic{float:left;width:20px;padding:2px 5px 0 5px; margin:0;}
+.ba_area .tip02 div.error .text{float:left;width:240px;padding:4px 4px 4px 0;}
+
+
+
+
+
+.ba_area .tip03{width:10px;float:left;position:relative;}
+
+.ba_area .tip03 div{line-height:16px;text-align:left;}
+
+.ba_area .tip03 div.normal{position:absolute;left:9px;top:0px; border:1px solid #a3cef0;width:171px; overflow:hidden; background-color:#e6f3fc; line-height:21px;}
+.ba_area .tip03 div.normal .pic{float:left;width:20px;padding:2px 5px 0 5px; margin:0;}
+.ba_area .tip03 div.normal .text{float:left;width:130px;padding:4px 4px 4px 0; }
+
+
+.ba_area .tip03 div.correct{position:absolute;left:9px;top:0px; width:295px; line-height:21px;}
+
+
+.ba_area .tip03 div.error{position:absolute;left:9px;top:0px; border:1px solid #f3a696;width:171px; overflow:hidden; background-color:#ffeae7; line-height:21px;}
+.ba_area .tip03 div.error .pic{float:left;width:20px;padding:2px 5px 0 5px; margin:0;}
+.ba_area .tip03 div.error .text{float:left;width:130px;padding:4px 4px 4px 0;}
+
+.file{cursor: pointer;
+    font-size: 120px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    vertical-align: middle;left: -400px\9; top: 0px\9; border:none\9;filter:alpha(opacity=0); FONT-SIZE: 120px}
+/*新加的 baispfileuploadofnewba.jsp by yaling.yu 4.26*/
+/*新加的 baispfileuploadofnewba.jsp by yaling.yu 7.16 start 针对IE10写的hack*/
+ie10hack :@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+  .file{position: absolute;top: 0px;left: -240px;cursor: pointer; font-size: 120px;vertical-align: middle;filter:alpha(opacity=0);}
+} 
+/*新加的 baispfileuploadofnewba.jsp by yaling.yu 7.16 end 针对IE10写的hack*/
+.fm-upload {
+    float: left;
+    height: 26px;
+    margin:0 5px;
+    overflow: hidden;
+    position: relative;
+    /*width: 77px;*/
+}
+.fm-upload_file{display:block;background:url(../images/current_button_bg.jpg);
+-moz-border-radius:3px;border-radius:3px; -webkit-border-radius:3px;
+    text-decoration: none;width:110px; height:24px;top: 0px\9;border:1px solid #93b2cf;}
+.btn-4cn{left: 0;
+    position: absolute;
+    top: 0px; 
+    background:url(../images/current_button_bg.jpg);
+    -moz-border-radius:3px;
+    border-radius:3px;
+     -webkit-border-radius:3px;
+    text-decoration: none;line-height: 22px;
+    width:75px; height:22px;top: 0px\9;border:1px solid #93b2cf;
+    }
+    .btn-4scn{
+    background:url(../images/current_button_bg.jpg);
+    -moz-border-radius:3px;
+    border-radius:3px;
+     -webkit-border-radius:3px;
+    text-decoration: none;
+    height:22px;top: 0px\9;border:1px solid #93b2cf;
+    padding:0;
+     background:#d9e9f6 url(../images/current_button_bg.jpg)\9;
+    }
+/*新加的 newIspSiteOfNewBa.jsp by yaling.yu 4.25*/
+.ba_area .con_spel{width:660px; margin-bottom:5px;}
+.ba_area .con_spel .con_spel_fuxuanbutton{float:left;width:20px;}
+.ba_area .con_spel .con_spel_fuxuanbutton input{border:none;}
+.con_spel .con_spel_message{ float:left;}
+.ba_area .con_spel a{text-decoration: none;color:#474747;}
+.con_spel_bg{display:block;width:660px;height:35px;}
+.con_spel_bg1{display:block;width:660px;height:35px;background:#fbf6e3;border:1px solid #f5e5b1;font-weight: bold;}
+.content .content_tishi_border{background:#fbf6e3;border:1px solid #f5e5b1;width:665px;height:100%;margin-Left:202px;}
+.content .content_tishi_border ul li{line-height:20px;}
+/*新加的 baIspInfoView.jsp by yaling.yu 2013.5.14*/
+.btn_baIspInfoView_common{ background:url(../images/current_button_bg_gray_left.png) no-repeat; padding: 6px; font-size:12px;}
+.a_baIspInfoView_common{background: url(../images/current_button_bg_blue_left.png) no-repeat; padding: 6px; font-size:12px;text-decoration: none;color:white;height:24px;}
+.btn-4cn-baIspFileUploadOfNew{width:130px;}
+.btn-fm-upload-baIspFileUploadOfNew{}
+.a_baIspInfoView_common_span{background: url(../images/current_button_bg_blue_right.png) no-repeat;padding: 6px;}
+.btn_baIspInfoView_common_span{background: url(../images/current_button_bg_gray_right.png) no-repeat;padding: 6px;}
+.top_right1_new{
+	float:right;
+	padding-top:3px;
+	width:138px;
+	padding-right:34px;
+	}

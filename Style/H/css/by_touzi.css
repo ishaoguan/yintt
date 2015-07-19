@@ -1,0 +1,105 @@
+#mainct_A{ width:100%; overflow:hidden; text-align:left;}
+.mainct_left{ width:170px; height:100%; position:relative; float:left;}
+.mainct_left_a{ width:168px; height:306px; border:1px solid #000000; padding:25px 0;}
+.ml_tl, .ml_tr, .ml_bl, .ml_br
+	{ background:url(../images/beijin/touzibj_a_01.jpg) no-repeat;
+	  height:16px;
+	  width:16px;
+	  position:absolute;
+	  z-index:999;
+	  font-size:1px;}
+.ml_tl{ background-position:left 0; left:0; top:0;}
+.ml_tr{ background-position:right 0; right:0; top:0;}
+.ml_bl{ background-position:left -184px; left:0; bottom:0;}
+.ml_br{ background-position:right -184px; right:0; bottom:0;}
+.tx_a{ margin:0 auto; height:100px; padding-bottom:10px; padding-top:5px; width:100px;}
+.tx_a img{ width:100px; height:100px;}
+.tx_b{ padding-left:20px;}
+.tx_b li img{ margin-right:1px; vertical-align: middle;}
+.tx_c{ padding-top:15px; text-align:center;}
+.mainct_right{ float:right; width:780px; height:100%;}
+.mainct_right_a{ width:780px; border-bottom:2px dashed #959595; overflow:hidden;}
+.mt_left{ width:550px; float:left; padding-top:15px;}
+.mt_top{ width:550px; border-bottom:2px dashed #959595;}
+.mt_top li{ height:25px; line-height:25px;}
+.mt_boot{ width:550px; text-align:left; padding:10px 0 5px 0;}
+.mt_right{ float:right; background:url(../images/beijin/beijing_002.png) no-repeat; width:214px; height:158px;}
+.mt_rr_01{ height:18px; border-bottom:1px dashed #A2A2A2; text-indent:10px; padding-top:15px;}
+.mt_rr_02{ padding:10px;}
+.mt_rr_02 dl dd{ padding-left:22px; width:100px; float:left; font-weight:bold; height:20px;}
+.dd_01, .dd_02, .dd_03{ background:url(../images/beijin/touzibj_01.png) no-repeat;}
+.dd_01{ background-position:left 0;}
+.dd_02{ background-position:left -22px;}
+.dd_03{ background-position: left -42px;}
+.mt_rr_02 dl dt{ width:55px; height:55px; float:right;}
+.mt_rr_02 dl dt img{ width:55px; height:55px;}
+.mainct_right_b{ padding-top:10px; overflow:hidden; text-align:left;}
+.mainct_right_b li{ height:22px;}
+
+.grziliao_01 li, .xiangxixx_01 li
+		{ height:66px; text-indent:30px; text-align:left; border-bottom:1px dashed #989898; line-height:33px;  font-weight:bold;}
+.grziliao_01 li.qxxu {
+    border-bottom: 0 none;}	
+	
+#mainct_B{ width:980px; margin-top:10px; font-size:16px;}
+.mainct_B01{ width:974px; height:100%; /*border: 3px solid #D4D3D3;*/}
+.mn_dk_05 {
+    height: 36px;
+    margin: 2px 0 2px 25px;
+}
+.grziliao{ width:100%;}
+.grziliao_01{ padding:0px 0;border:1px solid #398ACE;}
+.xiangxixx{ 
+width:100%; margin-top:30px;border:1px solid #398ACE;/*border-top:3px solid #D4D3D3;*/}
+.xiangxixx_01{ padding-bottom:1px;}
+.db_zhujie{ text-indent:5px; line-height:30px;  font-weight:bold;}
+
+.danbaoxx{ width:100%;border:1px solid #398ACE;/* border-top:3px solid #D4D3D3;*/ margin-top:30px;}
+.dbxx_datalist {
+    /*border-collapse: collapse;*/
+    width: 100%;
+	margin-top:10px;
+}
+.dbxx_datalist th{  line-height:30px; height:30px;  padding:0 5px; color:#94B6EF; text-align:center;}
+.xx_01{ width:10%;}
+.xx_02{ width:12%;}
+.xx_03{ width:32%; text-align:left;}
+.dbxx_datalist td{ line-height:30px; height:30px;  padding:0 5px; text-align:center; font-weight:bold;}
+.dbxx_datalist td.xx_04{ text-align:left;}
+
+.zl_01{ width:15%;}
+.zl_02{ width:16%;}
+.zl_03{ width:30%;}
+.dbxx_datalist th.zl_04{ width:39%; text-align:left; padding-left:25px;}
+
+.hk_01{ width:19%;}
+.hk_02{ width:6%;}
+.hk_03{ width:25%;}
+.hk_04{ width:25%;}
+.hk_05{ width:25%;}
+
+.tb_01{ width:11%;}
+.tb_02{ width:25%;}
+.tb_03{ width:20%;}
+
+.liouyb{ padding:0px 0px; overflow:hidden;}
+.liouyb dl{ margin:0 0; overflow:hidden;}
+.liouyb dl dt.title{ float:left; height:auto;overflow:hidden; width:100px; line-height:23px;}
+.liouyb dl dt.neirong{ 
+	float:left; height:auto;overflow:hidden; width:620px; 
+	padding-right:10px;text-align:left; height:auto; line-height:25px; margin-left:20px;
+}
+.liouyb dl dt.shijian{height:auto;overflow:hidden;line-height:23px; text-align:center}
+.pingnei{ padding:10px 30px;}
+textarea{
+	width: 600px;
+	height: 100px;
+	color: #00008B;
+	}
+.tx_b li{line-height:25px}
+.mainct_right_b li{line-height:25px; height:25px}
+.mt_top li{height:25px; line-height:25px}
+.mt_top h3{padding:0px 0px 15px 0px; font-size:18px}
+
+.page .current{color:#F90}
+.STYLE005{padding:10px}

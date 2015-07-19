@@ -1,0 +1,84 @@
+<style type="text/css">
+body { margin: 0; _height: 100%; }
+.tdTitle { text-align: right; padding-left: 10px; font-size: 12px; height: 40; line-height: 40px; vertical-align: middle; width: 160px; font-weight: bold; background-color: #F9F9F9; border: #E9E8E7 solid 1px; }
+.tdContent { text-align: left; padding-left: 10px; font-size: 12px; height: 40; line-height: 40px; vertical-align: middle; border: #E9E8E7 solid 1px; }
+.alertDiv { margin: 0px auto; background-color: #FEFACF; border: 1px solid green; line-height: 25px; background-image: url(http://img.anxindai.com/images/info/001_30.png); background-position: 20px 4px; background-repeat: no-repeat; }
+.alertDiv li { margin: 5px 0; list-style-type: decimal; color: #005B9F; padding: 0px; line-height: 20px; }
+.alertDiv ul { text-align: left; list-style-type: decimal; display: block; padding: 0px; margin: 0px 0px 0px 75px; }
+.font666 { color: #666; }
+.dv_header_8 { background-image: url(); }
+.dv_account_0 { margin-top: 8px; }
+</style>
+<div style="width: 766px; display: none;" class="alertDiv">
+	<ul style="display: block;">
+	</ul>
+</div>
+<div style="width: 100%; height: 85px; margin-top: 15px;">
+	<table style="width: 710px; float: left; margin: 0px 20px;
+		padding: 0px; border-collapse: collapse; text-align: left;" id="formTb" cellpadding="0" cellspacing="0">
+		<tbody>
+		<tr>
+			<td class="tdTitle">
+				短信提醒：
+			</td>
+			<td class="tdContent">
+				<input id="sms_remind" name="sms_remind" type="checkbox" <if condition="$sms_remind eq 1">checked="checked"</if>>
+				<span class="font666">(设置是否开启新标短信提醒，勾上为开启)</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdTitle">
+				邮件提醒：
+			</td>
+			<td class="tdContent">
+				<input id="email_remind" name="email_remind" type="checkbox" <if condition="$email_remind eq 1">checked="checked"</if>>
+				<span class="font666">(设置是否开启新标邮件提醒，勾上为开启)</span>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<div style="text-align: center; width: 740px; height: 30px; margin: 10px;">
+	<img id="btn_set" class="img_button" onclick="Update()" src="__ROOT__/Style/M/images/btnsubupdate.jpg">
+</div>
+<script type="text/javascript">
+<!--
+function showErr() {
+	$(".alertDiv").css("display", "");
+}
+function clearErr() {
+	$(".alertDiv ul").html("");
+}
+function addErr(err) {
+	$(".alertDiv ul").append("<li>" + err + "</li>");
+}
+function hideErr() {
+	$(".alertDiv").css("display", "none");
+}
+function hasErr() {
+	return $(".alertDiv ul li").length > 0;
+}
+function Update() {
+	clearErr();
+	hideErr();
+	if (hasErr()) {
+		showErr();
+		return false;
+	}
+	else {
+		$.ajax({
+			url: "__URL__/setNewBorrowRemind/",
+			type: "post",
+			dataType: "json",
+			data: {"sms_remind":$("#sms_remind").prop("checked")?1:0,"email_remind":$("#email_remind").prop("checked")?1:0},
+			success: function(d) {
+				if (d.status == "1") {
+					$.jBox.tip('恭喜，设置成功！','success');
+				} else {
+					$.jBox.tip(d.message,'fail');
+				}
+			}
+		})
+	}
+}
+//-->
+</script>

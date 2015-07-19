@@ -1,0 +1,60 @@
+<DIV id=detail_menu_1 class="borrowBox aPadding border bdrNoTop barSmall">
+      <DL class=linHiB>
+        <DD class="borderDash"><STRONG>还款信用</STRONG> </DD>
+        <DD class="shenheXM">
+          <TABLE class="tdBorder" border=0 cellSpacing=0 cellPadding=0 width="50%" style="text-align:center;">
+            <THEAD>
+              <TR>
+                <TD align=middle>还款状态</TD>
+                <TD align=middle>最近一周</TD>
+                <TD align=middle>最近1月</TD>
+                <TD align=middle>最近6月</TD>
+                <TD align=middle>6个月前</TD>
+                <TD align=middle>历史合计</TD>
+              </TR>
+            </THEAD>
+            <tr>
+              <td>提前还款</td>
+              <td>{$history.history1.tq|default=0}</td>
+              <td>{$history.history2.tq|default=0}</td>
+              <td>{$history.history3.tq|default=0}</td>
+              <td>{$history['history4']['tq'] - $history['history3']['tq']+0}</td>
+              <td>{$history.history4.tq|default=0}</td>
+            </tr>
+            <tr>
+              <td>准时还款</td>
+              <td>{$history.history1.zc|default=0}</td>
+              <td>{$history.history2.zc|default=0}</td>
+              <td>{$history.history3.zc|default=0}</td>
+              <td>{$history['history4']['zc'] - $history['history3']['zc']+0}</td>
+              <td>{$history.history4.zc|default=0}</td>
+            </tr>
+            <tr>
+              <td>迟还</td>
+              <td>{$history.history1.ch|default=0}</td>
+              <td>{$history.history2.ch|default=0}</td>
+              <td>{$history.history3.ch|default=0}</td>
+              <td>{$history['history4']['ch'] - $history['history3']['ch']+0}</td>
+              <td>{$history.history4.ch|default=0}</td>
+            </tr>
+            <tr>
+              <td>逾期还款</td>
+              <td>{$history.history1.yq|default=0}</td>
+              <td>{$history.history2.yq|default=0}</td>
+              <td>{$history.history3.yq|default=0}</td>
+              <td>{$history['history4']['yq'] - $history['history3']['yq']+0}</td>
+              <td>{$history.history4.yq|default=0}</td>
+            </tr>
+            <tr>
+              <td>逾期未还</td>
+              <td>{$history.history1.wh|default=0}</td>
+              <td>{$history.history2.wh|default=0}</td>
+              <td>{$history.history3.wh|default=0}</td>
+              <td>{$history['history4']['wh'] - $history['history3']['wh']+0}</td>
+              <td>{$history.history4.wh|default=0}</td>
+            </tr>
+          </TABLE>
+        </DD>
+      </DL>
+
+    </DIV>

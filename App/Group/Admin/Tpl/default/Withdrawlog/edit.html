@@ -1,0 +1,43 @@
+<include file="Public:_header" />
+<link href="__ROOT__/Style/Swfupload/swfupload.css" rel="stylesheet" type="text/css">
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">处理提现</div>
+<div class="page_tab"><span data="tab_1" class="active">提现信息</span></div>
+<div class="form2">
+	<form method="post" action="__URL__/doEdit" onsubmit="return subcheck();" enctype="multipart/form-data">
+	<input type="hidden" name="id" value="{$vo.id}" />
+	<div id="tab_1">
+
+	<dl class="lineD"><dt>提现会员：</dt><dd>{$vo.uname}</dd></dl>
+	<dl class="lineD"><dt>提现时间：</dt><dd>{$vo.add_time|date="Y-m-d H:i:s",###}</dd></dl>
+	<dl class="lineD"><dt>提现金额：</dt><dd>{$vo.withdraw_money}</dd></dl>
+	<dl class="lineD"><dt>提现手续费：</dt><dd><htmlA:input id="withdraw_fee" value="{$vo.withdraw_fee}"  tip="*"/></dd></dl>
+	<dl class="lineD"><dt>到帐金额：</dt><dd id="paymoney"></dd></dl>
+	<dl class="lineD"><dt><span style="color:#FF0000">处理结果</span></dt><dd>&nbsp;</dd></dl>
+	<dl class="lineD"><dt>提现状态：</dt><dd><htmlA:radio id="withdraw_status" datakey="type_list" value="key|vo.withdraw_status"/></dd></dl>
+	<dl class="lineD"><dt>处理说明：</dt><dd><htmlA:text id="deal_info" value="{$vo.deal_info}"  tip="*"/></dd></dl>
+	
+	</div><!--tab1-->
+	
+	<div class="page_btm">
+	  <input type="submit" class="btn_b" value="确定" />
+	</div>
+	</form>
+</div>
+
+</div>
+<script type="text/javascript">
+var wm ={$vo.withdraw_money|default=0};
+$("#withdraw_fee").change(function(){
+	showpay();	
+});
+
+function showpay(){
+	var withdraw_fee = parseInt($("#withdraw_fee").val());
+	$("#paymoney").html(parseInt(wm-withdraw_fee));
+}
+showpay();
+</script>
+<include file="Public:_footer" />

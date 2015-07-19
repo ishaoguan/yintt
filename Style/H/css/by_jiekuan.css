@@ -1,0 +1,196 @@
+#paixu{
+padding-left:650px;
+
+}
+
+.title010 .con_font_li {
+	WIDTH: 100px;  FLOAT: left; HEIGHT: 20px; COLOR: #eb5615; FONT-SIZE: 12px; FONT-WEIGHT: bold;
+}
+.title010 .con_font_lijk {
+	TEXT-ALIGN: left; WIDTH: 100px; FLOAT: left; HEIGHT: 20px; FONT-SIZE: 12px; FONT-WEIGHT: bold;
+}
+.title010 .con_font_lijkbt1{
+	TEXT-ALIGN: center; WIDTH: 120px; FLOAT: left; HEIGHT: 20px; FONT-SIZE: 12px; FONT-WEIGHT: bold;
+}
+.title010 .con_font_lijkbt2{
+	TEXT-ALIGN: center; WIDTH: 100px; FLOAT: left; HEIGHT: 20px; FONT-SIZE: 12px; FONT-WEIGHT: bold;
+}
+.title010 .con_font_li_timebj {
+	TEXT-ALIGN: left;PADDING-LEFT: 15px; margin-top:4px; WIDTH: 51px; BACKGROUND: url(../images/loan_dj_03_1.gif) no-repeat; FLOAT: left; HEIGHT: 20px; MARGIN-LEFT: 15px; FONT-SIZE: 12px; line-height:18px;
+}
+
+.title010 .con_font_li_wz {
+	TEXT-ALIGN:right;PADDING-LEFT: 10px; margin-top:4px; WIDTH: 51px;  FLOAT: left; HEIGHT: 20px; MARGIN-LEFT: 15px; FONT-SIZE: 12px; padding-top:5px;
+}
+
+.title010 .con_font_li_timebj1 {
+	TEXT-ALIGN: left; PADDING-LEFT: 10px;margin-top:4px; WIDTH: 51px; BACKGROUND: url(../images/loan_dj_03_2.gif) no-repeat; FLOAT: left; HEIGHT: 20px; MARGIN-LEFT: 15px; FONT-SIZE: 12px; padding-top:5px;
+}
+
+.title010 .sousuo {
+	PADDING-LEFT: 4px;
+	margin-top:4px;
+	FLOAT: left;	 
+	MARGIN-LEFT: 0px;
+	FONT-SIZE: 12px; 
+	padding-top:0px;
+}
+
+#paixu ul li.con_font_li_timebj A {
+	COLOR: #444444; TEXT-DECORATION: none
+}
+#paixu ul li.con_font_li_timebj1 A {
+	COLOR: #444444; TEXT-DECORATION: none
+}
+
+
+.title010 .con_li {
+	 TEXT-ALIGN: left;
+	 PADDING-LEFT: 10px;
+	 margin-top:-4px; WIDTH: 51px;
+	  FLOAT: left; 
+	  HEIGHT: 20px; 
+	  MARGIN-LEFT: 20px; 
+	  FONT-SIZE: 12px; 
+	  padding-top:15px;
+}
+
+
+
+
+
+
+
+/*****************��ҪͶ���б�ҳ��ʽ��ʼ************************/
+
+.list03 .loan_search_01 {
+	TEXT-ALIGN: right; MARGIN-TOP: 10px; WIDTH: 109px; FLOAT: left; HEIGHT: 25px; FONT-SIZE: 12px; PADDING-TOP: 5px
+}
+.list03 .loan_search_02 {
+	TEXT-ALIGN: left; MARGIN-TOP: 10px; WIDTH: 200px; FLOAT: left; HEIGHT: 30px; FONT-SIZE: 12px
+}
+.list03 .loan_search_03 {
+	TEXT-ALIGN: left; MARGIN-TOP: 10px; WIDTH: 204px; FLOAT: left; HEIGHT: 30px; FONT-SIZE: 12px
+}
+.list03 .loan_search_04 {
+	TEXT-ALIGN: left; MARGIN-TOP: 10px; WIDTH: 130px; FLOAT: left; HEIGHT: 30px; FONT-SIZE: 12px
+}
+.search_01 {
+	WIDTH: 150px; HEIGHT: 15px
+}
+.input-text {
+	BORDER-BOTTOM: #d0d0d0 1px solid; BORDER-LEFT: #d0d0d0 1px solid; PADDING-BOTTOM: 2px; MARGIN: 0px 5px 0px 0px; PADDING-LEFT: 5px; PADDING-RIGHT: 0px; FONT-FAMILY: Verdana, Geneva, sans-serif, "����"; HEIGHT: 18px; FONT-SIZE: 12px; BORDER-TOP: #d0d0d0 1px solid; BORDER-RIGHT: #d0d0d0 1px solid; PADDING-TOP: 2px
+}
+select.sel_fs{ width: 112px;}
+select.sel_je{ width: 82px;}
+input.btn{
+	background-color:transparent;								
+	background:url(../images/index_55.gif);
+	border: medium none; height:28px; width:110px;
+}
+
+
+input.btnss{						
+	background:url(../images/index_55s.jpg);
+	border: medium none; height:22px; width:50px;
+}
+
+
+
+.title03 .con_font_li {
+	WIDTH: 100px;  FLOAT: left; HEIGHT: 20px; COLOR: #eb5615; FONT-SIZE: 12px; FONT-WEIGHT: bold;
+}
+.title03 .con_font_lijk {
+	TEXT-ALIGN: left; WIDTH: 100px; FLOAT: left; HEIGHT: 20px; FONT-SIZE: 12px; FONT-WEIGHT: bold;
+}
+.title03 .con_font_lijkbt1{
+	TEXT-ALIGN: center; WIDTH: 120px; FLOAT: left; HEIGHT: 20px; FONT-SIZE: 12px; FONT-WEIGHT: bold;
+}
+.title03 .con_font_lijkbt2{
+	TEXT-ALIGN: center; WIDTH: 100px; FLOAT: left; HEIGHT: 20px; FONT-SIZE: 12px; FONT-WEIGHT: bold;
+}
+.title03 .con_font_li_timebj {
+	TEXT-ALIGN: left;PADDING-LEFT: 10px; margin-top:-4px; WIDTH: 51px; BACKGROUND: url(../images/loan_dj_03_1.gif) no-repeat; FLOAT: left; HEIGHT: 20px; MARGIN-LEFT: 20px; FONT-SIZE: 12px; padding-top:5px;
+}
+.title03 .con_font_li_timebj1 {
+	TEXT-ALIGN: left; PADDING-LEFT: 10px;margin-top:-4px; WIDTH: 51px; BACKGROUND: url(../images/loan_dj_03_2.gif) no-repeat; FLOAT: left; HEIGHT: 20px; MARGIN-LEFT: 20px; FONT-SIZE: 12px; padding-top:5px;
+}
+.title03 .con_heome {
+	PADDING-LEFT: 10px;margin-top:-4px; WIDTH: 10px; BACKGROUND: url(../images/index_37.gif) no-repeat center 50%; FLOAT: left; HEIGHT: 20px
+}
+.title03 .con_font_li_timebj A {
+	COLOR: #444444; TEXT-DECORATION: none
+}
+.title03 .con_font_li_timebj1 A {
+	COLOR: #444444; TEXT-DECORATION: none
+}
+.title03 .con_font_li_timebj2 A {
+	COLOR: #444444; TEXT-DECORATION: none
+}
+.title03 .con_font_li_timeimg {
+	TEXT-ALIGN: right; WIDTH: 393px; FLOAT: left; HEIGHT: 12px; PADDING-TOP: 14px
+}
+.title03 .con_font_li_timeimg A {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.list04 {
+	BORDER-BOTTOM: #dcdfe4 1px solid; BORDER-LEFT: #dcdfe4 1px solid;ZOOM: 1; OVERFLOW: hidden; BORDER-RIGHT: #dcdfe4 1px solid; overflow:hidden; padding-bottom:0px; width:978px;
+}
+
+.list04 ul{
+ width:976px;
+ padding-top:10px;
+ padding-bottom:20px; 
+ border-bottom:#dcdfe4 1px dashed;
+ overflow:hidden; 
+ height:100%; 
+ text-align:left
+ }
+ 
+  
+.list04 ul dl{ width:310px; float:left; margin-left:10px; _margin-left:10px;/*IE6*/}
+.list04 ul dl dt{ float:left; width:100px; margin-top:0px;}
+.list04 ul dl dt img{ /*width:72px; height:61px;*/}
+.list04 ul dl dd{ float:right; width:200px;}
+.list04 ul li{ float:left;}
+.wnr_01{ width:165px; padding:0 5px;}
+.list04 ul p{ height:25px; line-height:25px; overflow:hidden}
+ 
+ .list04 .invest_bg{background:url(../images/new_index_bg.jpg) repeat-x 0 bottom; height:150px; width:980px;border-bottom:#dcdfe4 1px dashed;}
+
+/*
+.list04 ul{ padding:20px 0;  border-bottom:1px solid #E7E9EB; overflow:hidden; height:100%; text-align:left}
+.list04 ul dl{ width:220px; float:left; margin-left:10px; _margin-left:10px;}
+.list04 ul dl dt{ float:left; width:60px; margin-top:0px;}
+.list04 ul dl dt img{ width:50px; height:61px;}
+.list04 ul dl dd{ float:right; width:100px;}
+.list04 ul li{ float:left;}
+.wnr_01{ width:125px; padding:0 5px;}
+.list04 ul p{ height:25px; line-height:25px; overflow:hidden}
+
+*/
+
+.pages{font-size: 12px;
+	height: 20px;
+	background:#F9F9F9;
+	border:1px #e3e3e3 solid;
+	padding:7px 7px 3px 0;
+	text-align: right;
+	color:#666666;
+	width:965px;
+	margin-top:5px;
+	}
+.pages a{
+	margin: 0 1px;
+	padding: 2px 6px;
+	background: none repeat scroll 0 0 #F2F2F2;
+	border:1px #FB8200 solid;
+	color:#666
+}
+
+.font3{padding:0px 6px}
+
+.investbotton{line-height:50%}
+.investbotton .blank1{margin-top:30px}
+.investbotton .blank2{margin-top:10px}
+/*****************��ҪͶ���б�ҳ��ʽ����************************/

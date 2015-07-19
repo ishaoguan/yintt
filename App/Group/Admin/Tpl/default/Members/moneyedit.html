@@ -1,0 +1,42 @@
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">调整余额</div>
+<div class="form2">
+	<form method="post" action="__URL__/doMoneyEdit" onsubmit="return subcheck();" name="submitform">
+	<input type="hidden" name="id" value="{$id}" />
+	<input type="hidden" name="token" value="{$token}" />
+    
+	<div id="tab_1">
+	
+	<dl class="lineD"><dt>可用余额：</dt><dd><htmlA:input id="account_money" value="" tip="如果是减少余额，请填负数，如'-1000'"/></dd></dl>
+	<dl class="lineD"><dt>冻结金额：</dt><dd><htmlA:input id="money_freeze" value="" tip="如果是减少余额，请填负数，如'-1000'"/></dd></dl>
+	<dl class="lineD"><dt>待收金额：</dt><dd><htmlA:input id="money_collect" value="" tip="如果是减少余额，请填负数，如'-1000'"/></dd></dl>
+	<dl class="lineD"><dt>变动原因：</dt><dd><htmlA:input id="info" value="" tip="*"/></dd></dl>
+	
+	</div><!--tab1-->
+	
+	<div class="page_btm">
+	  <input name="按钮" type="button" class="btn_b" onClick="javascript:check();" value="确定"  />
+	</div>
+	</form>
+</div>
+
+</div>
+
+<script language="JavaScript">
+  var submitcount = 0;
+  function check()
+   {
+		if(submitcount == 0)
+		 {
+			 submitcount++;
+			  document.submitform.submit();
+		 }
+		 else
+		  {
+				 alert("正在操作，请不要重复提交");
+				 return false;
+		  }					   
+ }
+ </script>

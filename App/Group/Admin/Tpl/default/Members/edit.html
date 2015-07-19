@@ -1,0 +1,64 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<style type="text/css">
+.sel_fs{width:110px}
+</style>
+<script type="text/javascript" src="__ROOT__/Style/H/js/area.js" language="javascript"></script>
+<div class="so_main">
+
+<div class="page_tit">修改会员</div>
+<div class="page_tab"><span data="tab_1" class="active">基本信息</span><span data="tab_2">基本资料</span></div>
+<div class="form2">
+	<form method="post" action="__URL__/doEdit" onsubmit="return subcheck();">
+	<input type="hidden" name="id" value="{$vo.id}" />
+	<input type="hidden" name="uid" value="{$vo.id}" />
+	<div id="tab_1">
+	<dl class="lineD"><dt>是否冻结：</dt><dd><htmlA:radio id="is_ban" default="0|否,1|是" value="key|vo.is_ban" tip="冻结后会员不能登陆，须联系客服处理"/></dd></dl>
+	<dl class="lineD"><dt>客户类型：</dt><dd><htmlA:radio id="user_type" datakey="utype" value="key|vo.user_type"/></dd></dl>
+	<dl class="lineD"><dt>客服ID：</dt><dd><htmlA:input id="customer_id"  value="{$vo.customer_id}"/></dd></dl>
+	<dl class="lineD"><dt>新密码：</dt><dd><htmlA:input id="user_pass" tip="如不修改则留空"/></dd></dl>
+	<dl class="lineD"><dt>确认新密码：</dt><dd><htmlA:input id="re_user_pass" tip="如不修改则留空" /></dd></dl>
+	<dl class="lineD"><dt>新支付密码：</dt><dd><htmlA:input id="pin_pass" tip="如不修改则留空"/></dd></dl>
+	<dl class="lineD"><dt>确认支付密码：</dt><dd><htmlA:input id="re_pin_pass" tip="如不修改则留空" /></dd></dl>
+	</div><!--tab1-->
+
+	<div id="tab_2" style="display:none">
+	<dl class="lineD"><dt>真实姓名：</dt><dd><htmlA:input id="real_name"  value="{$vo.real_name}"/></dd></dl>
+	<dl class="lineD"><dt>身份证：</dt><dd><htmlA:input id="idcard"  value="{$vo.idcard}"/></dd></dl>
+	<dl class="lineD"><dt>手机号：</dt><dd><htmlA:input id="cell_phone"  value="{$vo.cell_phone}"/></dd></dl>
+	<dl class="lineD"><dt>地址：</dt><dd>	
+			<td class="tdContent">
+			<select name="province_now" id="province_now" class="sel_fs"><option>请选择</option></select>&#12288;（省/直辖市）&#12288;<select name="city_now" id="city_now" class="sel_fs"><option>请选择</option></select>&#12288;市&#12288;<select name="area_now" id="area_now" class="sel_fs"><option>请选择</option></select>&#12288;区
+			</td></dd></dl>
+	<dl class="lineD"><dt>年龄：</dt><dd><htmlA:input id="age"  value="{$vo.age}"/></dd></dl>
+	<dl class="lineD"><dt>职业：</dt><dd><htmlA:input id="zy" value="{$vo.zy}" /></dd></dl>
+	</div><!--tab1-->
+	
+	<div class="page_btm">
+	  <input type="submit" class="btn_b" value="确定" />
+	</div>
+	</form>
+</div>
+<script type="text/javascript">
+function subcheck(){
+	var pass = $("#user_pass").val();
+	var re_pass = $("#re_user_pass").val();
+	if( (pass!=""||re_pass!="") && re_pass!=pass){
+		ui.error("新密码和确认密码不相同，如不修改则都留空");
+		return false;
+	}
+	var pin = $("#pin_pass").val();
+	var re_pin = $("#re_pin_pass").val();
+	if( (pin!=""||re_pin!="") && re_pin!=pin){
+		ui.error("新支付密码和确认支付密码不相同，如不修改则都留空");
+		return false;
+	}
+	return true;
+}
+</script>
+<script type="text/javascript">
+	var areaurl="__URL__/getarea/";
+	var s = new GetAreaSelect('#province_now','#city_now','#area_now'<empty name="vo['province_now']"><else/>,{$vo.province_now}</empty><empty name="vo['city_now']"><else/>,{$vo.city_now}</empty><empty name="vo['area_now']"><else/>,{$vo.area_now}</empty>);
+</script>
+</div>
+<include file="Public:_footer" />

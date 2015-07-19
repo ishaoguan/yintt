@@ -1,0 +1,26 @@
+<include file="Public:_header" />
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">查看意见</div>
+<div class="page_tab"><span data="tab_1" class="active">用户提议</span></div>
+<div class="form2">
+	<div id="tab_1">
+	
+		<dl class="lineD"><dt>用户昵称</dt><dd>{$list.nick_name}</dd></dl>
+		<dl class="lineD"><dt>用户电话</dt><dd>{$list.phone}</dd></dl>
+		<dl class="lineD"><dt>用户邮箱：</dt><dd>{$list.email}</dd></dl>
+		<dl class="lineD"><dt>用户QQ：</dt><dd>{$list.qq}</dd></dl>
+		<dl class="lineD"><dt>来自IP：</dt><dd><a href="http://www.baidu.com/s?wd={$list.client_ip}" target="_blank" title="点击百度搜索IP所在地">{$list.client_ip}</a></dd></dl>
+		<dl class="lineD"><dt>提出时间：</dt><dd>{$list.create_time}</dd></dl>
+		<dl class="lineD"><dt>留言内容：</dt><dd><htmlA:text id="msg" value="{$list.content}" tip="*" addstr='disabled="disabled"' style="height:100px"/></dd></dl>
+
+	</div>
+	<div class="page_btm">
+	  <input type="submit" class="btn_b" onclick="window.location.href='__URL__/index'" value="返回" />
+	</div>
+</div>
+
+</div>
+<include file="Public:_footer" />

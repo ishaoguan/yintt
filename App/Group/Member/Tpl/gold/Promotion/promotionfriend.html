@@ -1,0 +1,24 @@
+<div class="us_rb4">
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	尊敬的{$glo.web_name}会员，以下是您在{$glo.web_name}的奖金记录，敬请审阅！ </p>
+</div>
+<div class="u12_clew">
+	<p>截止<span class="fontred"><php>echo date("Y-m-d H:i:s",time());</php>
+	</span>您成功邀请的会员有： </p>
+</div>
+<table width="758" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+  <th nowrap="nowrap">会员名单</th>
+  <th nowrap="nowrap">注册时间</th>
+  <th nowrap="nowrap">奖金贡献</th>
+ </tr>
+ <volist name="list" id="vo">
+  <tr>
+	<td>{$vo.user_name}</td>
+	<td>{$vo.reg_time|date="Y-m-d H:i",###}</td>
+	<td>{$vo.jiangli|default=0}</td>
+  </tr>
+ </volist>
+</table>
+</div>

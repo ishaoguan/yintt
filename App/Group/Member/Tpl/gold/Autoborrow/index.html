@@ -1,0 +1,48 @@
+<include file="Public:_header_common" />
+<title>自动投标-- {$glo.web_name}</title>
+<include file="Public:_header_main" />
+<!--中部开始-->
+<tagLib name="htmlA" />
+  <div id="content_us">
+   <include file="Public:_left" />
+   <div id="us_r">
+    <!-- Right -->
+   	 <include file="Public:_right_top" />
+     <div class="us_rh">
+      <ul>
+       <li class="cen">自动投标</li>
+       <li class="usrhDiv"></li>
+       <li><a href="__URL__/add">添加自动投标</a></li>
+       <li class="usrhDiv"></li>
+      </ul>
+     </div>
+     <div class="us_rb4">
+	    <div class="divtitle2">
+			<p>自动投标列表</p>
+		</div>
+		<table width="758" border="0" cellspacing="0" cellpadding="0">
+		 <tr>
+		  <th>编号</th>
+		  <th>是否开启</th>
+		  <th>每次投标金额</th>
+		  <th>借款期限</th>
+		  <th>标类型</th>
+		  <th>操作</th>
+		 </tr>
+		 <volist name="list" id="vo">
+		  <tr>
+		<td>{$vo.id}</td>
+		<td><if condition="$vo.status eq 1"><font color="#00CC00">已开启</font><else/>未开启</if></td>
+		<td><if condition="$vo.tender_type eq 1">{$vo.tender_account}元<elseif condition="$vo.tender_type eq 2"/>{$vo.tender_rate}%<else/>余额全投</if></td>
+		<td><if condition="$vo.timelimit_status eq 0">不限制<else/>{$vo.timelimit_month_first}---{$vo.timelimit_month_last}个月</if></td>
+		<td><if condition="empty($vo['borrow_type'])">不限制<else/>{:$borrowType[$vo['borrow_type']]}</if></td>
+		<td><a href="__URL__/edit?id={$vo.id}">编辑</a> | <a href="__URL__/del?id={$vo.id}">删除</a></td>
+              <!--<a href="javascript:void(0)" onclick="doDel({$vo.id})">删除</a>-->
+		  </tr>
+		 </volist>
+		</table>
+	</div>
+    <!-- Right // -->
+   </div>
+  </div>
+<include file="./App/Group/Home/Tpl/gold/Public/_footer.html" group="Home" />

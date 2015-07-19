@@ -1,0 +1,81 @@
+     <php>
+	//常见问题
+	$parm = array();
+	$parm['type_id'] = 392;
+	$parm['limit'] = 6;
+	$questionList = getArticleList($parm);
+	//常见问题
+		
+	//投资排行榜
+	$recentList = getRecentList(10);
+	
+	//近期还款
+	$nearlyStartTime = strtotime("-3 days");
+	$nearlyStartDate = date('Y-m-d', $nearlyStartTime);
+	$nearlyEndTime = strtotime("$nearlyStartDate 1 month -1 day");
+	$map = array();
+	$map['d.status'] = array("neq", 0);
+	$map['d.deadline'] = array("between", $nearlyStartTime.','.$nearlyEndTime);
+	$nearlylist = getTenderList($map, null, 10, 'd.deadline asc');
+	$recentPayList = $nearlylist['list'];
+     </php>
+     
+    <div id="right">
+     <!-- Right -->
+      <div id="rb1">
+       <div id="rb1_upper">
+        <div id="rb1_upper_l"></div>
+        <div id="rb1_upper_r"><h3>诚&nbsp;&nbsp;&nbsp;一站式金融服务平台</h3><p>低风险，收益率适中投资理财服务</p></div>
+       </div>
+       <div class="rb1_bo1">
+        <h4>诚信担保</h4>
+        <p>- 所有的投资项目均有第三方担保</p>
+        <p>- 100%本金和收益保障</p>
+       </div>
+       <div class="rb1_bo2">
+        <h4>轻松愉快的投资过程</h4>
+        <p>- 无需太多操劳，一切有我为您服务</p>
+        <p>- 投资流程简单明了</p>
+       </div>
+       <div class="rb1_bo3">
+        <h4>可观的收益</h4>
+        <p>- 12%~21%年化收益率，保障收益</p>
+       </div>
+      </div>
+      
+      <div class="rb1_h"><h4>投资/借款 攻略</h4><a href="../help/faq.html">+ 帮助中心</a></div>
+      <div class="rb3">
+       <div class="rb3_upper">
+        <div class="rb3_upper_l"><img src="__ROOT__/Style/gold/images/home_99.gif" width="32" height="58" alt="" /></div>
+        <div class="rb3_upper_r">
+         <a href="../help/faq.html"><h4>您可以找到您想要的答案！</h4></a>
+         <p>或许您也可以尝试拨打我们的免费热线，或是在线咨询我们的客服。</p>
+        </div>
+       </div>
+       <ul>
+     <volist name="questionList.list" id="vl">
+        <li><a href="{$vl.arturl}">{$vl.title}</a></li>
+     </volist>
+       </ul>
+      </div>
+      
+     
+      
+     <!-- Right // -->
+    </div>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$(".rb2_h ol li").on({
+		mouseenter:function(){
+			$(".rb2_h ol li").removeClass("cen");
+			$(this).addClass("cen");
+			$(this).parent().find("a").each(function(){
+				$("#"+$(this).attr("for")).css("display", "none");
+			});
+			$("#"+$(this).find("a").attr("for")).css("display", "");
+		}
+	});
+});
+//-->
+</script>

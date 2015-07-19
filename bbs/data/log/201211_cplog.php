@@ -1,0 +1,13 @@
+<?PHP exit;?>	1353734582	admin	1	125.39.19.123		GET={}; POST={};
+<?PHP exit;?>	1353734585	admin	1	125.39.19.123	index	GET={}; POST={};
+<?PHP exit;?>	1353734590	admin	1	125.39.19.123	setting	GET={operation=basic; }; POST={};
+<?PHP exit;?>	1353734605	admin	1	125.39.19.123	setting	GET={edit=yes; operation=basic; settingnew={bbname=贷齐乐论坛; sitename=贷齐乐; siteurl=http://cjc.cc; adminemail=admin@admin.com; }; settingsubmit=提交; }; POST={operation=basic; settingnew={bbname=贷齐乐论坛; sitename=贷齐乐; siteurl=http://cjc.cc; adminemail=admin@admin.com; }; settingsubmit=提交; };
+<?PHP exit;?>	1353734610	admin	1	125.39.19.123	founder	GET={operation=perm; }; POST={};
+<?PHP exit;?>	1353734611	admin	1	125.39.19.123	setting	GET={operation=uc; }; POST={};
+<?PHP exit;?>	1353734616	admin	1	125.39.19.123	setting	GET={edit=yes; operation=uc; settingnew={uc={appid=1; key=M1h1jeJ4B5Sba2k0UdzbT2J7y3Dad61589Ebt9o82475DcncJ1a9wb1729J6hcYd; api=http://bj.cjc.cc/bbs/uc_server; connect=mysql; dbhost=localhost; dbuser=ggggwfn11; dbpass=********; dbname=baijin; dbtablepre=pre_ucenter_; }; ucactivation=1; fastactivation=1; }; settingsubmit=提交; }; POST={operation=uc; settingnew={uc={appid=1; key=M1h1jeJ4B5Sba2k0UdzbT2J7y3Dad61589Ebt9o82475DcncJ1a9wb1729J6hcYd; api=http://bj.cjc.cc/bbs/uc_server; connect=mysql; dbhost=localhost; dbuser=ggggwfn11; dbpass=********; dbname=baijin; dbtablepre=pre_ucenter_; }; ucactivation=1; fastactivation=1; }; settingsubmit=提交; };
+<?PHP exit;?>	1353734619	admin	1	125.39.19.123	setting	GET={operation=uc; }; POST={};
+<?PHP exit;?>	1353734675	admin	1	125.39.19.123	founder	GET={operation=perm; }; POST={};
+<?PHP exit;?>	1353734677	admin	1	125.39.19.123	db	GET={operation=export; }; POST={};
+<?PHP exit;?>	1353734677	admin	1	125.39.19.123	setting	GET={operation=uc; }; POST={};
+<?PHP exit;?>	1353734684	admin	1	125.39.19.123	setting	GET={edit=yes; operation=uc; settingnew={uc={appid=1; key=6029805f908e9a8bdd319c12d39c3579; api=http://bj.cjc.cc/bbs/uc_server; connect=mysql; dbhost=localhost; dbuser=ggggwfn11; dbpass=********; dbname=baijin; dbtablepre=pre_ucenter_; }; ucactivation=1; fastactivation=1; }; settingsubmit=提交; }; POST={operation=uc; settingnew={uc={appid=1; key=6029805f908e9a8bdd319c12d39c3579; api=http://bj.cjc.cc/bbs/uc_server; connect=mysql; dbhost=localhost; dbuser=ggggwfn11; dbpass=********; dbname=baijin; dbtablepre=pre_ucenter_; }; ucactivation=1; fastactivation=1; }; settingsubmit=提交; };
+<?PHP exit;?>	1353734686	admin	1	125.39.19.123	setting	GET={operation=uc; }; POST={};

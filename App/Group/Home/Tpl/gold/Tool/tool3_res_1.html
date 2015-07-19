@@ -1,0 +1,13 @@
+<div class="fun_title">
+	<h5>
+		贷款概述</h5>
+</div>
+<div class="funframe">
+	<ul class="rslist">
+		<li><span style="width: 100px; color:#787878;">每个季将偿还本金：</span> <span style="width: 100px;" class="value">
+			￥<php>echo getFloatValue($mmoney/($m/3),2);</php></span> <span style="width: 50px; color:#969696;">您将在个</span> <span class="value" style="color:#ff3200;">{$m}</span> <span style="color:#969696;">月之后将贷款还清</span> </li>
+		<li><span style="width: 150px; clear:#787878;">月利率：</span> <span style="width: 100px;" class="value">
+			{$repay_summary.month_apr}%</span> <span style="width: 110px; color:#969696;">您还清贷款总共要还</span> <span class="value" style="color:#ff3200;">
+				{$repay_summary.repayment_money}</span> <span style="color:#969696;">元(小于0.01元无法计算，可能会有误差)</span> </li>
+	</ul>
+</div>

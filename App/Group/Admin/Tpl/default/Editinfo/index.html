@@ -1,0 +1,70 @@
+<include file="../Public/_header" />
+<div class="so_main">
+
+<div class="page_tit">修改密码</div>
+<div class="form2">
+
+	<form method="post" action="__URL__/edit" onsubmit ="return checkinfo();">
+	<input name="adminid" class="input" id="adminid" type ="hidden" value="123123" />
+
+    <dl class="lineD">
+      <dt>请输入原密码</dt>
+      <dd>
+        <input name="oldpass" class="input" id="oldpass" type="password" />
+      </dd>
+    </dl>
+	
+    <dl class="lineD">
+      <dt>请输入新密码</dt>
+      <dd>
+        <input name="newpass" class="input" id="newpass" type="password" />
+      </dd>
+    </dl>
+
+    <dl class="lineD">
+      <dt>请再次输入密码</dt>
+      <dd>
+        <input name="renewpass" class="input" id="renewpass" type="password" />
+      </dd>
+    </dl>
+	
+	
+    <div class="page_btm">
+      <input type="submit" class="btn_b" value="确定"/>
+    </div>
+
+	</form>
+	<script type="text/javascript">
+
+	function checkinfo(){
+
+		var oldpass = $("#oldpass").val();
+		var newpass = $("#newpass").val();
+		var renewpass = $("#renewpass").val();
+		
+		if($("#oldpass").val()==''){
+			alert("原密码不能为空");
+			return false;
+		}
+		if($("#newpass").val()==''){
+			alert("新密码不能为空");
+			return false;
+		}
+		if($("#newpass").val().length<6){
+			alert("新密码不能少于6位");
+			return false;
+		}
+		if($("#renewpass").val()==''){
+			alert("请确认您的密码");
+			return false;
+		}
+		if($("#newpass").val()!= $("#renewpass").val()){
+			alert('您输入的两个密码不一致');
+			return false;
+		}
+	}
+	</script>
+	</div>
+</div>
+
+<include file="Public:_footer" />

@@ -1,0 +1,150 @@
+<include file="Public:_header_common" />
+<title>{$glo.index_title}-{$vo.pro_tit}</title>
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/H/css/css.css" />
+<include file="Public:_header_main" />
+<div id="pms_mint">
+ <div id="pms_mint_l">
+  <img src="__ROOT____GROUP__/Style/H/images/eem.jpg" width="225" height="226" alt="" />
+  <input type="button" class="folw" style="display:none;" />
+ </div>
+ <div id="pms_mint_r">
+  <h1>{$vo.pro_tit}</h1>
+  <ul>
+   <li><p>募集资金：<span>￥{$vo.raise_money}</span></p></li>
+   <li><p>年化收益：<span>{$vo.annual_profit}</span></p></li>
+   <li><p>收益分配方式：<span>{$vo.profit_distribute}</span></p></li>
+   <li><p>产品期限：<span>{$vo.time_limit}</span></p></li>
+   <li><p>交易类型：<span>{$vo.trade_type}</span></p></li>
+   <li><p>产品金额：<span>{$vo.pro_price}/份</span></p></li>
+   <li><p>发行机构：<span>{$vo.issuer}</span></p></li>
+   <li><p>担保机构：<span>{$vo.guarantee_institution}</span></p></li>
+   <li><input type="button" class="pmsmi_but" onclick="submitIntention('{$vo.id}');"/></li>
+  </ul>
+ </div>
+</div>
+
+<div id="pms_midet">
+ <div id="pms_midet_h"><h3>借款详情</h3></div>
+ <div id="pms_midet_co">
+  <table width="948" border="0" cellspacing="0" cellpadding="0">
+   <tr>
+    <th valign="middle">产品名称</th>
+    <td valign="middle">{$vo.pro_name}</td>
+   </tr>
+   <tr>
+    <th valign="middle">产品类型</th>
+    <td valign="middle">有限合伙制私募投资债权,产品管理人认购总额的20%,并承诺在产品存续期不转让其持有的规模</td>
+   </tr>
+   <tr>
+    <th valign="middle">产品管理人</th>
+    <td valign="middle">{$vo.issuer}</td>
+   </tr>
+   <tr>
+    <th valign="middle">信贷顾问</th>
+    <td valign="middle">{$vo.guarantee_institution}</td>
+   </tr>
+   <tr>
+    <th valign="middle">产品目的</th>
+    <td valign="middle">产品的部分或全部资金将通过合作银行委托贷款的方式，针对深圳及周边地区中小企业发放短期流动资金贷款，资金主要用于补充企业流动资金，解决中小企业及其经营者短期周转资金需求。</td>
+   </tr>
+   <tr>
+    <th valign="middle">产品规模</th>
+    <td valign="middle">{$vo.raise_money}元人民币</td>
+   </tr>
+   <tr>
+    <th valign="middle">产品期限</th>
+    <td valign="middle">{$vo.time_limit}</td>
+   </tr>
+   <tr>
+    <th valign="middle">最低认购金额</th>
+    <td valign="middle">{$vo.pro_price}元，超过部分按5万元的整数倍增加</td>
+   </tr>
+   <tr>
+    <th valign="middle">预期年化收益率</th>
+    <td valign="middle">
+     {$vo.pro_price}元≤认购金额＜100万元，预计税前年化收益率为9%/年；<br />
+     100万元≤认购金额＜150万元，预计税前年化收益率为10%/年；<br />
+     150万元≤认购金额＜200万元，预计税前年化收益率为11%/年；<br />
+     200万元≤认购金额，预计税前年化收益率为12%/年。
+    </td>
+   </tr>
+   <tr>
+    <th valign="middle">收益及本金分配方式</th>
+    <td valign="middle">每一个自然季度的季末25号至30号统一分配一次收益，本金到期一次性兑付</td>
+   </tr>
+   <tr>
+    <th valign="middle">投资亮点</th>
+    <td valign="middle">
+     1、 周期较短，流动性好；<br /> 
+     2、 在同等风险条件下，收益较高。本基金设立的目的是向投资人提供具有吸引力的、风险可控的、优于市场普遍回报水平的投资渠道；<br /> 
+     3、 认购起点低（仅50万元），填补市场空白，满足有理财需求但难以企及信托、PE等产品认购金额门槛的市场需求。
+    </td>
+   </tr>
+   <tr>
+    <th valign="middle">投资项目简介</th>
+    <td valign="middle">
+     <p>由于中小企业内部管理机制不科学、账务处理不规范、经营规模小、抗风险能力弱等原因，银行在给予中小企业贷款时一般会要求其实际控制人提供个人房产抵押担保，在贷款方案中，借款企业或企业主除了需要分期还款之外，在贷款到期时需要归还较多借款本金，这就给企业的财务管理带来了较大的压力。为了帮助企业解决贷款到期时的还款需求，在借款人已获得银行的新贷款批复、授信额度有效期内可先还后借，我司可运用基金所募集的资金，通过委托贷款方式发放给借款人，为借款人归还到期借款，同时配合新贷款银行办理相关放款手续后，以银行所发放的新贷款作为基金所发放的借款的还款来源。</p>
+     <strong>业务的特点：</strong><br /> 
+1、 两个明确——借款用途明确：客户借款的用途是用于归还原有银行欠款，做到专款专用；还款来源明确：银行已对企业或企业主的新的贷款申请作出批复，我司可通过有效的过程控制措施，以银行对企业发放的新贷款作为还款来源；<br />
+2、 两个保障——专业人士操作，业务娴熟，风险可控，保障债权权益；业务操作环节，严格把关，获得借款人的有效授权并由专人负责经办放款手续，保障业务顺利且安全完成；<br />
+3、 两快——资金使用周期短而快，因而借款受经济周期性变化和经营恶化影响的风险很小；业务操作效率高而快，资金周转率高，可在风险控制的前提下获得较好的收益。
+    </td>
+   </tr>
+   <tr>
+    <th valign="middle">风险控制措施</th>
+    <td valign="middle">
+     1、由于所从事的业务有明确的还款来源，期限短，风险相对可控，远低于一般信用贷款风险；<br /> 
+     2、所募集的资金存放于银行开立的委托贷款帐户，由银行通过委托贷款方式发放贷款，操作过程合规合法；<br /> 
+     3、产品结构化设计，普通合伙人以其持有的20%基金财产保障有限合伙人的投资收益和本金；<br />
+     4、产品管理人、信用管理人、有限合伙企业委派代表共同组成项目决策委员会，决策委员会以兼顾客户回报和有效风险控制为指导思想，对运用本基金项下资金所发放的委托贷款进行尽职调查、方案设计、，并对贷后管理、回收贷款等全过程进行监督；<br />
+     5、在项目决策委员会已确认无法回收某笔贷款本息后的30天内，由信用管理顾问受让该笔债权，受让价款为该笔贷款逾期应付未付的本息以及剩余应偿还的本金，以保证基金资产的安全。
+</td>
+   </tr>
+   <tr>
+    <th valign="middle">产品管理人简介</th>
+    <td valign="middle"><p>深圳XXX投资管理有限公司是一家专业的投资管理公司，公司管理团队来自于深圳市知名证券公司、小额信贷公司、融资担保公司，具有会计、法律、金融等专业背景，拥有多年以上的中小企业债权融资、拟上市企业股权投资、企业并购融资、地产私募基金等金融领域实战经验。公司主要负责深圳市XXX投资企业（有限合伙）资产管理、项目投资决策、跟踪项目管理、行使相关诉讼权利、实施收益分配等；是合伙企业日常经营事务的管理者和投资决策者。</p>
+<p>展望未来，公司将秉承“安全、诚信、专业、高效”的服务宗旨和“可持续发展”的经营理念，坚持合规经营、品牌经营、科学经营，推崇“以人为本、兼容创新；简单务实、合作共赢”的企业文化，同时，公司以回馈社会为己任，努力在为股东、投资者、员工及客户创造价值的同时回报社会。</p>
+</td>
+   </tr>
+  </table>
+ </div>
+</div>
+<script type="text/javascript">
+<!--
+function submitIntention(uid){
+	$.jBox("get:__ROOT____GROUP__/borrow/ajax_intention/"+uid, {
+		title: "提交认购意向--{$glo.web_name}",
+		width: "auto",
+		buttons: {'关闭': true }
+	});
+}
+function PostData(name) {
+  var borrow_min = {$vo.min_price};
+  var tendValue = parseFloat($("#intention_money").val());
+  tendValue = isNaN(tendValue)?0:tendValue;
+  if(tendValue<borrow_min){
+	$.jBox.tip("本产品最低投资金额为{$vo.pro_price}元，请重新输入投标金额");  
+	return false;
+  }
+  $.ajax({
+	  url: "__ROOT____GROUP__/borrow/intentionconfirm/"+name,
+	  type: "post",
+	  dataType: "json",
+	  data: {"intention_money":tendValue},
+	  success: function(d) {
+		  if (d.status == 1) {
+			$.jBox.close();
+		  	//jBoxConfig.tipDefaults = {
+			//	 closed: function () {window.location.href="__ROOT____GROUP__/borrow/financial/<php>echo $vo['id'];</php>";} /* 提示关闭后执行的函数 */
+			//};
+		  	$.jBox.setDefaults(jBoxConfig);
+		  }
+	  	  $.jBox.tip(d.message);
+	  }
+  });
+}
+//-->
+</script>
+<include file="Public:_footer" />

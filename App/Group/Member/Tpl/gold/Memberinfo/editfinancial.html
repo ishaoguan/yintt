@@ -1,0 +1,51 @@
+<tagLib name="htmlA" />
+      <ul>
+       <li><p>月均收入：</p><htmlA:input id="fin_monthin" value="{$vo.fin_monthin}" class="u10_tex2"/></li>
+       <li><p>收入构成描述：</p><htmlA:text id="fin_incomedes" value="{$vo.fin_incomedes}" class="u10_tex3"/></li>
+       <li><p>月均支出：</p><htmlA:input id="fin_monthout" value="{$vo.fin_monthout}" class="u10_tex2"/></li>
+       <li><p>支出构成描述：</p><htmlA:text id="fin_outdes" value="{$vo.fin_outdes}" class="u10_tex3"/></li>
+       <li><p>住房条件：</p><htmlA:radio id="fin_house" default="有商品房|有商品房,有其他（非商品房）|有其他（非商品房）,无房|无房" value="key|vo.fin_house" /></li>
+       <li><p>房产价值：</p><htmlA:input id="fin_housevalue" value="{$vo.fin_housevalue}" class="u10_tex2"/></li>
+       <li><p>是否购车：</p><htmlA:radio id="fin_car" default="是|是,否|否" value="key|vo.fin_car" /></li>
+       <li><p>车辆价值：</p><htmlA:input id="fin_carvalue" value="{$vo.fin_carvalue}" class="u10_tex2"/></li>
+       <li><p>参股企业名称：</p><htmlA:input id="fin_stockcompany" value="{$vo.fin_stockcompany}" class="u10_tex2"/></li>
+       <li><p>参股企业出资额：</p><htmlA:input id="fin_stockcompanyvalue" value="{$vo.fin_stockcompanyvalue}" class="u10_tex2"/></li>
+       <li><p>其他资产描述：</p><htmlA:text style="height:80px;width:423px;" id="fin_otheremark" value="{$vo.fin_otheremark}" class="u10_tex3"/></li>
+      </ul>
+      <input type="button" class="u10_but" value="保存/下一步" onclick="editfinancial()"/>
+      <input type="button" class="u10_but1" value="跳过并继续" onclick="$('#xtab').find('a[data=info5]').click();"/>
+<script type="text/javascript">
+function editfinancial(){
+	p = makevar(['fin_monthin','fin_incomedes','fin_monthout','fin_outdes','fin_house','fin_housevalue','fin_car','fin_carvalue','fin_stockcompany','fin_stockcompanyvalue','fin_otheremark']);
+	p['_tps'] = "post";
+	/*var mxs = true;
+	$.each(p,function(i){
+		if(typeof p[i] == "undefined"){
+			mxs=false;
+			jBox.tip("所有项目都不能为空");	
+		}
+	});
+	if(mxs===false){
+	  jBox.tip("所有项目都不能为空");	
+	  return;
+	}*/
+	$.jBox.tip('提交中......','tip');
+	$.ajax({
+		url: "__URL__/editfinancial/",
+		data: p,
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip(d.message,'success');
+					$('#xtab').find('a[data=info5]').click();
+				}
+				else  $.jBox.tip(d.message,'fail');
+			}
+		}
+	});
+}
+</script>

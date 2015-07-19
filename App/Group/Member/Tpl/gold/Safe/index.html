@@ -1,0 +1,39 @@
+<include file="Public:_header_common" />
+<title>我的账户-- {$glo.web_name}</title>
+<include file="Public:_header_main" />
+  <div id="content_us">
+   <include file="Public:_left" />
+   <div id="us_r">
+    <!-- Right -->
+     
+   	 <include file="Public:_right_top" />
+     
+     <div class="us_rh" id="rotate">
+      <ul>
+       <li><a href="#fragment-1" ajax_href="__URL__/idcard/">身份验证</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-2" ajax_href="__URL__/safequestion/">安全问题</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-3" ajax_href="__URL__/cellphone/">手机验证</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-4" ajax_href="__URL__/email/">修改邮箱</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-5" ajax_href="__URL__/bind/">账号绑定</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-6" ajax_href="__URL__/undophone/">取消手机绑定</a></li>
+       <li class="usrhDiv"></li>
+      </ul>
+     </div>
+     <div class="us_rb4">
+     	<div id="fragment-1" style="display:none"></div>
+     	<div id="fragment-2" style="display:none"></div>
+     	<div id="fragment-3" style="display:none"></div>
+     	<div id="fragment-4" style="display:none"></div>
+     	<div id="fragment-5" style="display:none"></div>
+     	<div id="fragment-6" style="display:none"></div>
+     </div>
+     
+    <!-- Right // -->
+   </div>
+  </div>
+<include file="./App/Group/Home/Tpl/gold/Public/_footer.html" group="Home" />

@@ -1,0 +1,182 @@
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	您可以通过绑定其他账号，来共享该账号的手机等信息</p>
+</div>
+<if condition="$cur_mem['phone_status'] == 1">
+<div class="u12_clew">
+	<p>您已绑定了手机号，无需再绑定其他账号。</p>
+</div>
+<else/>
+<div style="padding: 15px 0 0 50px; text-align: left; line-height: 24px;">
+	目前对绑定账号可以<b style="font-size:14px;color:#8f2439">共享手机号</b>，您可以使用共享账号的手机号来接受短信验证码。
+	<if condition="!empty($cur_mem['bind_username'])">您已经绑定账号<b style="font-size:14px;color:#8f2439">{$cur_mem['bind_username']}</b>。</if>
+</div>
+<div style="margin-top: 10px; text-align: left; padding-left: 20px;" id="eont_safe">
+	<div style="margin: 10px 10px 10px 82px; overflow: hidden;">
+		<table style="width: 670px; line-height: 33px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr>
+				<td style="width: 115px; text-align: right;">
+					<span style="color: #bb0706">*</span>绑定账号：
+				</td>
+				<td style="padding-left: 10px;">
+					<input type="text" class="text2" id="bindAcount" />
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="text-align: right;">
+					<span style="color: #bb0706">*</span>绑定账号密码：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="bindPass" type="password">
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="text-align: right;">
+					<span style="color: #bb0706">*</span>当前账号支付密码：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="pinPass" type="password">
+				</td>
+			</tr>
+			<tr>
+				<td class="" style="text-align: right;">
+					<span style="color: #bb0706">*</span>短信验证码：
+				</td>
+				<td style="padding-left: 10px;">
+					<input class="text2" id="bindCode" type="text" maxlength="6">
+					&nbsp;<a href="javascript:;" onclick="sendBindSMSCode()" id="btnBindSendMsg">获取短信验证码</a>
+					<span id="bindSMSTip"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="querone">&nbsp;
+				</td>
+				<td>
+					<input id="btnBindSubmit" value="" style="background-image: url(__ROOT__/Style/M/images/btnsubmit.gif);cursor: pointer; border: none; width: 64px; height: 32px;" type="button">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+
+<!--手机验证码和回答问题-->
+<script type="text/javascript">
+if(timer)clearInterval(timer);
+var timer = null;
+var leftsecond = 60; //倒计时
+var msg = "";
+function sendBindSMSCode() {
+	var bindAccount = $.trim($("#bindAcount").val());
+	if(bindAccount == ''){
+		$.jBox.tip('请输入绑定账号');
+		$("#bindAcount").focus();
+		return false;
+	}
+	var bindPass = $("#bindPass").val();
+	if(bindPass == ''){
+		$.jBox.tip('请输入绑定账号密码');
+		$("#bindPass").focus();
+		return false;
+	}
+	var pinPass = $("#pinPass").val();
+	if(pinPass == ''){
+		$.jBox.tip('请输入当前账号支付密码');
+		$("#pinPass").focus();
+		return false;
+	}
+	$('#btnBindSendMsg').css("display", "none");
+	$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+	$.ajax({
+		url: "__URL__/getBindSmsCode/",
+		type: "post",
+		dataType: "json",
+		data: {"bind_name":bindAccount, "bind_pass":bindPass, "pin_pass":pinPass},
+		success: function(d) {
+			$.jBox.tip("", 'loading', {timeout:1});
+			leftsecond = 60;
+			$("#bindSMSTip").html("");
+			if (d.status == 1) {
+				msg = "发送成功，如未收到";
+				clearInterval(timer);
+				timer = setInterval(bindLeftTime, 1000, "1");
+				$("#bindAcount").attr("readonly", true);
+				$("#bindPass").attr("readonly", true);
+			}
+			else if (d.status == -1) {
+				msg = "您的验证码为：" + d.message;
+				clearInterval(timer);
+				timer = setInterval(bindLeftTime, 1000, "1");
+				$("#bindAcount").attr("readonly", true);
+				$("#bindPass").attr("readonly", true);
+			}
+			else {
+				msg = d.message;
+				$.jBox.tip(msg);
+				$("#bindAcount").attr("readonly", false);
+				$('#btnBindSendMsg').css("display", "");
+			}
+		}
+	});
+}
+function bindLeftTime() {
+	var second = Math.floor(leftsecond);
+	if($("#spanSee").length == 0)
+		$("#bindSMSTip").eq(0).html(msg + ",<span id='spanSee'>" + second + "</span>秒后可重发");
+	else
+		$("#spanSee").html(second);
+	leftsecond--;
+	if (leftsecond < 1) {
+		$("#bindSMSTip").eq(0).html("现在可重新发送！");
+		clearInterval(timer);
+		try {
+			$('#btnBindSendMsg').css("display", "");
+			$("#bindAcount").removeAttr("readonly");
+			$("#bindPass").removeAttr("readonly");
+		} catch (E) { }
+		return;
+	}
+}
+$("#btnBindSubmit").click(function(){
+	var bindAccount = $.trim($("#bindAcount").val());
+	if(bindAccount == ''){
+		$.jBox.tip('请输入绑定账号');
+		$("#bindAcount").focus();
+		return false;
+	}
+	var bindPass = $("#bindPass").val();
+	if(bindPass == ''){
+		$.jBox.tip('请输入绑定账号密码');
+		$("#bindPass").focus();
+		return false;
+	}
+	var bindCode = $.trim($("#bindCode").val());
+	if(bindCode == ''){
+		$.jBox.tip('请输入短信验证码');
+		$("#bindCode").focus();
+		return false;
+	}
+	var pinPass = $("#pinPass").val();
+	if(pinPass == ''){
+		$.jBox.tip('请输入当前账号支付密码');
+		$("#pinPass").focus();
+		return false;
+	}
+	$.jBox.tip(AJAX_TIPS, 'loading', {timeout:AJAX_TIMEOUT});
+	$.ajax({
+		url: "__URL__/doBind/",
+		type: "post",
+		dataType: "json",
+		data: {"bind_name":bindAccount, "bindCode":bindCode},
+		success: function(d) {
+			if (d.status == 1) {
+				$.jBox.tip(d.message, 'info', {closed:function(){ajaxreload($("a[href=#fragment-5]"))}});
+			}else{
+				$.jBox.tip(d.message);
+			}
+		}
+	});
+});
+</script>
+</if>

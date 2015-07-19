@@ -1,0 +1,1 @@
+<?php	return array ( 'stmp' => array ( 'user' => 'kefu@yintt.cn', 'pass' => 'yintt123', 'server' => 'smtp.exmail.qq.com', 'port' => '25', 'personal' => '银通泰', ), 'sms' => array ( 'user' => 'admin', 'pass' => 'ytt45689', 'subuser' => '', 'subpass' => '', ), );?>

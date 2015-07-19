@@ -1,0 +1,78 @@
+#header{ width:1000px; height:182px; margin-top:10px;}
+#headertop{ height:90px; width:1000px;}
+.logo{ width:200px; height:90px; float:left;}
+.clearfix{ *zoom:1;}
+.clearfix:after {
+	content:".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+	font-size:0;
+}
+.diqu{ width:106px; padding:10px 9px 0 9px; float:left; height:20px; z-index:13}
+.csite{background:url(../images/icon.png) no-repeat right -334px; height:25px; line-height:25px; float:left; position:relative; z-index:11; cursor:pointer}
+.csite span{background:url(../images/icon.png) no-repeat -203px -55px; padding:0px 15px 0px 5px; display:block; height:25px; line-height:25px}
+.sitelist{width:450px; display:none; position:relative; z-index:10; float:left; border:2px solid #EFD97C; margin-top:-2px; background:#FFFFFF; padding:20px 5px}
+.closeSubsite{display:none;position:absolute; right:-9px; top:-9px;display:block; width:19px; height:19px;background:url(../images/icon.png) no-repeat -177px -61px; cursor:pointer}
+#headertop .hover .csite{background-position:right -360px}
+#headertop .hover .csite span{background-position:-203px -30px}
+#headertop .hover .sitelist{display:block}
+#headertop .hover .closeSubsite{display:block}
+.sitelist li{float:left; text-align:left; width:80px; overflow:hidden; height:20px; line-height:20px}
+
+.ggao{ width:486px; height:90px; float:left;}
+.ggao01{ width:486px; height:67px; margin-bottom:3px;}
+.ggao02{ background:url(../images/bjkang01.jpg) no-repeat; width:484px; height:20px; text-align:right; font-weight:bold; color:#000000; line-height:20px;}
+.ggao02 span{ padding:0 5px; overflow:hidden;}
+.gjhezuo{ width:170px; float:right; height:62px; text-align:center; padding:10px 0;}
+
+/*������ʼ*/
+#nav .ul_ll, #nav .ul_rr{ background:url(../images/beijin/taohangbj.jpg) no-repeat;}
+#nav{ background:url(../images/beijin/taohangbj.jpg) 0 -98px  repeat-x; width:984px; height:70px; margin-top:10px; padding: 0 8px; position:relative;}
+#nav .ul_ll {
+    background-position:-1px -8px;
+    left: 0;
+}
+#nav .ul_rr {
+    background-position: -90px -8px;
+    right: 0;
+}
+#nav .ul_ll, #nav .ul_rr {
+    display: block;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    width: 8px;
+}
+#nav ul{ width:900px; margin:0 auto; height:42px;}
+#nav li{ float:left;}
+#nav li a{ width:75px; height:42px; font-size:14px; line-height:42px; text-align:center; font-weight:bold; display:block;}
+
+#nav li a:hover{color:#FFFFFF; background:url(../images/xbg.gif) no-repeat left top; width:108px}
+#nav li a.hover{color:#FFFFFF; background:url(../images/xbg.gif) no-repeat left top; width:108px}
+#nav .ss span{ height:42px; font-size:12px; line-height:42px; text-align:center; font-weight:bold; display:block; padding:0px 5px; cursor:pointer; width:80px}
+#nav .ss span:hover{ color:#FFFFFF;background:#BA0000;}
+
+#nav .miannav{ width:800px; margin:0 auto; height:28px; font-size:12px; color:#FFFFFF; }
+#nav .miannav a{ margin:0 2px; line-height:28px; color:#FFFFFF; font-weight:600;}
+
+/*��������*/
+/*ͷ������*/
+
+#footer{ width:1000px; height:90px; margin-top:20px;}
+.footer_a{ height:32px; background:url(../images/beijin/dibubeijin.jpg) repeat-x 0 -68px; width:984px; padding:0 8px; position:relative; text-align:center; line-height:32px;}
+.footer_a a{ margin:0 5px; color:#565555;}
+.footer_a a:hover{ color:#FF6600;}
+.foot_ll, .foot_rr{ background:url(../images/beijin/dibubeijin.jpg) no-repeat; height:32px; width:8px; position:absolute;}
+.foot_ll {
+    background-position: left 0;
+    left: 0;
+    top: 0;}
+.foot_rr {
+    background-position: right 0;
+	right: 0;
+    top: 0;}
+
+.footer_b{ width:1000px; margin-top:15px; text-align:center;}

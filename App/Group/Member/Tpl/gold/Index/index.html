@@ -1,0 +1,159 @@
+<include file="Public:_header_common"/>
+<title>我的账户-- {$glo.web_name}</title>
+<!--{$uclogin}-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/JQtip/tip-yellowsimple/tip-yellowsimple.css" />
+<SCRIPT language="javascript" src="__ROOT__/Style/JQtip/jquery.poshytip.min.js" type="text/javascript"></SCRIPT>
+<include file="Public:_header_main" />
+  <div id="content_us">
+   <include file="Public:_left" />
+   <div id="us_r">
+    <!-- Right -->
+     <div id="ush_h">
+      <h3>您好，{:session('u_user_name')}</h3>
+      <div class="mes_ico2"></div>
+      <a href="__APP__/member/msg#fragment-1">您有<span>{:getMsgCount($UID,false)}</span>条新消息</a>
+      <p>上次登录时间：{$login_info.add_time|date='Y-m-d H:i:s',###}</p>
+      <p>上次登录IP：{$login_info.ip}&nbsp;&nbsp;&nbsp;</p>
+     </div>
+     
+     <div id="att">
+      <p>认证情况：</p>
+      <div class="rate_att">
+	  <if condition="$rate eq 0"><img src="__ROOT__/Style/gold/pic/user_00.gif" width="103" height="11" alt="" /></if>
+      <if condition="$rate eq 1"><img src="__ROOT__/Style/gold/pic/user_17.gif" width="103" height="11" alt="" /></if>
+      <!-- <if condition="$rate eq 2"><img src="__ROOT__/Style/gold/pic/user_32.gif" width="103" height="11" alt="" /></if> -->
+      <if condition="$rate eq 2"><img src="__ROOT__/Style/gold/pic/user_50.gif" width="103" height="11" alt="" /></if>
+     <!--  <if condition="$rate eq 4"><img src="__ROOT__/Style/gold/pic/user_67.gif" width="103" height="11" alt="" /></if> -->
+      <if condition="$rate eq 3"><img src="__ROOT__/Style/gold/pic/user_83.gif" width="103" height="11" alt="" /></if>
+      <if condition="$rate eq 4"><img src="__ROOT__/Style/gold/pic/user_100.gif" width="103" height="11" alt="" /></if>
+      </div>
+      <ul>
+      <if condition="$mstatus.id_status eq 1">
+       <li><div class="rt_1"></div>实名认证</li>
+      <else/>
+       <li><div class="rt_1ov"></div><a href="__APP__/member/verify#fragment-3">实名认证</a></li>
+      </if>
+      <if condition="$mstatus.phone_status eq 1">
+       <li><div class="rt_2"></div>手机认证</li>
+      <else/>
+       <li><div class="rt_2ov"></div><a href="__APP__/member/verify#fragment-2">手机认证</a></li>
+      </if>
+      <if condition="$memberinfo.user_leve neq 0">
+       <li><div class="rt_3"></div>VIP用户</li>
+      <else/>
+       <li><div class="rt_3ov"></div><a href="__APP__/member/vip">VIP用户</a></li>
+      </if>
+      <if condition="$mstatus.email_status eq 1">
+       <li><div class="rt_4"></div>邮箱认证</li>
+      <else/>
+       <li><div class="rt_4ov"></div><a href="__APP__/member/verify?id=1#fragment-1">邮箱认证</a></li>
+      </if>
+      <!-- <if condition="$mstatus.video_status eq 1">
+       <li><div class="rt_5"></div>视频认证</li>
+      <else/>
+       <li><div class="rt_5ov"></div><a href="javascript:void(0)" onclick="videoverify();">视频认证</a></li>
+      </if>
+      <if condition="$mstatus.face_status eq 1">
+       <li><div class="rt_6"></div>现场认证</li>
+      <else/>
+       <li><div class="rt_6ov"></div><a href="javascript:void(0)" onclick="faceverify();">现场认证</a></li>
+      </if> -->
+      </ul>
+     </div>
+     
+     <div class="us_rh">
+      <ul>
+       <li class="cen">账户安全</li>
+      </ul>
+     </div>
+     <div class="us_rb1">
+      <p>真实姓名：{$memberdetail.real_name|default="<span>还未验证</span>"}<if condition="$mstatus.id_status neq '1'"><a href="__APP__/member/verify#fragment-3">[马上验证]</a><else /><samp>已验证通过</samp></if></p>
+      <p>身份证号：{$memberdetail.idcard|hidecard=###,1,"<span>还未验证</span>"}<if condition="$mstatus.id_status neq '1'"><a href="__APP__/member/verify#fragment-3">[马上验证]</a><else /><samp>已验证通过</samp></if></p>
+      <p>登录密码：<span class="yellow">安全度中</span><a href="../member/user#fragment-2">[修改密码]</a></p>
+      <p>安全问题：<if condition="$mstatus.safequestion_status neq '1'"><span>还未设置</span><a href="__APP__/member/verify#fragment-7">[马上设置]</a><else/><samp>已设置</samp><a href="__APP__/member/safe#fragment-2">[马上修改]</a></if></p>
+      <p>手机号码：{$memberinfo.user_phone|hidecard=###,2,"<span>还未验证</span>"}<if condition="$mstatus.phone_status neq '1'"><a href="__APP__/member/verify#fragment-2">[马上验证]</a><else/><samp>已验证通过</samp></if></p>
+      <p>电子邮箱：{$memberinfo.user_email|default="<span>还未验证</span>"}<if condition="$mstatus.email_status neq '1' "><a href="__APP__/member/verify#fragment-1">[马上验证]</a><else/><samp>已验证通过</samp></if></p>
+     </div>
+     
+     <div class="us_rh">
+      <ul>
+       <li class="cen"><a href="javascript:void(0)">资金信息</a></li>
+       <li class="usrhDiv"></li>
+      </ul>
+     </div>
+     <div class="us_rb2">
+      <div class="us_rb2_upper">
+       <h4>账户总额 ：<span title="账户总额=可用余额+冻结总额+待收总额" class="xtitle">{:Fmoney(getFloatvalue($minfo['account_money']+$minfo['money_collect']+$minfo['money_freeze'],2))}</span></h4>
+       <input type="button" class="rb2_but1" value="投&nbsp;资" onclick="window.location.href='__APP__/invest/index.html'" />
+       <input type="button" class="rb2_but2" value="充&nbsp;值" onclick="window.location.href='__APP__/member/charge#fragment-1'" />
+       <input type="button" class="rb2_but2" value="提&nbsp;现" onclick="window.location.href='__APP__/member/withdraw#fragment-1'" />
+      </div>
+      <div class="us_rb2_lower">
+       <p>可用余额<font class="xtitle" title="可以直接使用的金额">[?]</font>：<span>{$minfo.account_money|Fmoney=###}</span></p>
+       <p>冻结总额<font class="xtitle" title="冻结总额是您当前暂时不能使用的金额，冻结总额包括投标冻结、提现冻结">[?]</font>：<span>{$minfo.money_freeze|Fmoney=###}</span></p>
+       <p>已赚利息：<span>{$capitalinfo.tj.earnInterest|Fmoney=###}</span></p>
+       <p>投资总额：<span>{$capitalinfo.tj.jcze|Fmoney=###}</span></p>
+       <p>已收总额：<span>{$capitalinfo.tj.ysze|Fmoney=###}</span></p>
+       <p>待收总额<font class="xtitle" title="是您借款给别人但还没收回的本息总额,待收总额=待收本金总额+待收利息">[?]</font>：<span>{$minfo.money_collect|Fmoney=###}</span></p>
+       <p>待收利息：<span>{$capitalinfo.tj.willgetInterest|Fmoney=###}</span></p>
+       <p>投标奖励：<span>{$toubiaojl|Fmoney=###}</span></p>
+       <p>推广奖励：<span>{$tuiguangjl|Fmoney=###}</span></p>
+       <p>最近待收金额：<span>{:Fmoney(getFloatvalue($lastInvest['capital']+$lastInvest['interest'],2))}</span></p>
+       <p>最近待收时间：{$lastInvest.gettime|mydate="Y-m-d",###,'<span>无待收</span>'}<a href="__APP__/member/tendout#fragment-3">[明细]</a></p>
+       <p>已还总额：<span>{$capitalinfo.tj.yhze|Fmoney=###}</span></p>
+       <p>待还总额：<span>{$capitalinfo.tj.dhze|Fmoney=###}</span></p>
+       <p>最近待还金额：<span>{:Fmoney(getFloatvalue($lastBorrow['borrow_money']+$lastBorrow['borrow_interest'],2))}</span></p>
+       <p>最近待还时间：{$lastBorrow.gettime|mydate="Y-m-d",###,'<span>无待收</span>'}<a href="__APP__/member/borrowin#fragment-3">[明细]</a></p>
+       <p>借款信用额度：<span>{$minfo.credit_limit|Fmoney=###}</span></p>
+       <p>可用信用额度：<span>{$minfo.credit_cuse|Fmoney=###}</span></p>
+       <p>借款担保总额：<span>{$minfo.borrow_vouch_limit|Fmoney=###}</span></p>
+       <p>可用借款担保额度：<span>{$minfo.borrow_vouch_cuse|Fmoney=###}</span></p>
+       <p>投资担保总额：<span>{$minfo.invest_vouch_limit|Fmoney=###}</span></p>
+       <p>可用投资担保额度：<span>{$minfo.invest_vouch_cuse|Fmoney=###}</span></p>
+      </div>
+     </div>
+     
+    <!-- Right // -->
+   </div>
+  </div>
+<script type="text/javascript">
+<!--
+function displayDiv(num) {
+	var obj = document.getElementById("udiv" + num);
+	var obja = document.getElementById("ulink" + num);
+	var objtop = document.getElementById("utop" + num);
+	var objbottom = document.getElementById("ubottom" + num);
+
+	if (obj.style.display == 'none') {
+		objbottom.style.display = '';
+		obj.style.display = '';
+		objtop.style.backgroundImage = "url(__ROOT__/Style/M/images/account/uctop.jpg)";
+		obja.innerHTML = "-";
+	}
+	else {
+		obj.style.display = 'none';
+		objbottom.style.display = 'none';
+		objtop.style.backgroundImage = "url(__ROOT__/Style/M/images/account/ucall.jpg)";
+		obja.innerHTML = "+";
+	}
+}
+$(document).ready(function(){
+	$(".us_rh:eq(1) ul li[class!='usrhDiv']").click(function(){
+		$(".us_rh:eq(1) ul li[class!='usrhDiv']").removeClass("cen");
+		$(this).addClass("cen");
+	});
+	/*$(function(){
+		$('.xtitle').poshytip({
+			className: 'tip-yellowsimple',
+			showOn: 'hover',
+			alignTo: 'target',
+			alignX: 'center',
+			alignY: 'top',
+			offsetX: 0,
+			offsetY: 5
+		});
+	});*/
+});
+//-->
+</script>
+<include file="./App/Group/Home/Tpl/gold/Public/_footer.html" group="Home" />

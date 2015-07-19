@@ -1,0 +1,266 @@
+﻿
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+ 
+<link href="__ROOT__/Style/gold/images/favicon.ico" rel="icon" type="image/png"> 
+ 
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+/*                 var topMain=75
+   var navaa=$(".internal");
+   $(window).scroll(function(){
+       if ($(window).scrollTop()>topMain){
+           navaa.addClass("navaa_scroll");
+       }
+       else
+       {
+           navaa.removeClass("navaa_scroll");
+       }
+   }); */
+	setCurUrl("#topLower ul li[for='first'] a.af");
+});
+//-->
+</script>
+
+<script type="text/javascript">
+<!--
+function videoverify(){
+	$.jBox.confirm("申请视频认证后会直接从帐户扣除认证费用{$glo.fee_video|default=0}元，然后客服会联系您进行认证。<br/><font style='color:red'>确定要申请认证吗?</font>", "视频认证", dovideo, { buttons: { '确认申请': true, '暂不申请': false} });
+}
+function dovideo(v, h, f) {
+	if (v == true){
+        $.ajax({
+            url: "__APP__/common/video",
+            data: {},
+            timeout: 5000,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            success: function (d, s, r) {
+              	if(d){
+					if(d.status==1) $.jBox.tip(d.message, 'success');
+					else $.jBox.tip(d.message, 'fail');
+				}
+            }
+        });
+	}
+	return true;
+};
+// 自定义按钮
+function faceverify(){
+	$.jBox.confirm("<font style='color:red'>确定要申请现场认证吗?</font>", "现场认证", doface, { buttons: { '确认申请': true, '暂不申请': false} });
+}
+function doface(v, h, f) {
+	if (v == true){
+        $.ajax({
+            url: "__APP__/common/face",
+            data: {},
+            timeout: 5000,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            success: function (d, s, r) {
+              	if(d){
+					if(d.status==1) $.jBox.tip(d.message, 'success');
+					else $.jBox.tip(d.message, 'fail');
+				}
+            }
+        });
+	}
+	return true;
+};
+// 自定义按钮
+function getdoamin(){
+	var darr = document.domain.split(".");
+	if(darr.length>2){
+		var domain = darr[darr.length-2]+"."+darr[darr.length-1];	
+	}else{
+		var domain = document.domain;	
+	}
+	return domain;//domain;
+}
+function qiehuan(num,n){
+		for(var id = 0;id<n;id++)
+		{
+			if(id==num)
+			{
+				document.getElementById("qh_con"+id).style.display="block";
+				document.getElementById("mynav"+id).className="nav_on";
+			}
+			else
+			{
+				document.getElementById("qh_con"+id).style.display="none";
+				document.getElementById("mynav"+id).className="";
+			}
+		}
+	}
+
+function show(){
+	document.getElementById("xinlang").style.display="block";
+	//alert(document.getElementById("div").style.display)
+}
+function hidden(){
+	document.getElementById('xinlang').style.display='none';
+	//alert(document.getElementById("div").style.display)
+}
+
+function HideDiv(pName,evt){evt = evt || window.event;var obj = evt.toElement;while( obj!=null && obj.id!=pName ){obj = obj.parentElement;} if( obj==null ){ document.getElementById("xinlang").style.display="none";} }
+//-->
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<body>
+
+<style>
+.kefu{margin: 0 auto;
+width: 1024px;
+height: auto;
+overflow: hidden;}
+#qq{
+width:70px;
+background:url('__ROOT__/Style/M/images/16.png') no-repeat;
+}
+.col-contact{float:right;width:230px;text-align:center}
+.col-contact p.phone{margin:7px 0 5px 0;font-size:18px;line-height:1;color:#0074b1}
+
+</style>
+
+
+ <!-- Top -->
+<div id="topBanner">
+	<div class="kefu">
+  	<div style="margin-top:0px;float:left;">
+    	<div class="col-contact">
+        	<p class="phone">热线电话：0755-29056888</p>
+		</div>
+	</div>
+	<div style="float:right;">
+    <ul>
+		<li><a href="__APP__/help/faq.html">帮助中心</a></li>
+		<li class="divide"></li>
+		<li><a href="__APP__/service/index.html" target="_blank">在线客服</a></li>
+		<li class="divide"></li>
+		<li><a href="__APP__/indexs/xssl.html">新手指引</a></li>
+		<li class="divide"></li>
+		<if condition="empty($UID)">
+			<li><input type="button" class="qqBut" value="QQ 登录" onClick="javascript:window.location.href='/member/oauth/qq/'"></li>
+      		<!--<li class="divide"></li>
+     		<li><input type="button" class="sinaBut" value="微博登录" onclick="javascript:window.location.href='/member/oauth/sina'"></li>-->
+    		<li class="divide"></li>
+			<li><a href="__APP__/member/common/login/">登录</a></li>
+			<li class="divide"></li>
+			<li><a href="__APP__/member/common/register">立即注册</a></li>
+		<else/>
+     		<li class="pull"><a href="__APP__/member/common/actlogout">[退出]</a></li>
+			<li class="divide"></li>
+			<li class="pull">欢迎你,<a href="__APP__/member/index.html">{:session('u_user_name')}</a>&nbsp;&nbsp;&nbsp;<a href="__APP__/member/msg#fragment-1">我的消息<span class="ui-nav-msgcount rrdcolor-lightblue-bg">{:getMsgCount($UID)}</span></a></li>
+		</if>
+	</ul>
+	</div>
+	</div>
+</div>
+    
+ 
+ <!----菜单---->
+  <div id="topLower" >
+
+ 
+   <div class="internal">
+   
+    <div id="logo"><a href="__APP__/"><img src="__ROOT__/Style/gold/images/logo.png" width="235" height="90" alt="#" /></a></div>
+ 
+	<div style="padding-top:35px">
+    <ul>
+	<php>$typelist = getTypeList(array('type_id'=>0,'limit'=>10)); foreach($typelist as $vtype=> $va){</php>
+     	<li for="first"><a class="af" href="{$va.turl}" <php>if($va["is_blank"])echo 'target="_blank"';</php>>{$va.type_name}</a>
+        
+      <!-- <span class="icon-dd"></span>-->
+        
+        
+		<php>$sontypelist = getTypeList(array('type_id'=>$va['id'],'limit'=>10,'notself'=>true)); if(count($sontypelist)>0) echo "" ;if(count($sontypelist)>0) 
+		echo "<ol style='display:none'>";
+		
+		foreach($sontypelist as $sonvtype){</php>
+		<li><a href="{$sonvtype.turl}" <php>if($sonvtype["is_blank"])echo 'target="_blank"';</php>>{$sonvtype.type_name}</a></li>
+		<php>}
+		if(count($sontypelist)>0) echo '</ol>';
+		</php>
+     	</li>
+		
+	<php>}</php>
+	
+	
+	
+	
+	
+	
+	
+	</ul>
+	</div>
+
+	
+	
+   </div>
+  </div>
+ <!-- Top // -->
+  
+  
+  
+  
+  
+  
+  
+ <!-- Top // -->
+ 
+ <script type="text/javascript">
+function left(mainStr, lngLen) {
+	if (lngLen > 0) {
+		return mainStr.substring(0, lngLen)
+	} else {
+		return null
+	}
+}
+function right(mainStr, lngLen) {
+	// alert(mainStr.length) 
+	if (mainStr.length - lngLen >= 0 && mainStr.length >= 0
+			&& mainStr.length - lngLen <= mainStr.length) {
+		return mainStr.substring(mainStr.length - lngLen,
+				mainStr.length)
+	} else {
+		return null
+	}
+}
+function mid(mainStr, starnum, endnum) {
+	if (mainStr.length >= 0) {
+		return mainStr.substr(starnum, endnum)
+	} else {
+		return null
+	}
+	//mainStr.length 
+}
+$("#topLower ul li[for='first'], #topLower ul li[for='first'] ol").on("mouseover",function(){
+	$(this).find("ol").css("display","");
+});
+$("#topLower ul li[for='first'], #topLower ul li[for='first'] ol").on("mouseout",function(){
+	$(this).find("ol").css("display","none");
+});
+$(document).ready(function(){
+	$("#top_us ul li[for='first'], #top_us ul li[for='first'] ol").on("mouseover",function(){
+		$(this).find("ol").css("display","");
+	});
+	$("#top_us ul li[for='first'], #top_us ul li[for='first'] ol").on("mouseout",function(){
+		$(this).find("ol").css("display","none");
+	});
+ 	$("#top_us ul li ol li a").each(function(){
+		$(this).each(function(){
+			if($(this).text().length >= 6){
+				$(this).parent().parent().css("width", "100px");
+				return false;
+			}
+		});
+	});
+});
+</script>
+ 
+ 
+

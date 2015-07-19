@@ -1,0 +1,36 @@
+<include file="Public:_header_common" />
+<title>我的账户-- {$glo.web_name}</title>
+<include file="Public:_header_main" />
+  <div id="content_us">
+   <include file="Public:_left" />
+   <div id="us_r">
+    <!-- Right -->
+     
+   	 <include file="Public:_right_top" />
+     
+     <div class="us_rh" id="rotate">
+      <ul>
+       <li><a href="#fragment-1" ajax_href="__URL__/summary/" id="mx1">担保总表</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-2" ajax_href="__URL__/vouching/" id="mx2">竞标中的担保</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-3" ajax_href="__URL__/vouchrepaymenting/" id="mx3">还款中的担保</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-4" ajax_href="__URL__/vouchrepaymented/" id="mx4">已还完的担保</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-5" ajax_href="__URL__/vouchfail/" id="mx5">失败的担保</a></li>
+       <li class="usrhDiv"></li>
+      </ul>
+     </div>
+     <div class="us_rb4">
+     	<div id="fragment-1" style="display:none"></div>
+     	<div id="fragment-2" style="display:none"></div>
+     	<div id="fragment-3" style="display:none"></div>
+     	<div id="fragment-4" style="display:none"></div>
+     	<div id="fragment-5" style="display:none"></div>
+     </div>
+     
+    <!-- Right // -->
+   </div>
+  </div>
+<include file="./App/Group/Home/Tpl/gold/Public/_footer.html" group="Home" />

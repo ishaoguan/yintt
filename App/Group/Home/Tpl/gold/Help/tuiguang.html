@@ -1,0 +1,90 @@
+<include file="Public:_header_common" />
+<title>{$glo.web_name}推广系统</title>
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/art.css?{:C('APP_RES_VER')}" />
+<include file="Public:_header_main" />
+   <div id="pos">
+    <ul>
+     <li><a href="#nogo">{$glo.web_name}</a></li>
+     <li class="posDiv"></li>
+     <li><p>我要推广</p></li>
+    </ul>
+   </div>
+   
+   <div id="ext">
+    
+    <div id="ext_l">
+     <div class="us_rb5">
+     
+      <div class="us_rb5_upper">
+       <div class="us_rb5_upper_l"></div>
+       <div class="us_rb5_upper_r">
+        <h2>邀请好友送奖金</h2>
+        <p>邀请好友成功投标（不包含秒还标、净值标交易），立即送您<span>千分之2</span>的奖金，赶快行动吧。</p>
+       </div>
+      </div>
+    <if condition="session('u_id') !=''">
+      <ul>
+       <li><p>您的邀请链接：</p><input id="txt_links" type="text" class="invi_text" readonly="readonly" value="https://{:$_SERVER['HTTP_HOST']}/member/common/register?invite={:session('u_id')}" /></li>
+       <li><input type="button" class="invi_but" value="复制" id="copy_button" /></li>
+       <li><p>您的推广码：<samp>{$expand_num}</samp></p></li>
+       <li><h6>您可以通过QQ，MSN等IM工具或者微博与邮件把上面的推广码告诉您的好友。</h6></li>
+      </ul>
+    </if>
+      
+     </div>
+     <div id="ext_l_lower">
+      <h4>推广系统说明</h4>
+      <p><span>一、</span>请不要发送邀请信给不熟悉的人士,避免给别人带来不必要的困扰。</p>
+      <p><span>二、</span>请把下边的链接地址发给您的好友，这样您就成了他的上线用户。</p>
+      <p><span>三、</span>您的线下用户在网站投资（不包含秒还标、净值标交易、天标按天数/30来算奖励），立即送您他投资金额千分之 2 的奖金(依次累计)，赶快行动吧。</p>
+      <p><span>四、</span>永久有效只要他在网站投资无论何时您都可以得到奖金。</p>
+      <p><span>五、</span>奖金即时自动结算不会延时。</p>
+      <p><span>六、</span>奖金不封顶 无论线下用户投资多少您都可以拿到奖金。</p>
+      <h6>登陆陆会员账号之后，您可以看到推广的邀请链接，邀请好友成功投标后，您即可获得丰厚奖励！<br />
+现新推出会员推广号，好友在注册时填写会员推广号成功投标后，也可获得丰厚奖励！</h6>
+     </div>
+    </div>
+    <div id="ext_r">
+     <h4>推广收入排名<span>前10名</span></h4>
+     <ul>
+      <li><h6>会员名单</h6><h6>奖金贡献</h6></li>
+ 	 <volist name="list" id="vo">
+      <li><p>{$vo.user_name|hidecard=###,8}</p><p>{$vo.jiangli|default=0}</p></li>
+     </volist>
+     </ul>
+    </div>
+    
+   </div>
+<script type="text/javascript" src="__ROOT__/Style/ZeorClipboard/ZeroClipboard.js"></script>
+<script type="text/javascript" src="__ROOT__/Style/ZeorClipboard/mod_showcodes.js"></script>
+<script type="text/javascript">
+        var newTitle = '{$glo.web_name}提醒您：';
+        function copyToClipboard(obj) {
+            if (obj) {
+                var clipBoardContent = obj.value;
+                $(obj).select();
+                try {
+                    window.clipboardData.setData("Text", clipBoardContent);
+                    $.jBox.tip("您好，链接复制成功!",'info');
+                }
+                catch (e) {
+                    $.jBox.tip("您好，链接复制失败，请手动复制!",'fail');
+                }
+            }
+        }
+    	function b(f) {
+    		if(f){
+                $.jBox.tip("您好，链接复制失败，请手动复制!",'fail');
+    		}else{
+                $.jBox.tip("您好，链接复制成功!",'info');
+    		}
+    	}
+        $(function() {
+            $("#txt_links").click(function() { $(this).select(); });
+        });
+    	ZeroClipboard.setMoviePath("__ROOT__/Style/ZeorClipboard/ZeroClipboard.swf");
+        initClipBoard(1);
+</script>
+<include file="Public:_footer" /> 

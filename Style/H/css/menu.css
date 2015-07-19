@@ -1,0 +1,30 @@
+#menu_n13 {list-style-type:none; width:980px; background:#352b79; height:40px; margin:0; padding:0;}
+#menu_n13 li {float:left; padding:0; margin:0; position:relative; width:100px; height:40px; z-index:100;}
+#menu_n13 li dl {position:absolute; top:0; left:0; padding-bottom:0;}
+#menu_n13 li a, #menu_n13 li a:visited {text-decoration:none;}
+#menu_n13 li dd {display:none;}
+#menu_n13 li a:hover {border:0;}
+#menu_n13 li:hover dd, #menu_n13 li a:hover dd {display:block;}
+#menu_n13 li:hover dl, #menu_n13 li a:hover dl {padding-bottom:0;}
+#menu_n13 table {border-collapse:collapse; padding:0; margin:-1px; font-size:1em;}
+#menu_n13 dl {width: 100px; margin: 0; padding: 0;}
+#menu_n13 dt {margin:0; padding: 0; line-height:40px; border-right:1px #6255b4 solid;}
+#menu_n13 dd {margin:0; padding:0; color: #fff; text-align:left; background:#8f2439; border-top:1px #bd314c dotted;}
+#menu_n13 dt a, #menu_n13 dt a:visited {display:block; font-size:15px; font-family:"Microsoft Yahei"; font-weight:bold; color: #fff; text-align:center;}
+#menu_n13 li:hover dt a, #menu_n13 a:hover dt a {color:#ffecbd; background:#8f2439;}
+#menu_n13 dd a, #menu_n13 dd a:visited { color:#fff; padding:6px 0; text-decoration:none; display:block; text-align:center; font-size:13px;}
+#menu_n13 dd a:hover { color:#ffd497; background:#c43451;}
+#menu_n13 b {display:block; overflow:hidden; height:1px;}
+#menu_n13 .cenN13{background:#8f2439;}
+#menu_n13 .ge1{width:145px;}
+/* #menu_n13 b.p1 {background:#08c; margin:0 5px;}
+#menu_n13 b.p2 {background:#d4d4d4; border:2px solid #08c; border-width:0 2px; margin:0 3px;}
+#menu_n13 b.p3 {background:#d4d4d4; margin:0 2px; border:1px solid #08c; border-width:0 1px;}
+#menu_n13 b.p4 {height:2px; background:#d4d4d4; margin:0 1px; border:1px solid #08c; border-width:0 1px;}
+#menu_n13 b.p5 {background:#08c; margin:0 5px;}
+#menu_n13 b.p6 {background:#08c; margin:0 3px;}
+#menu_n13 b.p7 {background:#08c; margin:0 2px;}
+#menu_n13 b.p8 {height:2px; background:#08c; margin:0 1px;}
+#menu_n13 li:hover b.p2, #menu_n13 a:hover b.p2 {background:#fff;}
+#menu_n13 li:hover b.p3, #menu_n13 a:hover b.p3 {background:#f0f0f0;}
+#menu_n13 li:hover b.p4, #menu_n13 a:hover b.p4 {background:#e8e8e8;} */

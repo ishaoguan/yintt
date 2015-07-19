@@ -1,0 +1,39 @@
+<include file="_header_common" />
+<title>短信发送</title>
+</head>
+
+<body>
+<div style="text-align:center;color:#2ee73b;margin:10px;"><php>echo $msg;</php></div>
+<form name="f1" method="post" action="__URL__/doMassSend">
+  <table align="center" width="75%" border="1">
+    <tr> 
+      <td bgcolor="#E9F0F6" width="24%"><div align="center">用户登陆名称 </div></td>
+      <td width="76%"> <input name="name" type="text" size="30" value="{$smsuid}"> </td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#E9F0F6" >用户登录密码 </td>
+      <td><input name="pwd" type="password" size="10" value="{$smspwd}"></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#E9F0F6" >目标手机号</td>
+      <td><input name="dst" type="text" size="80"></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#E9F0F6" >发送短信内容</td>
+      <td><textarea name="msg" cols="50" rows="5"></textarea></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#E9F0F6" >定时时间</td>
+      <td><input name="time" type="text" size="17">
+        <font color="#FF0000">（格式: YYYYMMDDHHMM）</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#E9F0F6"  align="center" colspan="2">
+	    <input type="submit" name="send"  value="发送">
+        <input type="reset"     name="reset" value="重填">
+	  </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

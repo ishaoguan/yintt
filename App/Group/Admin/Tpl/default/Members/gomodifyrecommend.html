@@ -1,0 +1,31 @@
+<tagLib name="htmlA" />
+<div class="so_main">
+<div class="page_tit">分配会员专属客服</div>
+<div class="form2">
+	<form method="post" action="__URL__/doModifyRecommend" onsubmit="return subcheck();">
+	<input type="hidden" name="id" value="{$id}" />
+	<div id="tab_1">
+	
+	<dl class="lineD"><dt>会员用户名：</dt><dd>{$member.user_name}</dd></dl>
+	<dl class="lineD"><dt>会员真实姓名：</dt><dd>{$member.real_name}</dd></dl>
+	<dl class="lineD"><dt>现有推荐人：</dt><dd>{$member.recommend_name}</dd></dl>
+	<dl class="lineD"><dt>修改后推荐人推广码：</dt><dd><htmlA:input id="expand_num" style="width:50px;"/></dd></dl>
+	</div><!--tab1-->
+	
+	<div class="page_btm">
+	  <input type="submit" class="btn_b" value="确定" />
+	</div>
+	</form>
+</div>
+</div>
+<script type="text/javascript">
+<!--
+subcheck = function(){
+	if($("#expand_num").val()==""){
+		alert("请输入修改后推荐人推广码！");
+		return false;
+	}
+	return true;
+}
+//-->
+</script>

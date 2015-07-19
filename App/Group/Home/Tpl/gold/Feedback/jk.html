@@ -1,0 +1,64 @@
+<include file="Public:_header_common" />
+<title>{$glo.web_name}-反馈</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/art.css?{:C('APP_RES_VER')}" />
+<include file="Public:_header_main" />
+<script type="text/javascript">
+        var newTitle = '{$glo.web_name}提醒您：';
+        $(function() {
+            $("#btn_send").click(
+            function() {
+				if(parseInt($("#money").val())>5000 ){
+				
+				}else{
+                    setErr("借款金额错误，最少借款大于 5000 才能通过此通道借款！");
+                    return false;
+				}
+                if ($("#sel_type").val() < 1) {
+                    setErr("请选择类别！");
+                    return false;
+                }
+                if ($("#txt_callName").val().length < 1) {
+                    setErr("请填写您的称呼！");
+                    return false;
+                }
+                if ($("#txt_emailAddress").val().length < 1) {
+                    setErr("请填写您的联系方式！");
+                    return false;
+                }
+                if ($("#txt_check").val().length < 1) {
+                    setErr("请填写验证码！");
+                    return false;
+                }
+                return true;
+            });
+        });
+
+        function setErr(msg) {
+            $.jBox.tip(msg,'tip');
+        } 
+    </script>
+   <div id="pos">
+    <ul>
+     <li><a href="__APP__/">xxx</a></li>
+     <li class="posDiv"></li>
+     <li><p>快速借款申请</p></li>
+    </ul>
+   </div>
+   
+<form name="feedback" method="post" action="__URL__/save">
+   <div id="fast">
+    
+    <h2><span>快</span>速借款通道</h2>
+    <h6>急需钱，我帮您！XXX助您轻松获取无抵押贷款！门槛低，到账快！30秒就能完成网上预约，赶快行动吧</h6>
+    <ul>
+     <li><p><span>*</span>所需资金：</p><input type="text" class="fast_tex1" name="money" id="money" value="" /><input type="hidden" name="type" id="sel_type" value="7" /><h5>元</h5></li>
+     <li><p><span>*</span>怎么称呼您：</p><input type="text" class="fast_tex2" id="txt_callName" name="name" /></li>
+     <li><p><span>*</span>您的联系方式：</p><input type="text" class="fast_tex2" id="txt_emailAddress" name="contact"/></li>
+     <li><p>简单说明：</p><textarea maxlength="2000" class="fast_tex3" id="txt_content" name="msg"></textarea></li>
+     <li><p><span>*</span>验证码：</p><input type="text" class="fast_tex1" id="txt_check" name="txt_check"/><img onclick="this.src=this.src+'?t='+Math.random()" id="imVcode" alt="点击换一个校验码" src="__APP__/member/Common/verify" width="98" height="28" /><h5>不区分大小写，看不清楚<a href="javascript:document.getElementById('imVcode').onclick();">换一张</a>！</h5></li>
+     <li><p>&nbsp;</p><input type="submit" class="fast_but" value="提交申请" id="btn_send" name="btn_send"/></li>
+    </ul>
+   
+   </div>
+</form>
+<include file="Public:_footer" />

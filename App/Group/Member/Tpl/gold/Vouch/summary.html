@@ -1,0 +1,31 @@
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	尊敬的{$glo.web_name}用户，以下是您在{$glo.web_name}作为担保人的担保情况总表，敬请仔细审阅 </p>
+</div>
+<table width="758" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+  <th>项目</th>
+  <th>担保的金额</th>
+  <th>说明</th>
+ </tr>
+ <tr>
+  <td>竞标中的担保</td>
+  <td><span>￥{$vouching.vouch_money|default="0.00"}/{$vouching.num|default="0"}标</span><a href="javascript:void(0)" onclick="$('#mx2').click();">[列表]</a></td>
+  <td>目前正在投标中，尚未确定投资的金额</td>
+ </tr>
+ <tr>
+  <td>还款中的担保</td>
+  <td><span>￥{$vouchrepaymenting.vouch_money|default="0.00"}/{$vouchrepaymenting.num|default="0"}标</span><a href="javascript:void(0)" onclick="$('#mx3').click();">[列表]</a></td>
+  <td>目前已经担保成功，借款人正在还款的标</td>
+ </tr>
+ <tr>
+  <td>完成的担保</td>
+  <td><span>￥{$vouchrepaymented.vouch_money|default="0.00"}/{$vouchrepaymented.num|default="0"}标</span><a href="javascript:void(0)" onclick="$('#mx4').click();">[列表]</a></td>
+  <td>借款人已经还款完成，担保圆满结束的标</td>
+ </tr>
+ <tr>
+  <td>失败的担保</td>
+  <td><span>￥{$vouchbreak.capital|default="0.00"}/{$vouchbreak.num|default="0"}标</span><a href="javascript:void(0)" onclick="$('#mx5').click();">[列表]</a></td>
+  <td>参与了担保，但是因为种种原因被担保的标没能正常进行</td>
+ </tr>
+</table>

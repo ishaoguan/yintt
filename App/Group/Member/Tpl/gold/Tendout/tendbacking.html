@@ -1,0 +1,55 @@
+<tagLib name="htmlA" />
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	尊敬的{$glo.web_name}用户，以下是您在{$glo.web_name}的回收中的投资</p>
+</div>
+<div class="u12_clew">
+	<p>您目前回收中的投资总额是：<span class="fontred">￥{$total|default="0.00"}</span>，共<span class="fontred">{$num|default="0"}</span>笔投标。</p>
+</div>
+<table width="758" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+  <th>借款标号</th>
+  <th>借款标题</th>
+  <th>借入人</th>
+  <th>我的投资金额</th>
+  <th>已还本息</th>
+  <th>年化利率</th>
+  <th>已还/总期数(还款期)</th>
+  <th>合同</th>
+ </tr>
+ <volist name="list" id="vo">
+  <tr>
+	<td>{$vo.borrow_id}</td>
+	<td><a href="{$vo.borrow_id|getInvestUrl=###}" title="{$vo.borrow_name}" target="_blank">{$vo.borrow_name|cnsubstr=###,10}</a></td>
+	<td>{$vo.borrow_user}{$vo.credits|getLeveIco=###,2}</td>
+	<td>{$vo.investor_capital}</td>
+	<td>{$vo['receive_capital'] + $vo['receive_interest']}</td>
+	<td>{$vo.borrow_interest_rate}%<if condition="$vo.repayment_type eq 1">/天</if></td>
+	<td>{$vo.back|default="0"}/{$vo.total}({$vo.deadline|date="Y-m-d",###})(<a href="__URL__/tendoutdetail?id={$vo.id}" target="_blank">详情</a>)</td>
+	<td><a href="__APP__/member/agreement/downfile?id={$vo.id}" target="_blank">合同</a></td>
+  </tr>
+ </volist>
+</table>
+<div data="fragment-3" id="pager" style="float: right; text-align: right; width: 500px; padding-right: 8px;margin-right: 24px;" class="yahoo2 ajaxpagebar">{$pagebar}</div>
+
+<script type="text/javascript">
+$('.ajaxpagebar a').click(function(){
+	try{	
+		var geturl = $(this).attr('href');
+		var id = $(this).parent().attr('data');
+		var x={};
+        $.ajax({
+            url: geturl,
+            data: x,
+            timeout: 5000,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            success: function (d, s, r) {
+              	if(d) $("#"+id).html(d.html);//更新客户端竞拍信息 作个判断，避免报错
+            }
+        });
+	}catch(e){};
+	return false;
+})
+</script>

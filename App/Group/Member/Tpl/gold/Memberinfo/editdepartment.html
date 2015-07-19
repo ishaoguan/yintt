@@ -1,0 +1,48 @@
+<tagLib name="htmlA" />
+      <ul>
+       <li><p>单位名称：</p><htmlA:input id="department_name" value="{$vo.department_name}" class="u10_inputlong"/></li>
+       <li><p>电话：</p><htmlA:input id="department_tel" value="{$vo.department_tel}" class="u10_tex2"/></li>
+       <li><p>地址：</p><htmlA:input id="department_address" value="{$vo.department_address}" class="u10_inputlong"/></li>
+       <li><p>工作年限：</p><htmlA:radio id="department_year" default="1年以下|1年以下,1-3年|1-3年,3-5年|3-5年,5-10年|5-10年,10年以上|10年以上" value="key|vo.department_year" class="ord" /></li>
+       <li><p>证明人：</p><htmlA:input id="voucher_name" value="{$vo.voucher_name}" class="u10_tex2"/></li>
+       <li><p>证明人手机：</p><htmlA:input id="voucher_tel" value="{$vo.voucher_tel}" class="u10_tex2"/></li>
+      </ul>
+      <input type="button" class="u10_but" value="保存/下一步" onclick="editdepartment()"/>
+      <input type="button" class="u10_but1" value="跳过并继续" onclick="$('#xtab').find('a[data=info4]').click();"/>
+<script type="text/javascript">
+function editdepartment(){
+	p = makevar(['department_name','department_tel','department_address','voucher_name','voucher_tel','department_year']);
+	p['_tps'] = "post";
+	
+	/*var mxs = true;
+	$.each(p,function(i){
+		if(typeof p[i] == "undefined"){
+			mxs=false;
+			jBox.tip("所有项目都不能为空");	
+		}
+	});
+	if(mxs===false){
+	  jBox.tip("所有项目都不能为空");	
+	  return;
+	}*/
+
+	$.jBox.tip('提交中......','tip');
+	$.ajax({
+		url: "__URL__/editdepartment/",
+		data: p,
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip(d.message,'success');
+					$('#xtab').find('a[data=info4]').click();
+				}
+				else  $.jBox.tip(d.message,'fail');
+			}
+		}
+	});
+}
+</script>

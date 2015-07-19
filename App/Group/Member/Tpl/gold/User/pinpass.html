@@ -1,0 +1,123 @@
+<script type="text/javascript">
+function showErr_pin() {
+	$(".alertDiv_pin").css("display", "");
+}
+function clearErr_pin() {
+	$(".alertDiv_pin ul").html("");
+}
+function addErr_pin(err) {
+	$(".alertDiv_pin ul").append("<li>" + err + "</li>");
+}
+function hideErr_pin() {
+	$(".alertDiv_pin").css("display", "none");
+}
+function hasErr_pin() {
+	return $(".alertDiv_pin ul li").length > 0;
+}
+</script>
+<div class="u12_clew">
+	<p><img src="__ROOT__/Style/H/images/ministar.gif" style="margin-right: 5px;">
+	您可以通过经常性修改支付密码更好的保护您的账号安全，以避免您受到意外损失</p>
+</div>
+<div class="u12_clew">
+	<p>1、经常性修改支付密码能有效的保护您的帐号安全<br>
+	2、涉及到您的资金安全，请勿设置简单的支付密码，不要设置和其它网站相同的支付密码</p>
+</div>
+<div style="width: 746px; display: none;" class="alertDiv alertDiv_pin">
+	<ul style="display: block;">
+	</ul>
+</div>
+<table width="758" border="0" cellspacing="0" cellpadding="0" class="tabpass">
+ <tr>
+  <th>用户名：</th>
+  <td>{:session('u_user_name')}</td>
+ </tr>
+ <tr>
+  <th>请输入原支付密码：</th>
+  <td><input id="oldpassword_pin" name="oldpassword_pin" class="text2" type="password"><span class="font666">(如未修改过，则与原登陆密码相同)</span></td>
+ </tr>
+ <tr>
+  <th>请输入新支付密码：</th>
+  <td><input id="newpassword_pin" name="newpassword_pin" class="text2" type="password">
+				<span class="font666">(输入您的新支付密码)</span></td>
+ </tr>
+ <tr>
+  <th>请再输入新支付密码：</th>
+  <td><input id="newpassword_pin1" name="newpassword_pin1" class="text2" type="password">
+				<span class="font666">(再输入一次您的新支付密码)</span>
+	<a href="javascript:;" onclick="getPinPassWord()" style="font-size: 12px; text-decoration: underline;" title="单击该链接系统将会向您的验证邮箱中发送一封修改支付密码的邮件">忘记支付密码点这里</a>
+	</td>
+ </tr>
+</table>
+<input type="button" class="u4_but2" value="提交更新" onclick="UpdatePwd_pin()"/>
+<input type="hidden" id="is_third_first" value="{$is_third_first}" />
+<script type="text/javascript">
+	var newTitle = '{$glo.web_name}提醒您：';
+
+	function UpdatePwd_pin() {
+		var oldpwd = $("#oldpassword_pin").val();
+		var newspwd1 = $("#newpassword_pin").val();
+		var newspwd2 = $("#newpassword_pin1").val();
+		clearErr_pin();
+		hideErr_pin();
+		if ($("#is_third_first").val() == 0 && oldpwd == '') {
+			addErr_pin('原支付密码必须填写！');
+		}
+		if (newspwd1 == '') {
+			addErr_pin('新支付密码必须填写！');
+		}
+		if (newspwd2 == '') {
+			addErr_pin('确认新支付密码必须填写！');
+		}
+		if (newspwd2 != newspwd1) {
+			addErr_pin('两次支付密码不一致！');
+		}
+		if (hasErr_pin()) {
+			showErr_pin();
+			return false;
+		}
+		else {
+			$.ajax({
+				url: "__URL__/changepin/",
+				type: "post",
+				dataType: "json",
+				data: {"oldpwd":oldpwd,"newpwd1":newspwd1,"newpwd2":newspwd2},
+				success: function(d) {
+					if (d.status == "2") {
+						addErr_pin(d.message);
+						showErr_pin();
+						return;
+					} else if (d.status == "1") {
+						$.jBox.tip('恭喜，支付密码修改成功！','success');
+						setTimeout(function(){window.location.href = d.jumpUrl;},3000);
+					} else {
+						addErr_pin(d.message);
+						showErr_pin();
+						//$.jBox.tip(d.message,'fail');
+					}
+				}
+			})
+		}
+	}
+	
+	function getPinPassWord(){
+		$.ajax({
+			url: "__URL__/getpinpass/",
+			type: "post",
+			dataType: "json",
+			data: null,
+			success: function(d) {
+				if (d.status == "2") {
+					$.jBox.tip('请先进行邮箱验证','fail');
+					setTimeout(function(){window.location.href = d.jumpUrl;},3000);
+				}else if (d.status == "1") {
+					$.jBox.tip('邮件发送成功','success');
+				} else {
+					addErr_pin(d.message);
+					showErr_pin();
+				}
+			}
+		});
+	}
+</script>
+

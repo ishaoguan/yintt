@@ -1,0 +1,89 @@
+<body>
+<div id="container">
+ <!-- TOP_BAN -->
+  <div id="top_ban">
+   <div id="top_banNr">
+    <div id="top_meun">
+     <ul id="menu_n13">
+		<php>$typelist = getTypeList(array('type_id'=>0,'limit'=>10)); foreach($typelist as $vtype=> $va){</php>
+			<li>
+	   			<dl>
+	   				<php>$sontypelist = getTypeList(array('type_id'=>$va['id'],'limit'=>10,'notself'=>true)); </php>
+	   				<dt <php>if(count($sontypelist)>0)echo 'class="icoA"'</php>><a href="{$va.turl}" >{$va.type_name}</a></dt>
+	   				<php>foreach($sontypelist as $sonvtype){</php>
+					  <dd><a href="{$sonvtype.turl}">{$sonvtype.type_name}</a></dd>
+					<php>}</php>
+	   			</dl>
+			</li>
+		<php>}</php>
+     </ul>
+    </div>
+    <div id="top_ban_r">
+	    <if condition="$UID gt '0'">
+		<div id="right1" style="height:24px;float:right;position:relative;top:0px;"><table height="24" border="0">
+		  <tr>
+		    <td  style="color:#392c7f;font-size:13px;"align="right";>欢迎您:{:session('u_user_name')}</a></td>
+		    <td  align="center" style="width:71px;"><a href="/member/index.html" style="color:#392c7f;font-size:13px;">丨<strong style="color:#392c7f;font-size:13px;">用户中心</strong></a></td>
+		
+		    <td align="left" style="width:35px;"><a href="/member/common/actlogout" style="color:#b4b4b4;font-size:13px;">[退出]</a></td>
+		  </tr>
+		</table>
+		</div>
+		<else/>
+			<div id="right1" style="height:24px;margin-left:0px;float:right; position:relative;">
+			<table width="255" height="24" border="0" cellpadding="0" cellspacing="0" >
+		     <tr>
+		       <td width="165" align="right"  onMouseOver="show()" onMouseOut="HideDiv('xinlang',this)" ><a href="/member/oauth/qq/" style="color:#392c7f;font-size:12px; float:right; margin-left:4px; font-family:Arial; line-height:24px;">QQ账号登陆</a><img src="__ROOT__/Style/H/images/qq_n.png" width="15" height="15" style="float:right; margin-top:4px;" /></td>
+		       <td width="65"  align="right"><div style="width:1px; height:14px; background:#d2d2d2; font-size:1px; float:right; margin-left:8px; margin-right:8px; margin-top:5px;">&nbsp;</div><a href="/member/common/login/" style="color:#392c7f;font-size:12px; float:right; line-height:24px;">登陆</a></td>
+		       <td width="25"  align="right"><a href="/member/common/register/" style="color:#392c7f;font-size:12px; line-height:24px;">注册</a></td>
+		     </tr>
+		   </table>
+		</div>
+		</if>
+    </div>
+   </div>
+  </div>
+ <!-- TOP_BAN // -->
+<script type="text/javascript">
+thisURL = document.URL;/*获取当前地址栏URL,根据此来判断当前页，从页实现页面导航不同样式*/
+
+strwrite = thisURL;
+urlreg = eval("/.*"+document.domain+"/ig"); // 创建正则表达式模式。 
+lasturl = strwrite.replace(urlreg, ""); // 用 "A" 替换 "The"。 
+
+urlarr = lasturl.split("/");
+$("#menu_n13 dt a").each(function(){
+	strwrite1 = this.href;
+	urlreg1 = eval("/.*"+document.domain+"/ig"); // 创建正则表达式模式。 
+	lasturl1 = strwrite1.replace(urlreg1, ""); // 用 "A" 替换 "The"。 
+
+	urlarr1 = lasturl1.split("/");
+	if(urlarr1.length > 1 && urlarr.length > 1 && urlarr1[1] == urlarr[1]){
+		$(this).addClass("cur");
+		return false;
+	}
+	if(urlarr.length > 1 && urlarr[1] == "indexs"){
+		$("#menu_n13 dt a[href='/index.html']").parent().addClass("cur");
+		return false;
+	}
+});
+$("#menu_n13 li dl").each(function(){
+	$(this).children().filter("dd").each(function(){
+		if(this.innerText.length == 7){
+			$(this).parent().attr("chgwidth", "100px");
+		}
+		if(this.innerText.length > 7){
+			$(this).parent().attr("chgwidth", "140px");
+			return false;
+		}
+	});
+});
+$("#menu_n13 li dl").each(function(){
+	var chgwidth = $(this).attr("chgwidth");
+	if(chgwidth != ""){
+		$(this).children().filter("dd").each(function(){
+			$(this).css("width", chgwidth);
+		});
+	}
+});
+</script>

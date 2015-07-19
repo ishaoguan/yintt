@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+<LINK href="__ROOT__/favicon.ico" type="image/x-icon" rel=icon />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/basic.css?{:C('APP_RES_VER')}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/user.css?{:C('APP_RES_VER')}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/extra.css?{:C('APP_RES_VER')}" />
+<link type="text/css" rel="stylesheet" href="__ROOT__/Style/JBox/Skins/Red/jbox.css"/>
+<script src="__ROOT__/Style/gold/js/common.js" type="text/javascript"></script>
+<script src="__ROOT__/Style/Js/jquery-1.9.0.min.js" type="text/javascript"></script>
+<!-- jquery-migrate -->
+<script type="text/javascript">if ( typeof jQuery.migrateMute === "undefined" ) {jQuery.migrateMute = true;}</script>
+<script language="javaScript" type="text/javascript" src="__ROOT__/Style/Js/jquery-migrate-master/migrate.js"></script>
+<script language="javaScript" type="text/javascript" src="__ROOT__/Style/Js/jquery-migrate-master/core.js"></script>
+<!-- jquery-migrate // -->
+<SCRIPT language=javascript src="__ROOT__/Style/JBox/jquery.jBox.min.js?ver=1" type=text/javascript></SCRIPT>
+<SCRIPT language=javascript src="__ROOT__/Style/JBox/jquery.jBoxConfig.js" type=text/javascript></SCRIPT>
+<script  type="text/javascript" src="__ROOT__/Style/Js/ui.core.js"></script>
+<script  type="text/javascript" src="__ROOT__/Style/Js/ui.tabs.js"></script>
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<script type="text/javascript">
+var AJAX_TIMEOUT = 10000;
+var AJAX_TIPS = "正在提交数据...";
+var AJAX_TIPS1 = "信息正在加载中...,如长时间未加载完成，请刷新页面";
+var ALERT_TIT = "温馨提示";
+	function makevar(v){
+		var d={};
+		for(i in v){
+			var id = v[i];
+			d[id] = $("#"+id).val();
+			if(!d[id]) d[id] = $("input[name='"+id+"']:checked").val();
+		}
+		return d;
+	}
+
+	function ajaxGetData(url,targetid,data){
+			if(!url) return;
+			data = data||{};
+			//var thtml = '<div class="loding"><img src="__ROOT__/Style/Js/006.gif"align="absmiddle" />　信息正在加载中...,如长时间未加载完成，请刷新页面</div>';
+			//$("#"+targetid).html(thtml).show();
+			$.jBox.tip(AJAX_TIPS1, 'loading', {timeout:AJAX_TIMEOUT});
+			//竞拍详细页
+			$.ajax({
+				url: url,
+				data: data,
+				timeout: 10000,
+				cache: true,
+				type: "get",
+				dataType: "json",
+				success: function (d, s, r) {
+					if(d) $("#"+targetid).html(d.html);
+				},
+				error: '',
+				complete: function(){
+					$.jBox.tip("", 'loading', {timeout:1});
+				}
+			});
+		
+	}
+	var currentUrl = location.href.toLowerCase();
+	$(document).ready(function() {
+		$('#rotate > ul').tabs();/* 第一个TAB渐隐渐现（{ fx: { opacity: 'toggle' } }），第二个TAB是变换时间（'rotate', 2000） */
+		$('#us_l ul li a').click(function() { // 绑定单击事件
+			var nowurl = $(this).attr('href');
+			var vid = nowurl.split("#");
+			try{
+				if(currentUrl.indexOf(vid[0]) != -1 ){
+					$('#rotate > ul').tabs('select', "#"+vid[1]); // 切换到第三个选项卡标签
+					var geturl= $('#rotate > ul li a[href="#'+vid[1]+'"]').attr("ajax_href");
+					ajaxGetData(geturl,vid[1]);
+					return false;
+				}
+			}catch(ex){};
+				return true;
+		});
+		$('#us_r .us_rh ul.ui-tabs-nav li, #us_r .us_rh #xtab li').on("click", function(){
+			$(this).find("a").click();
+		});
+		
+		$('a[ajax_href]').click(function(){
+			var geturl = $(this).attr('ajax_href');
+			var hasget = $(this).attr('get')||0;
+			var nowurl = $(this).attr('href');
+			var vid = nowurl.split("#");
+			if(hasget!=1) ajaxGetData(geturl,vid[1]);
+			$(this).attr('get','1');
+			$('html,body').animate({scorllTop:0},1000);
+			return false;
+		});
+		ajaxreload = function(aobj){
+			var geturl = aobj.attr('ajax_href');
+			var nowurl = aobj.attr('href');
+			var vid = nowurl.split("#");
+			ajaxGetData(geturl,vid[1]);
+			$(this).attr('get','1');
+			$('html,body').animate({scorllTop:0},1000);
+		};
+		(function(){
+			$(".us_rb4 tr").on('mouseover',
+			  function () {
+				$(this).removeClass("bg_hover");
+				$(this).addClass("bg_hover");
+			  }
+			);
+			$(".us_rb4 tr").on('mouseout',
+			  function () {
+				$(this).removeClass("bg_hover");
+			  }
+			);
+		})();
+	});
+	//ui
+    function addBookmark(title, url) {
+        if (window.sidebar) {
+            window.sidebar.addPanel(title, url, "");
+        }
+        else if (document.all) {
+            window.external.AddFavorite(url, title);
+        }
+        else if (window.opera && window.print) {
+            return true;
+        }
+    }
+    function SetHome(obj, vrl) {
+        try {
+            obj.style.behavior = 'url(#default#homepage)'; obj.setHomePage(vrl);
+            NavClickStat(1);
+        }
+        catch (e) {
+            if (window.netscape) {
+                try {
+                    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                }
+                catch (e) {
+                    alert("抱歉！您的浏览器不支持直接设为首页。请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为“true”，点击“加入收藏”后忽略安全提示，即可设置成功。");
+                }
+                var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+                prefs.setCharPref('browser.startup.homepage', vrl);
+            }
+        }
+    }
+        $(function() {
+            $("#us_l ul li .liDiv a").mousemove(function() {
+                $(this).addClass("current");
+            }).mouseout(function() {
+                $(this).removeClass("current");
+            });
+        });
+     $(document).ready(function(){
+    	if($("div[id^=fragment-]").length > 0){
+         	setTimeout("toTop()", 50);
+    	}
+     });
+     function toTop(){
+    	 $('html, body').animate({scrollTop:0}, 'slow');
+     }
+</script>

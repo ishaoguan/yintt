@@ -1,0 +1,85 @@
+<include file="Public:_header_common"/>
+<title>用户登陆-- {$glo.web_name}</title>
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/art.css" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/extra.css" />
+<script type="text/javascript">
+var imgpath="__ROOT__/Style/M/";
+var curpath="__URL__";
+</script>
+<script type="text/javascript" src="__ROOT__/Style/M/js/login.js?{:C('APP_RES_VER')}"></script>
+<include file="./App/Group/Member/Tpl/gold/Public/_header_main.html" />
+   <div id="pos">
+    <ul>
+     <li><a href="#nogo">{$glo.web_name}</a></li>
+     <li class="posDiv"></li>
+     <li><p>用户注册</p></li>
+    </ul>
+   </div>
+   
+   <div id="login">
+    
+    <div id="login_l">
+     <h4>直接用合作网站帐号登录</h4>
+     <input type="button" class="sinaBut_s2" value="新浪微博登陆" onclick="window.location.href='__APP__/member/oauth/sina/'" />
+     <input type="button" class="qqBut_s2" value="QQ&nbsp;登录" onclick="window.location.href='__APP__/member/oauth/qq/'" />
+    </div>
+    <div id="login_r">
+     <ul>
+     
+      <li><p>用户名：</p><input id="txtUser" type="text" class="lo_tex1" /><div class="lo_clew" id="dvUser"></div></li>
+      <li><p>密码：</p><input id="txtPwd" type="password" class="lo_tex1" /><div class="lo_clew" id="dvPwd"></div></li>
+      <li><p>验证码：</p><input type="text" class="lo_tex2" maxlength="4" id="txtCode" /><img onclick="this.src=this.src+'?t='+Math.random()" id="imVcode" alt="点击换一个校验码" width="110" height="40" src="__URL__/verify"><div class="lo_clew" id="dvCode"></div></li>
+      <li><p>&nbsp;</p><input name="" type="checkbox" class="ord" /><h6>下次自动登录</h6><div class="forpasw"><a href="javascript:void(0)" onclick="getPassWord()">忘记密码？</a></div></li>
+      <li><p>&nbsp;</p><input type="button" class="lo_but_s3" value="立即登录" onclick="LoginSubmit(this);" id="btnReg" /><h6>还没有账号？<a href="__APP__/member/common/register/">注册新账号</a></h6></li>
+     
+     </ul>
+    </div>
+    
+   </div>
+<script type="text/javascript">
+function jfun_dogetpass(){
+	var ux = $("#emailname").val();
+	if(ux==""){
+		$.jBox.tip('请输入用户名或者邮箱','tip');
+		return;
+	}
+	$.jBox.tip("邮件发送中......","loading");
+	$.ajax({
+		url: "__APP__/member/common/dogetpass/",
+		data: {"u":ux},
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip("发送成功，请去邮箱查收",'success');
+					$.jBox.close(true);
+				}else{
+					$.jBox.tip("发送失败，请重试",'fail');
+				}
+			}
+		}
+	});
+
+}
+
+function getPassWord() {
+	$.jBox("get:__APP__/member/common/getpassword/", {
+		title: "找回密码",
+		width: "auto",
+		buttons: {'发送邮件':'jfun_dogetpass()','关闭': true }
+	});   
+}
+document.onkeydown = function (e) {
+    var key = e.which;
+    if (key == 13) {
+        e.preventDefault();
+        $("#btnReg").click();
+    }
+}
+</script>
+<include file="./App/Group/Home/Tpl/gold/Public/_footer.html" group="Home" />

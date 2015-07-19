@@ -1,0 +1,75 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<script type="text/javascript">
+	var isSearchHidden = 1;
+	var searchName = "搜索充值";
+</script>
+<div class="so_main">
+  <div class="page_tit">充值统计</div>
+<!--搜索-->
+  <include file="search" />
+<!--搜索-->
+
+  <div class="Toolbar_inbox">
+  	<div class="page right"> {$pagebar}</div>
+    <htmlA:commonBtn type="jsfun" action="dosearch();" value="搜索充值" style="search_action" />点击展开搜索条件
+  </div>
+  <div class="Toolbar_inbox">
+     注册时间从：<input value="{$search._reg_start_time}" tip='时间段' disabled='disabled' />
+     至<input value="{$search._reg_end_time}" tip='时间段' disabled='disabled' />
+     于时间段：<input value="{$search.start_time}" tip='时间段' disabled='disabled' />
+     至<input value="{$search.end_time}" tip='时间段' disabled='disabled' />的充值记录
+     <br>
+     注册会员有<span style="color:red">{$countsize}</span>个，其中有充值记录的会员有<span style="color:red">{$investno}</span>个，有投资记录的会员有<span style="color:red">{$payno}</span>个，成功充值总额为<span style="color:red">{$investmon}</span>元，成功投资总额为<span style="color:red">{$paymon}</span>元
+  </div>
+  
+  <div class="list">
+  <table id="area_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th style="width:30px;">
+        <input type="checkbox" id="checkbox_handle" onclick="checkAll(this)" value="0">
+        <label for="checkbox"></label>
+    </th>
+<!--     <th class="line_l">ID</th>
+    <th class="line_l">会员名</th>
+    <th class="line_l">注册时间</th>
+    <th class="line_l">成功充值金额</th>
+    <th class="line_l">未成功充值金额</th> -->
+    <th class="line_l">ID</th>
+    <th class="line_l">会员名</th>
+    <th class="line_l">注册时间</th>
+    <th class="line_l">成功充值金额</th>
+    <th class="line_l">成功投资金额</th>
+  </tr>
+<!--   <volist id="vo" name="succinvest">
+      <tr overstyle='on' id="list_{$vo.id}">
+        <td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value="{$vo.id}"></td>
+        <td>{$vo.id}</td>
+        <td><htmlA:user id="vo.uid" uname="vo.uname" />{$vo.name}</td>
+        <td>{$vo.reg_time|date='Y-m-d',###}</td>
+        <td>{$vo.money}</td>
+        <td>{$vo.failmoney}</td>
+      </tr>
+  </volist> -->
+  <volist id="vo" name="list">
+      <tr overstyle='on' id="list_{$vo.id}">
+        <td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value="{$vo.id}"></td>
+        <td>{$vo.id}</td>
+        <td><htmlA:user id="vo.uid" uname="vo.uname" />{$vo.user_name}</td>
+        <td>{$vo.reg_time|date='Y-m-d',###}</td>
+        <td>{$vo.totalpay}</td>
+        <td>{$vo.totalinvestor}</td>
+      </tr>
+  </volist>
+  </table>
+  </div>
+  
+  <div class="Toolbar_inbox">
+  	<div class="page right">{$pagebar}</div>
+    <htmlA:commonBtn type="jsfun" action="dosearch();" value="搜索充值" style="search_action" />
+  </div>
+</div>
+
+
+<include file="Public:_footer" />

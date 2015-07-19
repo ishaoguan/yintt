@@ -1,0 +1,45 @@
+<include file="Public:_header_common" />
+<title>我的账户-- {$glo.web_name}</title>
+<include file="Public:_header_main" />
+  <div id="content_us">
+   <include file="Public:_left" />
+   <div id="us_r">
+    <!-- Right -->
+     
+   	 <include file="Public:_right_top" />
+     
+     <div class="us_rh" id="rotate">
+      <ul>
+       <li><a href="#fragment-1" ajax_href="__URL__/summary/" id="mx1">借入总表</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-2" ajax_href="__URL__/borrowing/" id="mx2">发标中借款</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-3" ajax_href="__URL__/borrowpaying/" id="mx3">偿还中借款</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-4" ajax_href="__URL__/borrowbreak/" id="mx4">逾期借款</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-5" ajax_href="__URL__/borrowfail/" id="mx5">流标借款</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-6" ajax_href="__URL__/borrowfail1/" id="mx6">初审未通过</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-7" ajax_href="__URL__/borrowfail2/" id="mx7">复审未通过</a></li>
+       <li class="usrhDiv"></li>
+       <li><a href="#fragment-8" ajax_href="__URL__/borrowdone/" id="mx8">已还清借款</a></li>
+       <li class="usrhDiv"></li>
+      </ul>
+     </div>
+     <div class="us_rb4">
+     	<div id="fragment-1" style="display:none"></div>
+     	<div id="fragment-2" style="display:none"></div>
+     	<div id="fragment-3" style="display:none"></div>
+     	<div id="fragment-4" style="display:none"></div>
+     	<div id="fragment-5" style="display:none"></div>
+     	<div id="fragment-6" style="display:none"></div>
+     	<div id="fragment-7" style="display:none"></div>
+     	<div id="fragment-8" style="display:none"></div>
+     </div>
+     
+    <!-- Right // -->
+   </div>
+  </div>
+<include file="./App/Group/Home/Tpl/gold/Public/_footer.html" group="Home" />

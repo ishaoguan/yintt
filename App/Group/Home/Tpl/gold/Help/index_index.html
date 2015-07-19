@@ -1,0 +1,54 @@
+<include file="Public:_header_common" />
+<title>{$glo.index_title}-{$vo.type_name}-{$glo.web_name}</title>
+<meta name="keywords" content="{$vo.type_keyword|getDefaultSeoInfo=###,1}" />
+<meta name="description" content="{$vo.type_info|getDefaultSeoInfo=###,2}" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/art.css" />
+<include file="Public:_header_main" />
+   <div id="pos">
+    <ul>
+     <li><a href="#nogo">{$glo.web_name}</a></li>
+     <li class="posDiv"></li>
+     <li><p>{$vo.type_name}</p></li>
+    </ul>
+   </div>
+   
+   <div id="content">
+    
+    <div id="art_h">
+     <h4>{$vo.type_name}</h4>
+     <div class="ah_r">
+      <h6>AREA OF JURISDICTION SERVICES</h6>
+      <p>投资项目推荐及安全保障 / 借款人介绍及交易安全保障</p>
+     </div>
+    </div>
+    
+    <div id="art_content">
+     
+     <div id="art_l">
+     <!-- Left -->
+	<include file="left" />
+     <!-- Left // -->
+     </div>
+     
+     <div id="art_r">
+     <!-- Right -->
+      
+       <div id="ar_h1">
+        <h4>我们能为您做的：</h4>
+        <p>- 为投资商寻找投资项目</p>
+        <p>- 为借款人提供资金来源</p>
+        <p>- 提供第三方责任担保</p>
+        <p>- 评估并控制项目风险</p>
+       </div>
+       
+       <div id="art_con">
+        {$vo.type_content}
+       </div>
+       
+     <!-- Right // -->
+     </div>
+     
+    </div>
+    
+   </div>
+<include file="Public:_footer" />

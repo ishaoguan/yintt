@@ -1,0 +1,24 @@
+<include file="_header_common" />
+<title>获得企业用户余额 </title>
+</head>
+
+<body>
+<div style="text-align:center;color:#2ee73b;margin:10px;"><php>echo $msg;</php></div>
+<form action="__URL__/doGetFee" method="post" name="f1">
+<table align="center" width="75%" border="1">
+    <tr> 
+      <td bgcolor="#E9F0F6" width="24%"><div align="center">企业用户登陆名称 </div></td>
+      <td width="76%"> <input name="name" type="text" size="30" value="{$smsuid}"> </td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#E9F0F6" >企业用户登录密码 </td>
+      <td><input name="pwd" type="password" size="10" value="{$smspwd}"></td>
+    </tr>
+ <tr>
+    <td align="center" colspan="2" bgcolor="#E9F0F6"><input name="check" type="submit" value="查询余额"></td>
+  </tr>
+</table>
+</form>
+
+</body>
+</html>

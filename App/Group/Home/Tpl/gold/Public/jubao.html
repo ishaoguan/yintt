@@ -1,0 +1,1048 @@
+<include file="Public:_header_common" />
+<title>{$glo.index_title}</title>
+<meta name="keywords" content="{$glo.web_keywords}" />
+<meta name="description" content="{$glo.web_descript}" />
+<meta property="qc:admins" content="2141577777611644636" />
+<meta property="wb:webmaster" content="8ea0b71071aafcb8" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/gold/css/home.css?{:C('APP_RES_VER')}" />
+<script type="text/javascript" src="__ROOT__/Style/fancybox/jquery.fancybox-2.1.4.js"></script>
+<script type="text/javascript" src="__ROOT__/Style/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript">
+<!--
+/*第一种形式 第二种形式 更换显示样式*/
+function setTab(name,cursel,n){
+	for(i=1;i<=n;i++){
+	var menu=document.getElementById(name+i);
+	var con=document.getElementById("con_"+name+"_"+i);
+	menu.className=i==cursel?"hover":"";
+	con.style.display=i==cursel?"block":"none";
+	}
+}
+function setTabNew(name,cursel,n){
+	for(i=1;i<=n;i++){
+	var menu=document.getElementById(name+i);
+	var con=document.getElementById("Ncon_"+name+"_"+i);
+	menu.className=i==cursel?"hover1":"nohover";
+	con.style.display=i==cursel?"block":"none";
+	}
+}
+function LoginSubmit() {
+	$.jBox.tip("登陆中......",'loading');
+	$.ajax({
+		url: "__APP__/member/common/actlogin",
+		data: {"sUserName": $("#txtUser").val(),"sPassword": $("#txtPwd").val(),"sVerCode": $("#txtCode").val(),"Keep":$("#loginstate").val(),"url_referer":'<php>echo GetCurUrl();</php>'},
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==0){
+					$.jBox.tip(d.message,"tip");	
+				}else{
+					window.location.href=d.url_referer;
+				}
+			}
+		}
+	});
+}
+
+function getPassWord() {
+	$.jBox("get:__APP__/member/common/getpassword/", {
+		title: "找回密码",
+		width: "auto",
+		buttons: {'发送邮件':'jfun_dogetpass()','关闭': true }
+	});   
+}
+function jfun_dogetpass(){
+	var ux = $("#emailname").val();
+	if(ux==""){
+		$.jBox.tip('请输入用户名或者邮箱','tip');
+		return;
+	}
+	$.jBox.tip("邮件发送中......","loading");
+	$.ajax({
+		url: "__APP__/member/common/dogetpass/",
+		data: {"u":ux},
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip("发送成功，请去邮箱查收",'success');
+					$.jBox.close(true);
+				}else{
+					$.jBox.tip("发送失败，请重试",'fail');
+				}
+			}
+		}
+	});
+
+}
+$(document).ready(function(){
+	$("#txtUser").val($("#txtUser").attr("defval"));
+	$("#txtCode").val($("#txtCode").attr("defval"));
+	$("#txtUser,#txtCode").focus(function(){
+		if($(this).val()==$(this).attr("defval"))$(this).val("");
+	});
+	$("#txtUser,#txtCode").blur(function(){
+		if($(this).val()=="")$(this).val($(this).attr("defval"));
+	});
+	document.onkeydown = function (e) {
+	    var key = e.which;
+	    if (key == 13) {
+	        e.preventDefault();
+	        $("#btnLogin").click();
+	    }
+	};
+
+	$("#news_h ul li:eq(0)").on({
+		mouseenter:function(){
+			$(this).removeClass("cen");
+			$(this).addClass("cen");
+			$("#news_h ul li:eq(1)").removeClass("cen");
+			$("#news").css("display","");
+			$("#buznews").css("display","none");
+		}
+	});
+	$("#news_h ul li:eq(1)").on({
+		mouseenter:function(){
+			$(this).removeClass("cen");
+			$(this).addClass("cen");
+			$("#news_h ul li:eq(0)").removeClass("cen");
+			$("#news").css("display","none");
+			$("#buznews").css("display","");
+		}
+	});
+	$("#list_h ul li").on({
+		mouseenter:function(){
+			$("#list_h ul li").removeClass("cen");
+			$(this).addClass("cen");
+			$(this).parent().find("a").each(function(){
+				$("#"+$(this).attr("for")).css("display", "none");
+			});
+			$("#"+$(this).find("a").attr("for")).css("display", "");
+		}
+	});
+	$(".rb2_h ol li").on({
+		mouseenter:function(){
+			$(".rb2_h ol li").removeClass("cen");
+			$(this).addClass("cen");
+			$(this).parent().find("a").each(function(){
+				$("#"+$(this).attr("for")).css("display", "none");
+			});
+			$("#"+$(this).find("a").attr("for")).css("display", "");
+		}
+	});
+	(function($) {
+	    $(function() {
+	        $("body").keypress(
+	        function(e) {
+	            if (e.keyCode == "13")
+	                $("#btnLogin").click();
+	        });
+	    });
+	})(jQuery);
+	var timer;
+	var setSliderTimer = function(){
+	     timer = setInterval(function(){
+			
+	    	 var mycount = $("#slider div.banner").size();
+	    	 var idx = parseInt($("#slider div.banner[data='show']").attr("idx"));
+	    	 var nextIdx;
+	    	 if(idx >= mycount){
+	    		 nextIdx = 1;
+	    	 }else{
+	    		 nextIdx = idx+1;
+	    	 }
+	/*    	 $("#slider div.banner[data='show']").animate({opacity:0},1000,function(){
+	    		 $("#slider div.banner[data='show']").css("opacity", 1);
+	    		 $("#slider div.banner[data='show']").css("display", "none").attr("data", "hidden");
+	    		 $("#slider div.banner[idx="+nextIdx+"]").css("display", "block").attr("data", "show");
+		    	 $(".ws_bullets div a").removeClass("ws_selbull");
+		    	 $(".ws_bullets div a[idx="+nextIdx+"]").addClass("ws_selbull");
+	    	 }); */
+
+    		 $("#slider div.banner[data='show']").css("display", "none").attr("data", "hidden");
+    		 $("#slider div.banner[idx="+nextIdx+"]").css("display", "block").attr("data", "show");
+	    	 $(".ws_bullets div a").removeClass("ws_selbull");
+	    	 $(".ws_bullets div a[idx="+nextIdx+"]").addClass("ws_selbull");
+	     }, 5000);
+	};
+	$(".ws_bullets").hover(function(){
+	      clearInterval(timer);  
+	});
+	$("#slider").hover(function(){
+	      clearInterval(timer);  
+	},function(){
+		setSliderTimer();
+	}).trigger("mouseleave");
+	$(".ws_bullets div a").hover(function(){
+	      clearInterval(timer);
+	      var curIdx = $(this).attr("idx");
+	      if($("#slider div.banner[data='show']").attr("idx") != curIdx){
+	    	 $(".ws_bullets div a").removeClass("ws_selbull");
+	    	 $(".ws_bullets div a[idx="+curIdx+"]").addClass("ws_selbull");
+	    	/* $("#slider div.banner[data='show']").animate({opacity:0},1000,function(){
+	    		 $("#slider div.banner[data='show']").css("opacity", 1);
+	    		 $("#slider div.banner[data='show']").css("display", "none").attr("data", "hidden");
+	    		 $("#slider div.banner[idx="+curIdx+"]").css("display", "block").attr("data", "show");
+	    	 }); */
+    		 $("#slider div.banner[data='show']").css("display", "none").attr("data", "hidden");
+    		 $("#slider div.banner[idx="+curIdx+"]").css("display", "block").attr("data", "show");
+	      }
+	});
+	$(".ws_bullets").css("margin-left", -1*$(".ws_bullets").width()/2);
+});
+//-->
+</script>
+
+
+<include file="Public:_header_main" />
+
+<style>
+ body{font: 12px/1.14 \5FAE\8F6F\96C5\9ED1,Arial,\5b8b\4f53;}
+
+* {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+h3, .h3 {
+font-size: 24px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+font-family: inherit;
+font-size: 14px;
+font-weight: 500;
+line-height: 1.1;
+color: inherit;
+}
+.clearfix:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical>.btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-footer:after {
+clear: both;
+}
+.tiles.white {
+border: 1px solid #0C7CC1;
+width: 700px;
+margin-top: 10px;
+background-color: #ffffff;
+color: #8b91a0;
+-webkit-box-shadow: #CCC 0 0 5px;
+}
+h1, .h1, h2, .h2, h3, .h3 {
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.p-t-5 {
+  padding-top: 5px;
+}
+.p-r-5 {
+  padding-right: 5px;
+}
+.p-l-5 {
+  padding-left: 5px;
+}
+.p-b-5 {
+  padding-bottom: 5px;
+}
+.p-t-10 {
+  padding-top: 10px;
+}
+.p-r-10 {
+  padding-right: 10px;
+}
+.p-l-10 {
+  padding-left: 10px;
+}
+.p-b-10 {
+  padding-bottom: 10px;
+}
+.p-t-15 {
+  padding-top: 15px;
+}
+.p-r-15 {
+  padding-right: 15px;
+}
+.p-l-15 {
+  padding-left: 15px;
+}
+.p-b-15 {
+  padding-bottom: 15px;
+}
+.p-t-20 {
+  padding-top: 20px;
+}
+.p-r-20 {
+  padding-right: 20px;
+}
+.p-l-20 {
+  padding-left: 20px;
+}
+.p-b-20 {
+  padding-bottom: 20px;
+}
+.p-t-25 {
+  padding-top: 25px;
+}
+.p-r-25 {
+  padding-right: 25px;
+}
+.p-l-25 {
+  padding-left: 25px;
+}
+.p-b-25 {
+  padding-bottom: 25px;
+}
+.p-t-30 {
+  padding-top: 30px;
+}
+.p-r-30 {
+  padding-right: 30px;
+}
+.p-l-30 {
+  padding-left: 30px;
+}
+.p-b-30 {
+  padding-bottom: 30px;
+}
+.p-t-35 {
+  padding-top: 35px;
+}
+.p-r-35 {
+  padding-right: 35px;
+}
+.p-l-35 {
+  padding-left: 35px;
+}
+.p-b-35 {
+  padding-bottom: 35px;
+}
+.p-t-40 {
+  padding-top: 40px;
+}
+.p-r-40 {
+  padding-right: 40px;
+}
+.p-l-40 {
+  padding-left: 40px;
+}
+.p-b-40 {
+  padding-bottom: 40px;
+}
+.p-t-45 {
+  padding-top: 45px;
+}
+.p-r-45 {
+  padding-right: 45px;
+}
+.p-l-45 {
+  padding-left: 45px;
+}
+.p-b-45 {
+  padding-bottom: 45px;
+}
+.p-t-50 {
+  padding-top: 50px;
+}
+.p-r-50 {
+  padding-right: 50px;
+}
+.p-l-50 {
+  padding-left: 50px;
+}
+.p-b-50 {
+  padding-bottom: 50px;
+}
+.p-t-55 {
+  padding-top: 55px;
+}
+.p-r-55 {
+  padding-right: 55px;
+}
+.p-l-55 {
+  padding-left: 55px;
+}
+.p-b-55 {
+  padding-bottom: 55px;
+}
+.p-t-60 {
+  padding-top: 60px;
+}
+.p-r-60 {
+  padding-right: 60px;
+}
+.p-l-60 {
+  padding-left: 60px;
+}
+.p-b-60 {
+  padding-bottom: 60px;
+}
+.p-t-65 {
+  padding-top: 65px;
+}
+.p-r-65 {
+  padding-right: 65px;
+}
+.p-l-65 {
+  padding-left: 65px;
+}
+.p-b-65 {
+  padding-bottom: 65px;
+}
+.p-t-70 {
+  padding-top: 70px;
+}
+.p-r-70 {
+  padding-right: 70px;
+}
+.p-l-70 {
+  padding-left: 70px;
+}
+.p-b-70 {
+  padding-bottom: 70px;
+}
+.p-t-75 {
+  padding-top: 75px;
+}
+.p-r-75 {
+  padding-right: 75px;
+}
+.p-l-75 {
+  padding-left: 75px;
+}
+.p-b-75 {
+  padding-bottom: 75px;
+}
+.p-t-80 {
+  padding-top: 80px;
+}
+.p-r-80 {
+  padding-right: 80px;
+}
+.p-l-80 {
+  padding-left: 80px;
+}
+.p-b-80 {
+  padding-bottom: 80px;
+}
+.p-t-85 {
+  padding-top: 85px;
+}
+.p-r-85 {
+  padding-right: 85px;
+}
+.p-l-85 {
+  padding-left: 85px;
+}
+.p-b-85 {
+  padding-bottom: 85px;
+}
+.p-t-90 {
+  padding-top: 90px;
+}
+.p-r-90 {
+  padding-right: 90px;
+}
+.p-l-90 {
+  padding-left: 90px;
+}
+.p-b-90 {
+  padding-bottom: 90px;
+}
+.p-t-95 {
+  padding-top: 95px;
+}
+.p-r-95 {
+  padding-right: 95px;
+}
+.p-l-95 {
+  padding-left: 95px;
+}
+.p-b-95 {
+  padding-bottom: 95px;
+}
+.p-t-100 {
+  padding-top: 100px;
+}
+.p-r-100 {
+  padding-right: 100px;
+}
+.p-l-100 {
+  padding-left: 100px;
+}
+.p-b-100 {
+  padding-bottom: 100px;
+}
+.m-t-5 {
+  margin-top: 5px;
+}
+.m-r-5 {
+  margin-right: 5px;
+}
+.m-l-5 {
+  margin-left: 5px;
+}
+.m-b-5 {
+  margin-bottom: 5px;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+.m-r-10 {
+  margin-right: 10px;
+}
+.m-l-10 {
+  margin-left: 10px;
+}
+.m-b-10 {
+  margin-bottom: 10px;
+}
+.m-t-15 {
+  margin-top: 15px;
+}
+.m-r-15 {
+  margin-right: 15px;
+}
+.m-l-15 {
+  margin-left: 15px;
+}
+.m-b-15 {
+  margin-bottom: 15px;
+}
+.m-t-20 {
+  margin-top: 20px;
+}
+.m-r-20 {
+  margin-right: 20px;
+}
+.m-l-20 {
+  margin-left: 20px;
+}
+.m-b-20 {
+  margin-bottom: 20px;
+}
+.m-t-25 {
+  margin-top: 25px;
+}
+.m-r-25 {
+  margin-right: 25px;
+}
+.m-l-25 {
+  margin-left: 25px;
+}
+.m-b-25 {
+  margin-bottom: 25px;
+}
+.m-t-30 {
+  margin-top: 30px;
+}
+.m-r-30 {
+  margin-right: 30px;
+}
+.m-l-30 {
+  margin-left: 30px;
+}
+.m-b-30 {
+  margin-bottom: 30px;
+}
+.m-t-35 {
+  margin-top: 35px;
+}
+.m-r-35 {
+  margin-right: 35px;
+}
+.m-l-35 {
+  margin-left: 35px;
+}
+.m-b-35 {
+  margin-bottom: 35px;
+}
+.m-t-40 {
+  margin-top: 40px;
+}
+.m-r-40 {
+  margin-right: 40px;
+}
+.m-l-40 {
+  margin-left: 40px;
+}
+.m-b-40 {
+  margin-bottom: 40px;
+}
+.m-t-45 {
+  margin-top: 45px;
+}
+.m-r-45 {
+  margin-right: 45px;
+}
+.m-l-45 {
+  margin-left: 45px;
+}
+.m-b-45 {
+  margin-bottom: 45px;
+}
+.m-t-50 {
+  margin-top: 50px;
+}
+.m-r-50 {
+  margin-right: 50px;
+}
+.m-l-50 {
+  margin-left: 50px;
+}
+.m-b-50 {
+  margin-bottom: 50px;
+}
+.m-t-55 {
+  margin-top: 55px;
+}
+.m-r-55 {
+  margin-right: 55px;
+}
+.m-l-55 {
+  margin-left: 55px;
+}
+.m-b-55 {
+  margin-bottom: 55px;
+}
+.m-t-60 {
+  margin-top: 60px;
+}
+.m-r-60 {
+  margin-right: 60px;
+}
+.m-l-60 {
+  margin-left: 60px;
+}
+.m-b-60 {
+  margin-bottom: 60px;
+}
+.m-t-65 {
+  margin-top: 65px;
+}
+.m-r-65 {
+  margin-right: 65px;
+}
+.m-l-65 {
+  margin-left: 65px;
+}
+.m-b-65 {
+  margin-bottom: 65px;
+}
+
+.b-grey {
+  border-color: #e5e9ec;
+}
+.b-b{
+ border-bottom:1px solid #BEBEBE;
+}
+ .b-b-d {border-bottom: 1px dotted #ccc;}
+.row{margin-left:-15px;margin-right:-15px}
+
+.clearfix:before, .clearfix:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical>.btn-group:before, .btn-group-vertical>.btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-footer:before, .modal-footer:after {
+content: " ";
+display: table;
+}
+.col-md-4{width:33.33333333%}
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+float: left;
+}
+.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12{float:left}
+
+.text-black {
+color: #1b1e24 !important;
+}
+.col-md-1 {
+width: 15%;
+}
+.col-md-2 {
+width: 20%;
+}
+.col-md-3 {
+width:30%;
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+position: relative;
+min-height: 1px;
+padding-left: 15px;
+padding-right: 15px;
+}
+.tiles p {
+margin: 0 0 5px;
+}
+.text-success {
+color: #0D6DA3 !important;
+}
+.text-success {
+color: #3c763d;
+}
+
+
+.text-black {
+color: #1b1e24 !important;
+}
+.text-black {
+color: #1b1e24 !important;
+}
+.plan-10 { width:10px; background-color:#C93;}
+
+.tpt{ width:720px; height:35px; line-height:35px; padding-left:20px; font-size:16px;}
+
+h4, .h4 {
+font-size: 16px;
+}
+ .biao{
+margin:6px;
+width: 26px;
+height: 24px;
+line-height: 22px;
+color: #fff;
+font-size: 14px;
+position: absolute;
+text-indent: 6px;
+padding-bottom: 2px;
+	 }
+
+.di_biao{background-color: #4BB381;}
+
+em{font-style: normal;}
+.h4m{ margin-top: 10px;
+margin-bottom: 10px;}
+
+.gain-cont {
+position: relative;
+z-index: 5;
+color: #fff;
+padding: 0 35px;
+}
+.gain-cont p{ color:#FFF; }
+
+.gain-cont h2 {
+font-size: 18px;
+padding-top: 15px;
+font-weight: normal;
+}
+
+.gain-cont .gain-price {
+color: #fc8026;
+font-size: 34px;
+height: 50px;
+line-height: 50px;
+overflow: hidden;
+font-family: Tahoma,Geneva,sans-serif;
+}
+.gain-cont .gain-price em {
+font-size: 40px;
+}
+.gain-cont em {
+color: #fc8026;
+font-size: 20px;
+font-family: Tahoma,Geneva,sans-serif;
+}
+address, cite, dfn, em, var, b, sub, sup {
+font-style: normal;
+}
+
+.gain-cont .reg {
+padding: 10px 0 5px;
+}
+
+.gain-cont .reg a {
+height: 46px;
+line-height: 46px;
+display: block;
+text-align: center;
+font-size: 18px;
+background: #fc8026;
+text-decoration: none;
+}
+
+.gain-cont .tar {
+text-align: right;
+padding-bottom: 25px;
+margin-top: 7px;
+}
+
+.gain-cont a, .gain-cont a:visited {
+color: #fff;
+text-decoration: underline;
+}
+
+
+</style>
+
+<!--中部开始-->
+<div id="loginBox_outside">
+    <div id="loginBox">
+    <if condition="empty($UID)">
+        <h4>登陆{$glo.web_name}</h4>
+        <ul>
+            <li><input type="text" class="lb_text" id="txtUser" defval="账户名/邮箱" /></li>
+            <li><input type="password" class="lb_text" value="" id="txtPwd" /></li>
+            <li><input type="text" class="lb_textMa" id="txtCode" defval="输入右边的验证码"/><img onclick="this.src=this.src+'?t='+Math.random()" id="imVcode" src="__APP__/Member/common/verify" width="98" height="28" alt="{$glo.web_name}" title="单击刷新验证码" /></li>
+            <li class="imt"><input type="button" class="lb_but" value="登 录" onclick="LoginSubmit(this)" id="btnLogin" /><a style="color:#FFFFFF" href="__APP__/member/common/register">注册账号</a>&nbsp;&nbsp;<a style="color:#FFFFFF" href="javascript:void(0)" onclick="getPassWord()">忘记密码</a></li>
+            <li class="imt"><input type="button" class="sinaBut" value="微博登录" onclick="javascript:window.location.href='__APP__/member/oauth/sina'" /><input type="button" class="qqBut" value="QQ 登录" onclick="javascript:window.location.href='__APP__/member/oauth/qq/'" /></li>
+        </ul>
+        <else/>
+        <ul class="re_img">
+            <li>
+            <h4>您好，{:session('u_user_name')}</h4>
+            </li>
+            <li><a href="__APP__/member/"><img src="{$UID|get_avatar=###}" width="80" height="80" alt="" /></a></li>
+            <li><input type="button" class="lo_rebut_s2" value="进入我的账户" onclick="window.location.href='__APP__/member/'" /></li>
+            <li><a href="__APP__/member/common/actlogout">注销登录</a></li>
+        </ul>
+    </if>
+    <!--<div class="gain-cont">
+    <h2>银通泰年化收益</h2>
+    <p class="gain-price"><em>20.</em>00% </p>
+    <p><em>30</em> 倍活期存款收益 <span class="light-fc"><em>3</em>.27</span> 倍定期存款收益 </p>
+    <p class="reg"><a href="__APP__/member/common/register">免费注册</a></p>
+    <p class="tar">已有账号? <a href="__APP__/member/common/login">立即登录</a></p>
+    
+    </div>-->
+    
+    </div>
+</div>
+  
+  
+  
+  <php>$ads = get_ad(4);</php>
+  
+  
+  
+  <div class="ws_bullets">
+       <div>
+		<volist name="ads" id="va">
+			<a href="{$va.url}" title="{$va.info}" idx="{$i}" <if condition='$i eq 1'>class="ws_selbull"</if>>{$i}</a>
+		</volist>
+	  </div>
+  </div>
+  <div id="slider">
+	<volist name="ads" id="va">
+  		<a href="{$va.url}"><div class="banner" idx="{$i}" style="background-image:url(__ROOT__/{$va.img});<if condition='$i gt 1'>display:none</if>" <if condition='$i eq 1'>data='show'</if> title="{$va.info}"></div></a>
+	</volist>
+  </div>
+   <div id="report">
+    <h4>实时财务播报：</h4>
+    <p>总成交额：<span>{$staticslist.17.money|Fmoney=###,false}</span>元</p>
+    <p>待收本金总额：<span>{:Fmoney($staticslist['17']['money']-$staticslist['32']['money'],false)}</span>元</p>
+    <p>风险准备金总额：<span>200,000</span>元</p>
+    <a href="__APP__/realtimefinancial/index.html">+ 查看详细数据</a>
+   </div>
+   
+   <div id="content" style="padding-top: 10px;">
+    <div id="left">
+          
+      <div id="list_h" style="margin-top: 0;">
+       <h4>投资项目列表</h4>
+     
+       <p>当前<span>{$doingnum}</span>个招标中的项目，供您选择 <a href="/invest/index/borrow_status/9">更多 &gt;</a></p>
+      </div>
+      
+      <div id="list">
+              
+     <volist name="listBorrow.list" id="vb">
+        <div class="tiles white add-margin">
+            
+            
+             <div class="text-black tpt"><a style="font-size:16px;color:#0C7CC1;font-weight:bold" href="{$vb.id|getInvestUrl=###}" title="{$vb.borrow_name}">{$vb.borrow_name|cnsubstr=###,15}</a><span class="biao">{:getIcoNew($vb)}</span></div>
+          <div class="p-l-20 p-r-20 p-b-20">
+          
+          
+              <div class="row b-grey b-b xs-p-b-20">
+                
+                <div class="col-md-4">
+                  <h5 class="text-black m-t-20 semi-bold">借款金额</h5>
+                  <h3 class="text-success semi-bold"><span data-animation-duration="600" data-value="15458" class="animate-number">{$vb.borrow_money|Fmoney=###}</span></h3>
+                </div>
+
+                
+                <div class="col-md-1">
+                  <div class="m-t-20">
+                    <h5 class="text-black semi-bold h4m"><if condition="$vb.repayment_type eq 1">日利率<else/>年利率</if></h5>
+                    <h4 class="text-success semi-bold"><span data-animation-duration="600" data-value="4569" class="animate-number">{$vb.borrow_interest_rate}</span>%</h4>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <div class="col-md-1">
+                  <div class="m-t-20">
+                    <h5 class="text-black semi-bold h4m">奖 励</h5>
+                    <h4 class="text-success semi-bold"><span data-animation-duration="600" data-value="4569" class="animate-number">{$vb.reward_num}</span>%</h4>
+                  </div>
+                </div>
+                
+                
+                <div class="col-md-1 xs-m-b-20">
+                  <div class="m-t-20">
+                   <strong class="ui-progressbar-small ui-progressbar-small-{$vb.progress|round}"><em>{$vb.progress|round}</em>%</strong>
+                  </div>
+                </div>
+                
+                
+                <div class="col-md-2 xs-m-b-20">
+                  <div class="m-t-30">
+                  
+                   
+                    
+                    
+                    
+                     <if condition="$vb.borrow_status eq 3">
+         <samp class="yellow">已流标</samp>
+         <elseif condition="$vb.borrow_status eq 4"/>
+         <samp class="yellow">等待复审</samp>
+         <elseif condition="$vb.borrow_status eq 6"/>
+         <samp class="yellow">还款中...</samp>
+         <elseif condition="$vb.borrow_status gt 6"/>
+         <samp class="green">已经还完</samp>
+         <else/>
+         <input type="button" class="list_but" value="投 资" onclick="javascript:window.location.href='{$vb.id|getInvestUrl=###}'" /></if>
+                    
+                    
+                    
+                    
+                    
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row b-grey">
+                <div class="col-md-2">
+                  <div class="m-t-10">
+                    <p class="text-black">借款期限</p>
+                    <p class="text-success">{$vb.borrow_duration}<if condition="$vb.repayment_type eq 1">天<else/>个月</if></p>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="m-t-10">
+                    <p class="text-black">发标时间</p>
+                    <p class="text-success">{$vb.schedular_time}</p>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="m-t-10">
+                    <p class="text-black">计息方式</p>
+                    <p class="text-success">满标计息</p>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="m-t-10">
+                    <p class="text-black">还款方式</p>
+                    <p class="text-success">{$Bconfig['REPAYMENT_TYPE'][$vb['repayment_type']]}</p>
+                  </div>
+                </div>
+                
+              </div>
+            </div></div>
+      </volist>  
+     
+      </div>
+      
+      
+    
+      <div id="buznews" style="display:none;">
+       <div id="buznews_l">
+        <a href="{:getArtUrl($buzpicnew['id'], $buzpicnew['type_id'])}" title="{$buzpicnew.title}"><img src="__ROOT__/{$buzpicnew.art_img}" width="200" height="130" alt="" />{$buzpicnew.title|cnsubstr=###,15}</a>
+        <p>{$buzpicnew.art_content|text=###,false,true|cnsubstr=###,95}</p>
+       </div>
+       <div id="buznews_r">
+        <a href="{$buzList.list.0.arturl}"><h4>{$buzList.list.0.title}</h4></a>
+        <p>{$buzList.list.0.art_content|text=###,false,true|cnsubstr=###,74}</p>
+        <php>unset($buzList["list"][0]);$flist=array_slice($buzList["list"], 0, 8);$blist=array_slice($buzList["list"], 8, 16);</php>
+        <ul>
+     <volist name="flist" id="vl">
+         <li><a href="{$vl.arturl}" title="{$vl.title}">{$vl.title|cnsubstr=###,16}</a></li>
+     </volist>
+        </ul>
+        <ol>
+     <volist name="blist" id="vl">
+         <li><a href="{$vl.arturl}" title="{$vl.title}">{$vl.title|cnsubstr=###,16}</a></li>
+     </volist>
+        </ol>
+       </div>
+      </div>
+      
+     <!-- Left // -->
+    </div>
+    <div id="right">
+  
+      <div class="rb1_h" style="margin-top: 0;"><h4>公司动态</h4><a href="__APP__/indexs/notice.html" class="fn-more">更多 &gt;</a></div>
+      <div class="rb1">
+       <ul>
+     <volist name="noticeList.list" id="vl">
+        <li><a href="{$vl.arturl}" title="{$vl.title}">{$vl.title|cnsubstr=###,17}</a></li>
+     </volist>
+       </ul>
+      </div>
+      
+      <div class="rb1_h" style=""><h4>行业动态</h4><a href="__APP__/indexs/viontrend.html" class="fn-more">更多 &gt;</a></div>
+      <div class="rb1">
+       <ul>
+     <volist name="gsdtList.list" id="vl">
+        <li><a href="{$vl.arturl}" title="{$vl.title}">{$vl.title|cnsubstr=###,17}</a></li>
+     </volist>
+       </ul>
+      </div>
+      
+      <!--<div class="rb1_h" style=""><h4>行业动态</h4><a href="__APP__/indexs/ddd.html" class="fn-more">更多 &gt;</a></div>
+      <div class="rb1">
+       <ul>
+     <volist name="buzList.list" id="vl">
+        <li><a href="{$vl.arturl}" title="{$vl.title}">{$vl.title|cnsubstr=###,17}</a></li>
+     </volist>
+       </ul>
+      </div>-->
+      
+      <div class="rb2_h">
+       <ol>
+        <li class="cen"><a href="javascript:void(0)" for="listRecInvest">近期投资</a></li>                 
+        <li><a href="javascript:void(0)" for="listRecPay">近期还款</a></li>
+       </ol>
+      </div>
+      <div class="rb2" id="listRecInvest">
+       <ul>
+     <volist name="recentList" id="vl"><!--{$vl.add_time|date='m-d H:i',###}-->
+        <li><p>{$vl.add_time|date='Y-m-d',###}</p><a href="javascript:void(0)">{$vl.user_name|hidecard=###,8}</a><span>{$vl.investor_capital}元</span></li>
+     </volist>
+       </ul>
+      </div>
+      <div class="rb2" id="listRecPay" style="display:none">
+       <ul>
+     <volist name="recentPayList" id="vl">
+        <li><p>{$vl.deadline|date="Y-m-d",###}</p><a href="javascript:void(0)">{$vl.borrow_user|hidecard=###,8}</a><span>{$vl.repay_money|Fmoney=###,false}元</span></li>
+     </volist>
+       </ul>
+      </div>
+      <div class="rb1_h"><h4>常见问题</h4><a href="__APP__/help/faq.html">+ 帮助中心</a></div>
+      
+     <div class="rb3">
+       <!--<div class="rb3_upper">
+        <div class="rb3_upper_l"><img src="__ROOT__/Style/gold/images/home_99.gif" width="32" height="58" alt="" /></div>
+        <div class="rb3_upper_r">
+         <a href="#nogo"><h4>您可以找到您想要的答案！</h4></a>
+         <p>或许您也可以尝试拨打我们的免费热线，或是在线咨询我们的客服。</p>
+        </div>
+       </div> -->
+        <ul>
+           <volist name="questionList.list" id="vl"> 
+        <li><a href="{$vl.arturl}">{$vl.title}</a></li>
+           </volist>
+       </ul>
+      </div>
+    </div>
+   </div>
+  
+<include file="Public:_footer" />
+  <style>
+div.jbox .jbox-title {height: 20px;}
+div.jbox .jbox-button{margin-top: -4px;}
+ </style>
+   

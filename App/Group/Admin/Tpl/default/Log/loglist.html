@@ -1,0 +1,32 @@
+<tagLib name="htmlA" />
+<div class="so_main">
+<div class="page_tit">日志</div>
+
+  <div class="list" style="min-width:700px;height:500px;overflow: auto;">
+  <table id="area_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th class="line_l">内容</th>
+    <th class="line_l" nowrap="nowrap">操作类型</th>
+    <th class="line_l" nowrap="nowrap">操作人</th>
+    <th class="line_l" nowrap="nowrap">操作时间</th>
+  </tr>
+  <volist id="vo" name="list">
+      <tr overstyle='on'>
+        <td width="460"><pre>{$vo.log_content}</pre></td>
+        <td nowrap="nowrap">{:$logOpType[$vo['operation_type']][1]}</td>
+        <td nowrap="nowrap">{$vo.create_username}</td>
+        <td nowrap="nowrap">{$vo.create_time}</td>
+      </tr>
+  </volist>
+  </table>
+
+  </div>
+  
+  <div class="Toolbar_inbox" style="height:26px;">
+  	<div class="page right">{$pagebar}</div>
+  </div>
+</div>
+<script type="text/javascript">
+<!--
+//-->
+</script>
