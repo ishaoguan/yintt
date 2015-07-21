@@ -149,6 +149,16 @@ $acl_inc[$i]['low_leve']['loginonline']= array( "登陆接口管理" =>array(
 												'eqaction_save'    => 'dl2',
 											)
 							);
+$acl_inc[$i]['low_leve']['active']= array( "活动管理" =>array(
+												"查看" 		=> 'hd1',
+												"修改" 		=> 'hd2',
+												),
+											"data" => array(
+													//网站设置
+													'eqaction_index'  => 'hd1',
+													'eqaction_save'    => 'hd2',
+											)
+							);
 $i++;
 $acl_inc[$i]['low_title'][] = '在线通知管理';
 $acl_inc[$i]['low_leve']['payonline']= array( "支付接口管理" =>array(

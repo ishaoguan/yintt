@@ -1,0 +1,33 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">活动管理</div>
+<div class="page_tab">
+	<span data="tab_1" class="active">注册奖励</span>
+	<span data="tab_2">首投奖励</span>
+	<span data="tab_3">推荐奖励</span>
+</div>
+<div class="form2">
+	
+  	<volist id="vo" name="list">
+  		<form method="post" action="__URL__/save" onsubmit="return subcheck();" enctype="multipart/form-data">
+  		
+  		<div id="tab_{$vo.id}" <php>echo "style='display:none'"</php> >
+  			<input name="id" type="hidden" value="{$vo.id}">
+			<dl class="lineD"><dt>是否启用：</dt><dd><htmlA:radio id="flag" value="key|vo.flag" default="1|是,0|否" /></dd></dl>
+			<dl class="lineD"><dt>注册赠送：</dt><dd><htmlA:input id="amount" value="{$vo.amount}"/></dd></dl>
+			<div class="page_btm">
+		  		<input type="submit" class="btn_b" value="确定" />
+			</div>
+		</div>
+		</form>
+  	</volist>
+	
+</div>
+
+</div>
+<script type="text/javascript">
+$("#tab_1").css("display","block");
+</script>
+<include file="Public:_footer" />

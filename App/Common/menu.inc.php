@@ -13,6 +13,7 @@ $menu_left[$i][$i."-".$j][] = array('广告管理',U('/admin/ad/'),1);
 $menu_left[$i][$i."-".$j][] = array('会员级别管理',U('/admin/leve/index'),1);
 $menu_left[$i][$i."-".$j][] = array('会员年龄别称',U('/admin/age/index'),1);
 $menu_left[$i][$i."-".$j][] = array('登陆接口管理',U('/admin/loginonline/'),1);
+$menu_left[$i][$i."-".$j][] = array('活动管理',U('/admin/active/'),1);
 $j++;
 $menu_left[$i]['low_title'][$i."-".$j] = array('在线通知管理','#',1);
 $menu_left[$i][$i."-".$j][] = array('支付接口管理',U('/admin/payonline/'),1);
