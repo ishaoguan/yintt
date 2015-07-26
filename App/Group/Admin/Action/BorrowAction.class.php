@@ -877,6 +877,37 @@ class BorrowAction extends ACommonAction
 			unset($vm["borrow_max"]);
 			saveDataLog ( $_POST ['id'], $vm, $_POST, C ( 'BORROW_LOG_KEY' ), session ( 'adminname' ), $this->admin_id, $this->logOpType ["BORROW_OPT"] [0] );
 			
+			//首投奖励
+			//查询首投且金额大于1000奖励活动是否开启
+	    	$active = active_flag(2);
+			if($active['flag'] == 1){
+		    	Log::write('123444', Log::ERR, Log::FILE, 'test111.log', $extra = '');
+		    	//查询首投且金额大于1000用户
+		    	$active_sql = " select a.investor_uid,sum(a.investor_capital) as sumAmount ";
+		    	$active_sql .= " from lzh_borrow_investor a ";
+		    	$active_sql .= " where a.borrow_id=".$_POST ['id'];
+		    	$active_sql .= " and a.investor_uid not in (select b.investor_uid from lzh_borrow_investor b where b.borrow_id != ".$_POST ['id'].") ";
+		    	$active_sql .= " GROUP BY a.investor_uid ";
+		    	$Model = M();
+		    	Log::write($active_sql, Log::ERR, Log::FILE, 'test111.log', $extra = '');
+		    	$uids = $Model->query($active_sql);
+		    	Log::write(count($uids), Log::ERR, Log::FILE, 'test111.log', $extra = '');
+		    	foreach ($uids as $ukey=>$uvalue){
+		    		//首投1000送奖励
+		    		if($uvalue['sumAmount'] >= 1000){
+		    			active_award($uvalue['investor_uid'],1,$active['amount'],"首投活动奖励","您好，您在银通泰首投1000元，您已获得".$active['amount']."元现金奖励。");
+		    		}
+		    		//首投有推荐人送奖励
+		    		$active_recommend = active_flag(3);
+		    		if($active_recommend['flag'] == 1){
+		    			$member_investor = M('members')->where("id = {$uvalue['investor_uid']}")->find();
+		    			if($member_investor['recommend_id']){
+		    				active_award($member_investor['recommend_id'],2,$active_recommend['amount'],"推荐活动奖励","您好，您已成功推荐一个好友在银通泰投资，您已获得".$active_recommend['amount']."元现金奖励。");
+		    			}
+		    		}
+		    	}
+	    	}
+			
 			// 成功提示
 			$this->assign ( 'jumpUrl', __URL__ . "/" . session ( 'listaction' ) );
 			$this->success ( L ( '修改成功' ) );
