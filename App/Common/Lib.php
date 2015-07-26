@@ -2398,6 +2398,7 @@ function borrowApproved($borrow_id){
 			$reinterestcollect = memberMoneyLog($v['investor_uid'],28,$v['investor_interest'],"第{$borrow_id}号标复审通过，应收利息成为待收金额",$binfo['borrow_uid']);
 			
 			//////////////////////邀请奖励开始////////////////////////////////////////
+			/*
 			$vo = M('members')->field('user_name,recommend_id')->find($v['investor_uid']);
 			$_rate = $_P_fee['award_invest']/1000;//推广奖励
 			if($vo['recommend_id']!=0){
@@ -2407,6 +2408,7 @@ function borrowApproved($borrow_id){
 					memberMoneyLog($vo['recommend_id'],13,$jiangli,$vo['user_name']."对{$borrow_id}号标投资成功，你获得推广奖励".$jiangli."元。",$v['investor_uid']);
 				}
 			}
+			*/
 			
 			/////////////////////邀请奖励结束/////////////////////////////////////////
 			
@@ -3485,6 +3487,34 @@ function addInnerMsg($uid,$title,$msg){
 	$data['msg'] = $msg;
 	$data['send_time'] = time();
 	M('inner_msg')->add($data);
+}
+
+function active_flag($activeId){
+	//查询注册奖励活动信息
+	$map['id'] = $activeId;
+	$active = M("active")->field('id,flag,amount')->where($map)->find();
+	return $active;
+}
+
+function active_award($newid,$awardType,$amount,$msg_title,$msg_body){
+	//账户金额增加奖励
+	$member_money = M('member_money')->where("uid = {$newid}")->find();
+	if($member_money) {
+		$member_money['account_money'] += $amount;
+		M("member_money")->where("uid={$newid}")->save($member_money);
+	}else{
+		$member_money['uid'] = $newid;
+		$member_money['account_money'] = $amount;
+		M('member_money')->add($member_money);
+	}
+	//添加注册奖励记录
+	$award_log['amount'] = $amount;
+	$award_log['uid'] = $newid;
+	$award_log['awardType'] = $awardType;
+	M('active_award_log')->add($award_log);
+		
+	//添加系统消息记录
+	addInnerMsg($newid,$msg_title,$msg_body);
 }
 
 

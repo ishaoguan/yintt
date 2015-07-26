@@ -202,38 +202,14 @@ class CommonAction extends MCommonAction {
 			Notice(1,$newid,array('email',$data['user_email']));
 			
 			//注册送奖励
-			$this->register_award($newid);
+			$active = active_flag(1);
+			if($active['flag'] == 1){
+				active_award($newid,0,$active['amount'],"注册活动奖励","您好，感谢你注册银通泰会员，您已获得".$active['amount']."元现金。");
+			}
 			
 			ajaxmsg();
 		}
 		else  ajaxmsg("注册失败，请重试",0);
-	}
-	
-	private function register_award($newid){
-		//查询注册奖励活动信息
-		$map['id'] = 1;
-		$active = M("active")->field('id,flag,amount')->where($map)->find();
-		//Log::write('活动flag:'.$active['flag'], Log::ERR, Log::FILE, 'test111.log', $extra = '');
-		if($active['flag'] == 1){
-			//账户金额增加奖励
-			$member_money = M('member_money')->where("uid = {$newid}")->find();
-			if($member_money) {
-				$member_money['account_money'] += $active['amount'];
-				M("member_money")->where("uid={$newid}")->save($member_money);
-			}else{
-				$member_money['uid'] = $newid;
-				$member_money['account_money'] = $active['amount'];
-				M('member_money')->add($member_money);
-			}
-			//添加注册奖励记录
-			$award_log['amount'] =  $active['amount'];
-			$award_log['uid'] = $newid;
-			$award_log['awardType'] = 0;
-			M('active_award_log')->add($award_log);
-			
-			//添加系统消息记录
-			addInnerMsg($newid,"注册活动奖励","您好，感谢你注册银通泰会员，您已获得10元现金。");
-		}
 	}
 	
 	public function emailverify(){
