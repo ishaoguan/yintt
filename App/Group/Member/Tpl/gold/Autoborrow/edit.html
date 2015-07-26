@@ -31,7 +31,7 @@ function checkt(id){
        <li>
         <p>每次投标金额：</p>
         <ol>
-         <li><input  type="radio" name="tender_type" value="1" <if condition="$vo.tender_type eq 1"> checked="checked"</if> />按金额投标<input name="tender_account" type="text" onclick="checkt('1')" maxlength="5" id="tender_account" class="u10_tex1" onkeyup="value=value.replace(/[^0-9]/g,'')" value="{$vo.tender_account|default=0}" />元(最少50元)</li>
+         <li><input  type="radio" name="tender_type" value="1" <if condition="$vo.tender_type eq 1"> checked="checked"</if> />按金额投标<input name="tender_account" type="text" onclick="checkt('1')" maxlength="5" id="tender_account" class="u10_tex1" onkeyup="value=value.replace(/[^0-9]/g,'')" value="{$vo.tender_account|default=0}" />元(最少100元)</li>
          <li><input  type="radio" name="tender_type" value="2"  
                 <if condition="$vo.tender_type eq 2"> checked="checked"</if>
                 />按比例投标<input name="tender_rate" type="text" onclick="checkt('2')" value="{$vo.tender_rate}" maxlength="2"  class="u10_tex1" />%(只能在1%~20%)</li>
