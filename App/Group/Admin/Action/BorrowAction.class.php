@@ -884,7 +884,7 @@ class BorrowAction extends ACommonAction
 			
 			if($active['flag'] == 1 || $active_recommend['flag'] == 1){
 				$active_sql = ' select a.investor_uid,sum(a.investor_capital) as sumAmount ';
-				$active_sql .= ' from lzh_borrow_investor a ';
+				$active_sql .= ' from '.C('DB_PREFIX').'borrow_investor a ';
 				$active_sql .= ' where a.borrow_id='.$_POST ['id'];
 				$active_sql .= ' and a.investor_uid not in (select b.investor_uid from '.C('DB_PREFIX').'borrow_investor b where b.borrow_id != '.$_POST ['id'].') ';
 				$active_sql .= ' GROUP BY a.investor_uid ';
