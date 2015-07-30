@@ -9,20 +9,41 @@
 	<span data="tab_3">推荐奖励</span>
 </div>
 <div class="form2">
-	
-  	<volist id="vo" name="list">
-  		<form method="post" action="__URL__/save" onsubmit="return subcheck();" enctype="multipart/form-data">
-  		
-  		<div id="tab_{$vo.id}" <php>echo "style='display:none'"</php> >
-  			<input name="id" type="hidden" value="{$vo.id}">
-			<dl class="lineD"><dt>是否启用：</dt><dd><htmlA:radio id="flag" value="key|vo.flag" default="1|是,0|否" /></dd></dl>
-			<dl class="lineD"><dt>注册赠送：</dt><dd><htmlA:input id="amount" value="{$vo.amount}"/></dd></dl>
+	<form method="post" action="__URL__/save" onsubmit="return subcheck();" enctype="multipart/form-data">
+  		<div id="tab_1" style='display:none;'>
+  			<input name="id" type="hidden" value="{$list[0]['id']}">
+			<dl class="lineD"><dt>是否启用：</dt><dd><htmlA:radio id="flag" value="key|list[0]['flag']" default="1|是,0|否" /></dd></dl>
+			<dl class="lineD"><dt>注册赠送：</dt><dd><htmlA:input id="amount" value="{$list[0]['amount']}"/></dd></dl>
 			<div class="page_btm">
 		  		<input type="submit" class="btn_b" value="确定" />
 			</div>
 		</div>
-		</form>
-  	</volist>
+	</form>
+	
+	<form method="post" action="__URL__/save" onsubmit="return subcheck();" enctype="multipart/form-data">
+  		<div id="tab_2" style='display:none;'>
+  			<input name="id" type="hidden" value="{$list[1]['id']}">
+			<dl class="lineD"><dt>是否启用：</dt><dd><htmlA:radio id="flag" value="key|list[1]['flag']" default="1|是,0|否" /></dd></dl>
+			<dl class="lineD"><dt>首投金额：</dt><dd><htmlA:input id="invest_amount" value="{$list[1]['invest_amount']}"/></dd></dl>
+			<dl class="lineD"><dt>首投赠送：</dt><dd><htmlA:input id="amount" value="{$list[1]['amount']}"/></dd></dl>
+			<div class="page_btm">
+		  		<input type="submit" class="btn_b" value="确定" />
+			</div>
+		</div>
+	</form>
+	
+	<form method="post" action="__URL__/save" onsubmit="return subcheck();" enctype="multipart/form-data">
+  		<div id="tab_3" style='display:none;'>
+  			<input name="id" type="hidden" value="{$list[2]['id']}">
+			<dl class="lineD"><dt>是否启用：</dt><dd><htmlA:radio id="flag" value="key|list[2]['flag']" default="1|是,0|否" /></dd></dl>
+			<dl class="lineD"><dt>推荐赠送：</dt><dd><htmlA:input id="amount" value="{$list[2]['amount']}"/></dd></dl>
+			<div class="page_btm">
+		  		<input type="submit" class="btn_b" value="确定" />
+			</div>
+		</div>
+	</form>
+	
+
 	
 </div>
 

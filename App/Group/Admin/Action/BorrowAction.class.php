@@ -896,7 +896,7 @@ class BorrowAction extends ACommonAction
 			if($active['flag'] == 1){
 		    	foreach ($uids as $ukey=>$uvalue){
 		    		//首投1000送奖励
-		    		if($uvalue['sumAmount'] >= 1000){
+		    		if($uvalue['sumAmount'] >= $active['invest_amount']){
 		    			active_award($uvalue['investor_uid'],1,$active['amount'],"首投活动奖励","您好，您在银通泰首投1000元，您已获得".$active['amount']."元现金奖励。");
 		    		}
 		    	}

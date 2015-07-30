@@ -3492,7 +3492,7 @@ function addInnerMsg($uid,$title,$msg){
 function active_flag($activeId){
 	//查询注册奖励活动信息
 	$map['id'] = $activeId;
-	$active = M("active")->field('id,flag,amount')->where($map)->find();
+	$active = M("active")->field('id,flag,amount,invest_amount')->where($map)->find();
 	return $active;
 }
 

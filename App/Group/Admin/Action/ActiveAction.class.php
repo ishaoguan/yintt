@@ -9,7 +9,7 @@ class ActiveAction extends ACommonAction
     */
     public function index()
     {
-		$field= 'id,flag,amount,desc';
+		$field= 'id,flag,amount,invest_amount,desc';
 		$this->_list(M('active'),$field,'','id','asc');
         $this->display();
     }
@@ -20,10 +20,12 @@ class ActiveAction extends ACommonAction
     		$id = $_REQUEST['id'];
     		$flag = $_REQUEST['flag'];
     		$amount = $_REQUEST['amount'];
+    		$invest_amount = $_REQUEST['invest_amount'];
     		//Log::write($id.'!'.$flag.'~'.$amount, Log::ERR, Log::FILE, 'test111.log', $extra = '');
     			$model->find($id);
     			$model->flag = $flag;
     			$model->amount = $amount;
+    			$model->invest_amount = $invest_amount;
     			if ($result = $model->save()) { //保存成功
     				$this->success('操作成功',__URL__."/index/");
     			}else{
