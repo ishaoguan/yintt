@@ -13,6 +13,8 @@ class PromotionAction extends MCommonAction {
 		
 		$_P_fee=get_global_setting();
 		$this->assign("reward",$_P_fee);	
+		$active = active_flag(2);
+		$this->assign("active",$active);
 		$data['html'] = $this->fetch();
 		exit(json_encode($data));
     }
